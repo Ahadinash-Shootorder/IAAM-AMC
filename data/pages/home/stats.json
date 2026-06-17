@@ -1,0 +1,9 @@
+{
+  "items": [
+    { "number": "15+", "label": "Years" },
+    { "number": "150+", "label": "Editions" },
+    { "number": "15000+", "label": "Delegates" },
+    { "number": "120+", "label": "Countries" },
+    { "number": "10000+", "label": "Publications" }
+  ]
+}

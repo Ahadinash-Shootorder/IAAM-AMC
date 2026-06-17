@@ -1,0 +1,46 @@
+{
+  "sections": [
+    {
+      "id": "hero",
+      "label": "Hero Banner",
+      "visible": true,
+      "order": 1
+    },
+    {
+      "id": "stats",
+      "label": "Stats Bar",
+      "visible": true,
+      "order": 2
+    },
+    {
+      "id": "speakers",
+      "label": "Speakers Section",
+      "visible": true,
+      "order": 3
+    },
+    {
+      "id": "becomeMember",
+      "label": "Become Member CTA",
+      "visible": true,
+      "order": 4
+    },
+    {
+      "id": "explore",
+      "label": "Explore More",
+      "visible": true,
+      "order": 5
+    },
+    {
+      "id": "sponsors",
+      "label": "Sponsors",
+      "visible": true,
+      "order": 6
+    },
+    {
+      "id": "becomeSponsor",
+      "label": "Become Sponsor CTA",
+      "visible": true,
+      "order": 7
+    }
+  ]
+}

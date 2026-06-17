@@ -1,0 +1,133 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Page {
+  id       String    @id
+  label    String
+  route    String
+  sections Section[]
+}
+
+model Section {
+  id           String
+  pageId       String
+  label        String
+  visible      Boolean
+  order        Int
+  content      String
+  draftContent String?
+
+  page    Page @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  history SectionHistory[]
+
+  @@id([pageId, id])
+}
+
+model SectionHistory {
+  id        String   @id @default(cuid())
+  sectionId String
+  pageId    String
+  content   String
+  createdAt DateTime @default(now())
+
+  section   Section  @relation(fields: [pageId, sectionId], references: [pageId, id], onDelete: Cascade)
+}
+
+model MediaAsset {
+  id        String   @id @default(cuid())
+  filename  String
+  url       String
+  mimetype  String
+  size      Int
+  createdAt DateTime @default(now())
+}
+
+model AdminUser {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Speaker {
+  id            String   @id @default(cuid())
+  name          String
+  designation   String?
+  organization  String?
+  image         String?
+  bannerImage   String?
+  location      String?
+  shortBio      String?
+  fullBio       String?
+  expertise     String?  // JSON stringified array
+  stats         String?  // JSON stringified array
+  ctaText       String?
+  ctaLink       String?
+  slug          String?  @unique
+  order         Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  title       String
+  date        String?
+  location    String?
+  image       String?
+  link        String?
+  eventType   String   @default("upcoming") // upcoming, individual, archive
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Sponsor {
+  id          String   @id @default(cuid())
+  name        String
+  logo        String?
+  websiteUrl  String?
+  tier        String?  @default("standard")
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Proceeding {
+  id          String   @id @default(cuid())
+  title       String
+  category    String?
+  authors     String?
+  pdfUrl      String?
+  date        String?
+  coverImage  String?
+  link        String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ActivityLog {
+  id        String   @id @default(cuid())
+  admin     String
+  action    String
+  details   String?
+  createdAt DateTime @default(now())
+}
+
+model ContactQuery {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  status    String   @default("unread") // unread, read, replied
+  createdAt DateTime @default(now())
+}

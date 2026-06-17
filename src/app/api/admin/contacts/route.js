@@ -1,0 +1,50 @@
+import { NextResponse } from 'next/server';
+import prisma from '@/lib/prisma';
+import { logActivity } from '@/lib/logger';
+import { jwtVerify } from 'jose';
+
+export const dynamic = 'force-dynamic';
+const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'iaam_super_secret_key_2026');
+
+export async function GET(request) {
+  try {
+    const url = new URL(request.url);
+    const status = url.searchParams.get('status');
+
+    const queries = await prisma.contactQuery.findMany({
+      where: status ? { status } : undefined,
+      orderBy: { createdAt: 'desc' }
+    });
+
+    return NextResponse.json({ queries });
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to fetch contact queries' }, { status: 500 });
+  }
+}
+
+export async function PUT(request) {
+  try {
+    const { id, status } = await request.json();
+
+    if (!id || !status) {
+      return NextResponse.json({ error: 'ID and status are required' }, { status: 400 });
+    }
+
+    const updated = await prisma.contactQuery.update({
+      where: { id },
+      data: { status }
+    });
+
+    try {
+      const token = request.cookies.get('admin_token')?.value;
+      if (token) {
+        const { payload } = await jwtVerify(token, JWT_SECRET);
+        await logActivity(payload.email, 'UPDATE_CONTACT_STATUS', { id, status });
+      }
+    } catch (e) {}
+
+    return NextResponse.json({ success: true, query: updated });
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to update contact query' }, { status: 500 });
+  }
+}

@@ -1,0 +1,173 @@
+[
+  {
+    "id": "hero",
+    "pageId": "home",
+    "label": "Hero Banner",
+    "visible": true,
+    "order": 1,
+    "content": "{\"backgroundImage\":\"/HeroBanner.jpg\",\"subtitle\":\"OFFICIAL SCIENTIFIC ASSEMBLY SERIES OF IAAM\",\"title\":\"Advanced Materials Congress\",\"tagline\":\"Advancing Materials for a Sustainable and Intelligent Future\",\"description\":\"The Advanced Materials Congress serves as the official assembly platform of IAAM, convening global scientific leadership across interdisciplinary domains of materials research and innovation.\",\"buttons\":[{\"text\":\"Register Now\",\"link\":\"#\",\"style\":\"primary\"},{\"text\":\"Upcoming Assemblies\",\"link\":\"#\",\"style\":\"outline\"}],\"bottomStats\":[{\"text\":\"Since 2011\"},{\"text\":\"120+ Countries\"},{\"text\":\"15000+ Delegates\"}]}",
+    "draftContent": null
+  },
+  {
+    "id": "stats",
+    "pageId": "home",
+    "label": "Stats Bar",
+    "visible": true,
+    "order": 2,
+    "content": "{\"items\":[{\"number\":\"15+\",\"label\":\"Years\"},{\"number\":\"150+\",\"label\":\"Editions\"},{\"number\":\"15000+\",\"label\":\"Delegates\"},{\"number\":\"120+\",\"label\":\"Countries\"},{\"number\":\"10000+\",\"label\":\"Publications\"}]}",
+    "draftContent": null
+  },
+  {
+    "id": "speakers",
+    "pageId": "home",
+    "label": "Speakers Section",
+    "visible": true,
+    "order": 3,
+    "content": "{\"title\":\"They've spoken at our events\",\"speakers\":[{\"name\":\"Jenny Wilson\",\"slug\":\"jenny-wilson\",\"title\":\"CEO, Genetech\",\"company\":\"Genetech\",\"image\":\"Jenny.jpg\",\"bannerImage\":\"Jenny_Wilson.png\",\"location\":\"San Francisco, USA\",\"shortBio\":\"Dr. Jenny Wilson is a visionary leader in biotechnology and genetic research. She has over 20 years of experience in driving innovation and building sustainable solutions for global healthcare challenges.\",\"fullBio\":\"Dr. Jenny Wilson is the CEO of Genetech and a globally recognized expert in biotechnology and genetic engineering. Her work focuses on developing innovative therapies and sustainable solutions that improve lives. She is passionate about mentoring the next generation of scientists and advocating for diversity in STEM.\",\"expertise\":[\"Biotechnology\",\"Innovation\",\"Leadership\",\"Healthcare\"],\"stats\":[{\"icon\":\"papers\",\"number\":\"120+\",\"label\":\"Research Papers\"},{\"icon\":\"keynotes\",\"number\":\"15+\",\"label\":\"Keynotes\"},{\"icon\":\"experience\",\"number\":\"20+\",\"label\":\"Years Experience\"}],\"ctaText\":\"Register Now\",\"ctaLink\":\"#register\"},{\"name\":\"Marvin McKinney\",\"slug\":\"marvin-mckinney\",\"title\":\"Director of Research, BioLabs\",\"company\":\"BioLabs\",\"image\":\"Marvin.jpg\",\"bannerImage\":\"Marvin_McKinney.png\",\"location\":\"Boston, USA\",\"shortBio\":\"Dr. Marvin McKinney is a pioneering researcher in advanced materials and nanotechnology. His groundbreaking work has led to major advancements in material science applications across industries.\",\"fullBio\":\"Dr. Marvin McKinney serves as Director of Research at BioLabs, where he leads teams focused on advanced materials and their applications in medicine and industry. With a career spanning over 18 years, he has authored more than 90 research papers and holds numerous patents in nanotechnology.\",\"expertise\":[\"Nanotechnology\",\"Materials Science\",\"Research\",\"Patents\"],\"stats\":[{\"icon\":\"papers\",\"number\":\"90+\",\"label\":\"Research Papers\"},{\"icon\":\"keynotes\",\"number\":\"22+\",\"label\":\"Keynotes\"},{\"icon\":\"experience\",\"number\":\"18+\",\"label\":\"Years Experience\"}],\"ctaText\":\"Register Now\",\"ctaLink\":\"#register\"},{\"name\":\"Brooklyn Simmons\",\"slug\":\"brooklyn-simmons\",\"title\":\"Head of Innovation, TechVista\",\"company\":\"TechVista\",\"image\":\"Brooklyn.png\",\"bannerImage\":\"Brooklyn_Simmons.png\",\"location\":\"London, UK\",\"shortBio\":\"Dr. Brooklyn Simmons leads innovation at TechVista, specializing in sustainable technology and green energy solutions. Her work bridges the gap between research and real-world applications.\",\"fullBio\":\"Dr. Brooklyn Simmons is the Head of Innovation at TechVista, a global leader in sustainable technology. She has dedicated her career to advancing green energy solutions and creating environmentally responsible technologies. Her research has been recognized by multiple international bodies for its impact on climate science.\",\"expertise\":[\"Sustainability\",\"Green Energy\",\"Innovation\",\"Climate Science\"],\"stats\":[{\"icon\":\"papers\",\"number\":\"75+\",\"label\":\"Research Papers\"},{\"icon\":\"keynotes\",\"number\":\"18+\",\"label\":\"Keynotes\"},{\"icon\":\"experience\",\"number\":\"15+\",\"label\":\"Years Experience\"}],\"ctaText\":\"Register Now\",\"ctaLink\":\"#register\"},{\"name\":\"Jacob Jones\",\"slug\":\"jacob-jones\",\"title\":\"CTO, NanoSphere\",\"company\":\"NanoSphere\",\"image\":\"Jacob.png\",\"bannerImage\":\"Jacob_Jones.png\",\"location\":\"Berlin, Germany\",\"shortBio\":\"Jacob Jones is a technology visionary with expertise in quantum computing and advanced materials. As CTO of NanoSphere, he leads the development of next-generation computing solutions.\",\"fullBio\":\"Jacob Jones serves as CTO of NanoSphere, where he oversees the development of quantum computing technologies and advanced material applications. His innovative approach to merging hardware and software has resulted in breakthrough products used across the tech industry. He holds a PhD in Computational Physics from MIT.\",\"expertise\":[\"Quantum Computing\",\"Hardware\",\"AI Systems\",\"Physics\"],\"stats\":[{\"icon\":\"papers\",\"number\":\"65+\",\"label\":\"Research Papers\"},{\"icon\":\"keynotes\",\"number\":\"12+\",\"label\":\"Keynotes\"},{\"icon\":\"experience\",\"number\":\"16+\",\"label\":\"Years Experience\"}],\"ctaText\":\"Register Now\",\"ctaLink\":\"#register\"},{\"name\":\"Jerome Bell\",\"slug\":\"jerome-bell\",\"title\":\"VP Engineering, MedTech Global\",\"company\":\"MedTech Global\",\"image\":\"Jerome.png\",\"bannerImage\":\"Jerome_Bell.png\",\"location\":\"Tokyo, Japan\",\"shortBio\":\"Jerome Bell is a globally acclaimed engineer specializing in medical devices and biomedical engineering. His innovations have improved healthcare delivery systems across three continents.\",\"fullBio\":\"Jerome Bell is the VP of Engineering at MedTech Global, where he spearheads the development of cutting-edge medical devices and diagnostic tools. With expertise spanning biomedical engineering and regulatory compliance, he has successfully launched over 30 medical devices into global markets. He is a Fellow of the IEEE and a frequent keynote speaker at international conferences.\",\"expertise\":[\"Biomedical Eng.\",\"Medical Devices\",\"Diagnostics\",\"Regulatory\"],\"stats\":[{\"icon\":\"papers\",\"number\":\"85+\",\"label\":\"Research Papers\"},{\"icon\":\"keynotes\",\"number\":\"25+\",\"label\":\"Keynotes\"},{\"icon\":\"experience\",\"number\":\"22+\",\"label\":\"Years Experience\"}],\"ctaText\":\"Register Now\",\"ctaLink\":\"#register\"},{\"name\":\"Esther Howard\",\"slug\":\"esther-howard\",\"title\":\"Principal Scientist, Pharma+\",\"company\":\"Pharma+\",\"image\":\"Jenny.jpg\",\"bannerImage\":\"Esther_Howard.png\",\"location\":\"Zurich, Switzerland\",\"shortBio\":\"Dr. Esther Howard is a leading pharmaceutical scientist focusing on drug discovery and personalized medicine. Her research has contributed to several breakthrough therapies.\",\"fullBio\":\"Dr. Esther Howard is the Principal Scientist at Pharma+, specializing in drug discovery and personalized medicine. She has been instrumental in developing targeted therapies that have significantly improved patient outcomes. Her work at the intersection of genomics and pharmacology has earned her numerous accolades in the field.\",\"expertise\":[\"Drug Discovery\",\"Pharmacology\",\"Genomics\",\"Clinical Trials\"],\"stats\":[{\"icon\":\"papers\",\"number\":\"110+\",\"label\":\"Research Papers\"},{\"icon\":\"keynotes\",\"number\":\"20+\",\"label\":\"Keynotes\"},{\"icon\":\"experience\",\"number\":\"19+\",\"label\":\"Years Experience\"}],\"ctaText\":\"Register Now\",\"ctaLink\":\"#register\"},{\"name\":\"Cameron Williams\",\"slug\":\"cameron-williams\",\"title\":\"Lead Researcher, CERN\",\"company\":\"CERN\",\"image\":\"Marvin.jpg\",\"bannerImage\":\"Cameron_Williams.png\",\"location\":\"Geneva, Switzerland\",\"shortBio\":\"Dr. Cameron Williams is a particle physicist at CERN, contributing to major discoveries in fundamental physics and high-energy particle research.\",\"fullBio\":\"Dr. Cameron Williams is a Lead Researcher at CERN, working on high-energy particle physics experiments. His contributions to the Large Hadron Collider project have been pivotal in advancing our understanding of the fundamental building blocks of matter. He has published extensively in top-tier physics journals.\",\"expertise\":[\"Particle Physics\",\"High-Energy\",\"LHC Research\",\"Data Science\"],\"stats\":[{\"icon\":\"papers\",\"number\":\"95+\",\"label\":\"Research Papers\"},{\"icon\":\"keynotes\",\"number\":\"14+\",\"label\":\"Keynotes\"},{\"icon\":\"experience\",\"number\":\"17+\",\"label\":\"Years Experience\"}],\"ctaText\":\"Register Now\",\"ctaLink\":\"#register\"},{\"name\":\"Savannah Nguyen\",\"slug\":\"savannah-nguyen\",\"title\":\"Director, AI Research Lab\",\"company\":\"AI Research Lab\",\"image\":\"Brooklyn.png\",\"bannerImage\":\"Savannah_Nguyen.png\",\"location\":\"Singapore\",\"shortBio\":\"Dr. Savannah Nguyen directs cutting-edge artificial intelligence research, with a focus on machine learning applications in materials science and healthcare diagnostics.\",\"fullBio\":\"Dr. Savannah Nguyen is the Director of AI Research Lab in Singapore, where she leads pioneering work in applying artificial intelligence to materials science and healthcare. Her innovative algorithms have been adopted by leading pharmaceutical companies for drug discovery and materials design optimization.\",\"expertise\":[\"AI / ML\",\"Deep Learning\",\"Healthcare AI\",\"Materials Design\"],\"stats\":[{\"icon\":\"papers\",\"number\":\"80+\",\"label\":\"Research Papers\"},{\"icon\":\"keynotes\",\"number\":\"16+\",\"label\":\"Keynotes\"},{\"icon\":\"experience\",\"number\":\"12+\",\"label\":\"Years Experience\"}],\"ctaText\":\"Register Now\",\"ctaLink\":\"#register\"},{\"name\":\"Robert Fox\",\"slug\":\"robert-fox\",\"title\":\"Professor, Stanford University\",\"company\":\"Stanford University\",\"image\":\"Jacob.png\",\"bannerImage\":\"Robert_Fox.png\",\"location\":\"Stanford, USA\",\"shortBio\":\"Prof. Robert Fox is a distinguished professor of materials engineering at Stanford University. His academic work has influenced generations of researchers in the field of advanced materials.\",\"fullBio\":\"Prof. Robert Fox holds a distinguished professorship in Materials Engineering at Stanford University. His research group focuses on the synthesis and characterization of novel materials for energy storage and conversion. He has mentored over 50 PhD students and received the National Science Foundation's highest honor for his contributions to materials science education.\",\"expertise\":[\"Materials Eng.\",\"Energy Storage\",\"Education\",\"Synthesis\"],\"stats\":[{\"icon\":\"papers\",\"number\":\"150+\",\"label\":\"Research Papers\"},{\"icon\":\"keynotes\",\"number\":\"30+\",\"label\":\"Keynotes\"},{\"icon\":\"experience\",\"number\":\"25+\",\"label\":\"Years Experience\"}],\"ctaText\":\"Register Now\",\"ctaLink\":\"#register\"},{\"name\":\"Courtney Henry\",\"slug\":\"courtney-henry\",\"title\":\"Founder, GreenMat Labs\",\"company\":\"GreenMat Labs\",\"image\":\"Jerome.png\",\"bannerImage\":\"Courtney_Henry.png\",\"location\":\"Melbourne, Australia\",\"shortBio\":\"Courtney Henry founded GreenMat Labs to develop eco-friendly materials for construction and manufacturing. His work has earned multiple sustainability awards.\",\"fullBio\":\"Courtney Henry is the Founder and CEO of GreenMat Labs, an innovative startup focused on developing sustainable and eco-friendly materials for the construction and manufacturing industries. His patented materials have been adopted by major corporations looking to reduce their environmental footprint. He is a vocal advocate for green innovation and circular economy principles.\",\"expertise\":[\"Green Materials\",\"Sustainability\",\"Manufacturing\",\"Circular Economy\"],\"stats\":[{\"icon\":\"papers\",\"number\":\"55+\",\"label\":\"Research Papers\"},{\"icon\":\"keynotes\",\"number\":\"10+\",\"label\":\"Keynotes\"},{\"icon\":\"experience\",\"number\":\"14+\",\"label\":\"Years Experience\"}],\"ctaText\":\"Register Now\",\"ctaLink\":\"#register\"}]}",
+    "draftContent": null
+  },
+  {
+    "id": "becomeMember",
+    "pageId": "home",
+    "label": "Become Member CTA",
+    "visible": true,
+    "order": 4,
+    "content": "{\"titlePrefix\":\"Become\",\"type\":\"Member\",\"description\":\"Join The Global Community Shaping The Future Of Advance material\",\"subDescription\":\"Gain access to Exclusive Events, Expert Insights, Networking Opportunities, and Member-only resources\",\"buttonText\":\"Become a Member\",\"buttonLink\":\"#\",\"backgroundImage\":\"member_cta_bg.png\"}",
+    "draftContent": null
+  },
+  {
+    "id": "explore",
+    "pageId": "home",
+    "label": "Explore More",
+    "visible": true,
+    "order": 5,
+    "content": "{\"title\":\"Explore More\",\"cards\":[{\"heading\":\"Partner Masterclasses\",\"buttonText\":\"Find Out More\",\"buttonLink\":\"#\",\"image\":\"Partner.png\",\"overlayColor\":\"red\",\"position\":\"left-top\"},{\"heading\":\"Meet-ups\",\"buttonText\":\"Find Out More\",\"buttonLink\":\"#\",\"image\":\"Meet.png\",\"overlayColor\":\"purple\",\"position\":\"left-bottom\"},{\"heading\":\"Partner Masterclasses\",\"subHeading\":\"Expert-led. Future-focused.\",\"buttonText\":\"Find Out More\",\"buttonLink\":\"#\",\"image\":\"PM2.png\",\"overlayColor\":\"none\",\"position\":\"right\"}]}",
+    "draftContent": null
+  },
+  {
+    "id": "sponsors",
+    "pageId": "home",
+    "label": "Sponsors",
+    "visible": true,
+    "order": 6,
+    "content": "{\"title\":\"Sponsors\",\"logos\":[{\"image\":\"/uploads/home/sponsors/1781154361828-Sponsors-logo.jpg\",\"alt\":\"BioTechne\"},{\"image\":\"/uploads/home/sponsors/1781154570487-Sponsors-logo.jpg\",\"alt\":\"Materials Science Institute\"},{\"image\":\"/uploads/home/sponsors/1781154577979-Sponsors-logo.jpg\",\"alt\":\"NanoStreak\"},{\"image\":\"/uploads/home/sponsors/1781154587035-Sponsors-logo.jpg\",\"alt\":\"Avance Engineering\"},{\"image\":\"/uploads/home/sponsors/1781154593813-Sponsors-logo.jpg\",\"alt\":\"Verdia Energy\"},{\"image\":\"/uploads/home/sponsors/1781154601118-Sponsors-logo.jpg\",\"alt\":\"LabLink\"},{\"image\":\"/uploads/home/sponsors/1781154611248-Sponsors-logo.jpg\",\"alt\":\"Qubit Dynamics\"},{\"image\":\"/uploads/home/sponsors/1781154618555-Sponsors-logo.jpg\",\"alt\":\"Lumin Green\"},{\"image\":\"/uploads/home/sponsors/1781154629639-Sponsors-logo.jpg\",\"alt\":\"Nexus Biotech\"},{\"image\":\"/uploads/home/sponsors/1781154642317-Sponsors-logo.jpg\",\"alt\":\"Aethel Aerospace\"},{\"image\":\"/uploads/home/sponsors/1781154652130-Sponsors-logo.jpg\",\"alt\":\"Medicore\"},{\"image\":\"/uploads/home/sponsors/1781154658960-Sponsors-logo.jpg\",\"alt\":\"Aurora Publishing\"}]}",
+    "draftContent": null
+  },
+  {
+    "id": "becomeSponsor",
+    "pageId": "home",
+    "label": "Become Sponsor CTA",
+    "visible": true,
+    "order": 7,
+    "content": "{\"titlePrefix\":\"Become\",\"type\":\"Sponsor\",\"description\":\"Join The Global Community Shaping The Future Of Advance material\",\"subDescription\":\"Gain access to Exclusive Events, Expert Insights, Networking Opportunities, and Member-only resources\",\"buttonText\":\"Become a Sponsor\",\"buttonLink\":\"#\",\"backgroundImage\":\"sponsor_cta_bg.png\"}",
+    "draftContent": null
+  },
+  {
+    "id": "header",
+    "pageId": "global",
+    "label": "Header / Navigation",
+    "visible": true,
+    "order": 0,
+    "content": "{\"logo\":\"/uploads/header/1780559905648-LOGO.jpg\",\"navItems\":[{\"label\":\"About\",\"link\":\"about\"},{\"label\":\"Assemblies\",\"link\":\"assemblies\"},{\"label\":\"Scientific Tracks\",\"link\":\"scientific-tracks\"},{\"label\":\"Fellow & Awards\",\"link\":\"fellow-&-awards\"},{\"label\":\"Sponsors\",\"link\":\"sponsors\"},{\"label\":\"Publications\",\"link\":\"publications\"},{\"label\":\"Contacts\",\"link\":\"contacts\"}],\"ctaButton\":{\"text\":\"Submit Abstract\",\"link\":\"#\"}}",
+    "draftContent": null
+  },
+  {
+    "id": "footer",
+    "pageId": "global",
+    "label": "Footer",
+    "visible": true,
+    "order": 1,
+    "content": "{\"title\":\"International Association of Advance Material\",\"subtitle\":\"Stockholm, Sweden\",\"infoTexts\":[\"Observer Organization to UNEP\",\"Accreditation File No. 1252/2024\"],\"links\":[{\"label\":\"About IAAM\",\"link\":\"#\"},{\"label\":\"Fellow Nomination\",\"link\":\"#\"},{\"label\":\"Journals\",\"link\":\"#\"},{\"label\":\"Articles of Association\",\"link\":\"#\"},{\"label\":\"Conferences\",\"link\":\"#\"},{\"label\":\"Net-Zero Charter\",\"link\":\"#\"}],\"bottomText\":\"Advance Material Congress Powered By IAAM\"}",
+    "draftContent": null
+  },
+  {
+    "id": "aboutHero",
+    "pageId": "about",
+    "label": "About Hero",
+    "visible": true,
+    "order": 1,
+    "content": "{\"title\":\"About Organization\",\"description\":\"Dr. Jenny Wilson is the CEO of Genetech and a globally recognized expert in biotechnology and genetic engineering. Her work focuses on developing innovative therapies and sustainable solutions that improve lives. She is passionate about mentoring the next generation of scientists and advocating for diversity in STEM.\",\"image\":\"/uploads/about/aboutHero/1780922154757-About-Organization.png\"}",
+    "draftContent": null
+  },
+  {
+    "id": "ourStory",
+    "pageId": "about",
+    "label": "Our Story",
+    "visible": true,
+    "order": 2,
+    "content": "{\"title\":\"Our Story\",\"paragraphs\":[\"Dr. Jenny Wilson is the CEO of Genetech and a globally recognized expert in biotechnology and genetic engineering. Her work focuses on developing innovative therapies and sustainable solutions that improve lives. She is passionate about mentoring the next generation of scientists and advocating for diversity in STEM.\",\"Dr. Jenny Wilson is the CEO of Genetech and a globally recognized expert in biotechnology and genetic engineering. Her work focuses on developing innovative therapies and sustainable solutions that improve lives. She is passionate about mentoring the next generation of scientists and advocating for diversity in STEM.\"],\"image\":\"/uploads/about/ourStory/1780922166528-Our-Story.png\"}",
+    "draftContent": null
+  },
+  {
+    "id": "globalEvents",
+    "pageId": "about",
+    "label": "Global Events",
+    "visible": true,
+    "order": 3,
+    "content": "{\"title\":\"Our Global Events\",\"events\":[{\"image\":\"\"},{\"image\":\"\"},{\"image\":\"\"},{\"image\":\"\"}]}",
+    "draftContent": null
+  },
+  {
+    "id": "speakers",
+    "pageId": "about",
+    "label": "Speakers Section",
+    "visible": true,
+    "order": 4,
+    "content": "{\"title\":\"They've spoken at our events\"}",
+    "draftContent": null
+  },
+  {
+    "id": "sponsors",
+    "pageId": "about",
+    "label": "Sponsors Section",
+    "visible": true,
+    "order": 5,
+    "content": "{\"title\":\"Sponsors\"}",
+    "draftContent": null
+  },
+  {
+    "id": "eventsList",
+    "pageId": "upcoming-events",
+    "label": "Events List",
+    "visible": true,
+    "order": 1,
+    "content": "{\"title\":\"UPCOMING EVENTS\",\"events\":[{\"title\":\"European Advanced Materials Congress 2025\",\"location\":\"Stockholm, Sweden\",\"date\":\"30 March – 01 April 2026\",\"link\":\"#\",\"image\":\"/uploads/upcoming-events/eventsList/1781084452148-UP1.png\"},{\"title\":\"International Robotics Summit 2025\",\"location\":\"Tokyo, Japan\",\"date\":\"15-17 June 2025\",\"link\":\"#\",\"image\":\"/uploads/upcoming-events/eventsList/1781084459286-About-Organization.png\"},{\"title\":\"Global Health Innovations Forum 2025\",\"location\":\"San Francisco, USA\",\"date\":\"10-12 September 2025\",\"link\":\"#\",\"image\":\"/uploads/upcoming-events/eventsList/1781084466949-UP2.png\"},{\"title\":\"Sustainable Energy Conference 2025\",\"location\":\"Amsterdam, Netherlands\",\"date\":\"05-07 November 2025\",\"link\":\"#\",\"image\":\"/uploads/upcoming-events/eventsList/1781084475049-Our-Story.png\"},{\"title\":\"Artificial Intelligence in Healthcare Summit 2025\",\"location\":\"Toronto, Canada\",\"date\":\"20-22 January 2026\",\"link\":\"#\",\"image\":\"/uploads/upcoming-events/eventsList/1781084482924-About-Organization.png\"}]}",
+    "draftContent": null
+  },
+  {
+    "id": "eventsList",
+    "pageId": "individual-events",
+    "label": "Events List",
+    "visible": true,
+    "order": 1,
+    "content": "{\"title\":\"INDIVIDUAL EVENTS\",\"events\":[{\"title\":\"European Advanced Materials Congress 2025\",\"location\":\"Stockholm, Sweden\",\"date\":\"30 March – 01 April 2026\",\"link\":\"#\",\"image\":\"/uploads/individual-events/eventsList/1781084352006-About-Organization.png\"},{\"title\":\"International Robotics Summit 2025\",\"location\":\"Tokyo, Japan\",\"date\":\"15-17 June 2025\",\"link\":\"#\",\"image\":\"/uploads/individual-events/eventsList/1781084361139-Our-Story.png\"},{\"title\":\"Global Health Innovations Forum 2025\",\"location\":\"San Francisco, USA\",\"date\":\"10-12 September 2025\",\"link\":\"#\",\"image\":\"/uploads/individual-events/eventsList/1781084369775-UP1.png\"},{\"title\":\"Sustainable Energy Conference 2025\",\"location\":\"Amsterdam, Netherlands\",\"date\":\"05-07 November 2025\",\"link\":\"#\",\"image\":\"/uploads/individual-events/eventsList/1781084379520-UP2.png\"},{\"title\":\"Artificial Intelligence in Healthcare Summit 2025\",\"location\":\"Toronto, Canada\",\"date\":\"20-22 January 2026\",\"link\":\"#\",\"image\":\"/uploads/individual-events/eventsList/1781084387072-About-Organization.png\"}]}",
+    "draftContent": null
+  },
+  {
+    "id": "eventsList",
+    "pageId": "congress-archive",
+    "label": "Events List",
+    "visible": true,
+    "order": 1,
+    "content": "{\"title\":\"CONGRESS ARCHIVE\",\"events\":[{\"title\":\"European Advanced Materials Congress 2025\",\"location\":\"Stockholm, Sweden\",\"date\":\"30 March – 01 April 2026\",\"link\":\"#\",\"image\":\"/uploads/congress-archive/eventsList/1781083414980-UP1.png\"},{\"title\":\"International Robotics Summit 2025\",\"location\":\"Tokyo, Japan\",\"date\":\"15-17 June 2025\",\"link\":\"#\",\"image\":\"/uploads/congress-archive/eventsList/1781083425241-UP2.png\"},{\"title\":\"Global Health Innovations Forum 2025\",\"location\":\"San Francisco, USA\",\"date\":\"10-12 September 2025\",\"link\":\"#\",\"image\":\"/uploads/congress-archive/eventsList/1781083442912-UP4.png\"},{\"title\":\"Sustainable Energy Conference 2025\",\"location\":\"Amsterdam, Netherlands\",\"date\":\"05-07 November 2025\",\"link\":\"#\",\"image\":\"/uploads/congress-archive/eventsList/1781083452440-UP3.png\"},{\"title\":\"Artificial Intelligence in Healthcare Summit 2025\",\"location\":\"Toronto, Canada\",\"date\":\"20-22 January 2026\",\"link\":\"#\",\"image\":\"/uploads/congress-archive/eventsList/1781083465024-UP1.png\"}]}",
+    "draftContent": null
+  },
+  {
+    "id": "proceedingsList",
+    "pageId": "congress-proceedings",
+    "label": "Proceedings List",
+    "visible": true,
+    "order": 1,
+    "content": "{\"title\":\"CONGRESS PROCEEDINGS & REPORTS\",\"proceedings\":[{\"category\":\"Fashion Design\",\"title\":\"The Future of Fashion Design: Where Creativity Meets Innovation\",\"author\":\"Jane Cooper\",\"date\":\"November 2026\",\"image\":\"/uploads/congress-proceedings/proceedingsList/1781084049002-UP1.png\"},{\"category\":\"Fashion Design\",\"title\":\"The Future of Fashion Design: Where Creativity Meets Innovation\",\"author\":\"Jane Cooper\",\"date\":\"November 2026\",\"image\":\"/uploads/congress-proceedings/proceedingsList/1781084061628-UP2.png\"},{\"category\":\"Fashion Design\",\"title\":\"The Future of Fashion Design: Where Creativity Meets Innovation\",\"author\":\"Jane Cooper\",\"date\":\"November 2026\",\"image\":\"/uploads/congress-proceedings/proceedingsList/1781084074109-UP1.png\"},{\"category\":\"Fashion Design\",\"title\":\"The Future of Fashion Design: Where Creativity Meets Innovation\",\"author\":\"Jane Cooper\",\"date\":\"November 2026\",\"image\":\"/uploads/congress-proceedings/proceedingsList/1781084085335-UP2.png\"},{\"category\":\"Fashion Design\",\"title\":\"The Future of Fashion Design: Where Creativity Meets Innovation\",\"author\":\"Jane Cooper\",\"date\":\"November 2026\",\"image\":\"/uploads/congress-proceedings/proceedingsList/1781084093497-UP1.png\"},{\"category\":\"Fashion Design\",\"title\":\"The Future of Fashion Design: Where Creativity Meets Innovation\",\"author\":\"Jane Cooper\",\"date\":\"November 2026\",\"image\":\"/uploads/congress-proceedings/proceedingsList/1781084105338-About-Organization.png\"},{\"category\":\"Fashion Design\",\"title\":\"The Future of Fashion Design: Where Creativity Meets Innovation\",\"author\":\"Jane Cooper\",\"date\":\"November 2026\",\"image\":\"/uploads/congress-proceedings/proceedingsList/1781084115539-Our-Story.png\"},{\"category\":\"Fashion Design\",\"title\":\"The Future of Fashion Design: Where Creativity Meets Innovation\",\"author\":\"Jane Cooper\",\"date\":\"November 2026\",\"image\":\"/uploads/congress-proceedings/proceedingsList/1781084129305-UP1.png\"},{\"category\":\"Fashion Design\",\"title\":\"The Future of Fashion Design: Where Creativity Meets Innovation\",\"author\":\"Jane Cooper\",\"date\":\"November 2026\",\"image\":\"/uploads/congress-proceedings/proceedingsList/1781084138739-UP2.png\"},{\"category\":\"Fashion Design\",\"title\":\"The Future of Fashion Design: Where Creativity Meets Innovation\",\"author\":\"Jane Cooper\",\"date\":\"November 2026\",\"image\":\"/uploads/congress-proceedings/proceedingsList/1781084146580-About-Organization.png\"},{\"category\":\"Fashion Design\",\"title\":\"The Future of Fashion Design: Where Creativity Meets Innovation\",\"author\":\"Jane Cooper\",\"date\":\"November 2026\",\"image\":\"/uploads/congress-proceedings/proceedingsList/1781084156143-Our-Story.png\"},{\"category\":\"Fashion Design\",\"title\":\"The Future of Fashion Design: Where Creativity Meets Innovation\",\"author\":\"Jane Cooper\",\"date\":\"November 2026\",\"image\":\"/uploads/congress-proceedings/proceedingsList/1781084169903-UP1.png\"},{\"category\":\"Fashion Design\",\"title\":\"The Future of Fashion Design: Where Creativity Meets Innovation\",\"author\":\"Jane Cooper\",\"date\":\"November 2026\",\"image\":\"/uploads/congress-proceedings/proceedingsList/1781084177956-UP2.png\"},{\"category\":\"Fashion Design\",\"title\":\"The Future of Fashion Design: Where Creativity Meets Innovation\",\"author\":\"Jane Cooper\",\"date\":\"November 2026\",\"image\":\"/uploads/congress-proceedings/proceedingsList/1781084184906-About-Organization.png\"},{\"category\":\"Fashion Design\",\"title\":\"The Future of Fashion Design: Where Creativity Meets Innovation\",\"author\":\"Jane Cooper\",\"date\":\"November 2026\",\"image\":\"/uploads/congress-proceedings/proceedingsList/1781084193391-Our-Story.png\"}]}",
+    "draftContent": null
+  },
+  {
+    "id": "site-identity",
+    "pageId": "global",
+    "label": "Site Identity & SEO",
+    "visible": true,
+    "order": 2,
+    "content": "{\"schema\":{\"fields\":[{\"key\":\"websiteTitle\",\"label\":\"Website Title\",\"type\":\"text\"},{\"key\":\"websiteDescription\",\"label\":\"Website Description\",\"type\":\"textarea\"},{\"key\":\"keywords\",\"label\":\"Keywords (Comma separated)\",\"type\":\"text\"},{\"key\":\"faviconImage\",\"label\":\"Favicon (.ico or .png)\",\"type\":\"image\"},{\"key\":\"ogImage\",\"label\":\"OpenGraph Image (Banner for social sharing)\",\"type\":\"image\"}]},\"data\":{\"websiteTitle\":\"Advanced Materials Congress - Official Scientific Assembly Series of IAAM\",\"websiteDescription\":\"Official Scientific Assembly Series of IAAM. Join the global community of researchers and professionals.\",\"keywords\":\"IAAM, Advanced Materials, Congress, Scientific Assembly, Research, Materials Science\",\"faviconImage\":\"/favicon.ico\",\"ogImage\":\"/LOGO.jpg\"},\"websiteTitle\":\"AMC\",\"faviconImage\":\"/uploads/global/site-identity/1781511480589-AMC_LOGO.png\"}",
+    "draftContent": null
+  }
+]

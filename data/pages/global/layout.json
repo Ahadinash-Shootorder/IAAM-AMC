@@ -1,0 +1,16 @@
+{
+  "sections": [
+    {
+      "id": "header",
+      "label": "Header / Navigation",
+      "visible": true,
+      "order": 0
+    },
+    {
+      "id": "footer",
+      "label": "Footer",
+      "visible": true,
+      "order": 1
+    }
+  ]
+}

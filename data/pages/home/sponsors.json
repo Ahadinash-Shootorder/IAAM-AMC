@@ -1,0 +1,17 @@
+{
+  "title": "Sponsors",
+  "logos": [
+    { "image": "sponsor_1.png", "alt": "BioTechne" },
+    { "image": "sponsor_2.png", "alt": "Materials Science Institute" },
+    { "image": "sponsor_3.png", "alt": "NanoStreak" },
+    { "image": "sponsor_4.png", "alt": "Avance Engineering" },
+    { "image": "sponsor_5.png", "alt": "Verdia Energy" },
+    { "image": "sponsor_6.png", "alt": "LabLink" },
+    { "image": "sponsor_7.png", "alt": "Qubit Dynamics" },
+    { "image": "sponsor_8.png", "alt": "Lumin Green" },
+    { "image": "sponsor_9.png", "alt": "Nexus Biotech" },
+    { "image": "sponsor_10.png", "alt": "Aethel Aerospace" },
+    { "image": "sponsor_11.png", "alt": "Medicore" },
+    { "image": "sponsor_12.png", "alt": "Aurora Publishing" }
+  ]
+}

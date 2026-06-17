@@ -1,0 +1,37 @@
+{
+  "logo": "/uploads/header/1780559905648-LOGO.jpg",
+  "navItems": [
+    {
+      "label": "About",
+      "link": "#about"
+    },
+    {
+      "label": "Assemblies",
+      "link": "#assemblies"
+    },
+    {
+      "label": "Scientific Tracks",
+      "link": "#scientific-tracks"
+    },
+    {
+      "label": "Fellow & Awards",
+      "link": "#fellow-&-awards"
+    },
+    {
+      "label": "Sponsors",
+      "link": "#sponsors"
+    },
+    {
+      "label": "Publications",
+      "link": "#publications"
+    },
+    {
+      "label": "Contacts",
+      "link": "#contacts"
+    }
+  ],
+  "ctaButton": {
+    "text": "Submit Abstract",
+    "link": "#"
+  }
+}

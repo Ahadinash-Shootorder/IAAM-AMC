@@ -1,0 +1,38 @@
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ctaWrapper {
+  padding: 60px 59px;
+}
+
+.ctaWrapperLight {
+  background: #FFFBFB;
+}
+
+.ctaWrapperGray {
+  background: #F8F8F8;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .ctaWrapper {
+    padding: 40px 30px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .ctaWrapper {
+    padding: 30px 20px;
+  }
+}

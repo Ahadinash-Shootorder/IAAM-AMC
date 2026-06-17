@@ -1,0 +1,36 @@
+import Header from '@/components/Common/Header';
+import Footer from '@/components/Common/Footer';
+import EventsList from '@/components/Events/EventsList/EventsList';
+import { readPageSectionData, getPageLayout } from '@/lib/data';
+import prisma from '@/lib/prisma';
+
+export const metadata = {
+  title: 'Congress Archive',
+  description: 'View the archive of past Advanced Materials Congress events.',
+};
+
+export const dynamic = 'force-dynamic';
+
+export default async function CongressArchive() {
+  const sectionsConfig = await getPageLayout('congress-archive');
+  const headerData = await readPageSectionData('global', 'header');
+  const footerData = await readPageSectionData('global', 'footer');
+
+  // Fetch the events data
+  let eventsListData = await readPageSectionData('congress-archive', 'eventsList');
+  const dbEvents = await prisma.event.findMany({ 
+    where: { eventType: 'archive' },
+    orderBy: { order: 'asc' } 
+  });
+  eventsListData = { ...eventsListData, events: dbEvents };
+
+  return (
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <Header data={headerData} />
+      <main style={{ flex: 1, backgroundColor: '#fff' }}>
+        <EventsList data={eventsListData} />
+      </main>
+      <Footer data={footerData} />
+    </div>
+  );
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "cmqetv0n60000grdf3kyhsmqn",
+    "name": "BioTechne",
+    "logo": "/uploads/crud/uploads/1781509070050-Sponsors-logo.jpg",
+    "websiteUrl": null,
+    "tier": "standard",
+    "order": 0,
+    "createdAt": "2026-06-15T06:23:53.346Z",
+    "updatedAt": "2026-06-15T07:37:52.891Z"
+  },
+  {
+    "id": "cmqetv0ng0001grdfswu6wtxq",
+    "name": "Materials Science Institute",
+    "logo": "/uploads/crud/uploads/1781509095893-Sponsors-logo.jpg",
+    "websiteUrl": null,
+    "tier": "standard",
+    "order": 1,
+    "createdAt": "2026-06-15T06:23:53.356Z",
+    "updatedAt": "2026-06-15T07:38:18.926Z"
+  },
+  {
+    "id": "cmqetv0nh0002grdfgedqhsbo",
+    "name": "NanoStreak",
+    "logo": "/uploads/crud/uploads/1781509109575-Sponsors-logo.jpg",
+    "websiteUrl": null,
+    "tier": "standard",
+    "order": 2,
+    "createdAt": "2026-06-15T06:23:53.358Z",
+    "updatedAt": "2026-06-15T07:38:31.087Z"
+  },
+  {
+    "id": "cmqetv0nj0003grdf67pjf788",
+    "name": "Avance Engineering",
+    "logo": "/uploads/crud/uploads/1781509124490-Sponsors-logo.jpg",
+    "websiteUrl": null,
+    "tier": "standard",
+    "order": 3,
+    "createdAt": "2026-06-15T06:23:53.359Z",
+    "updatedAt": "2026-06-15T07:38:45.870Z"
+  },
+  {
+    "id": "cmqetv0nk0004grdf9xshqj46",
+    "name": "Verdia Energy",
+    "logo": "/uploads/crud/uploads/1781509140060-Sponsors-logo.jpg",
+    "websiteUrl": null,
+    "tier": "standard",
+    "order": 4,
+    "createdAt": "2026-06-15T06:23:53.361Z",
+    "updatedAt": "2026-06-15T07:39:00.927Z"
+  },
+  {
+    "id": "cmqetv0nm0005grdfvbmn1sd1",
+    "name": "LabLink",
+    "logo": "/uploads/crud/uploads/1781509149079-Sponsors-logo.jpg",
+    "websiteUrl": null,
+    "tier": "standard",
+    "order": 5,
+    "createdAt": "2026-06-15T06:23:53.362Z",
+    "updatedAt": "2026-06-15T07:39:10.436Z"
+  },
+  {
+    "id": "cmqetv0nn0006grdfqxyrgd11",
+    "name": "Qubit Dynamics",
+    "logo": "/uploads/crud/uploads/1781509160026-Sponsors-logo.jpg",
+    "websiteUrl": null,
+    "tier": "standard",
+    "order": 6,
+    "createdAt": "2026-06-15T06:23:53.364Z",
+    "updatedAt": "2026-06-15T07:39:21.403Z"
+  },
+  {
+    "id": "cmqetv0np0007grdfxxho6h0k",
+    "name": "Lumin Green",
+    "logo": "/uploads/crud/uploads/1781509172010-Sponsors-logo.jpg",
+    "websiteUrl": null,
+    "tier": "standard",
+    "order": 7,
+    "createdAt": "2026-06-15T06:23:53.365Z",
+    "updatedAt": "2026-06-15T07:39:32.888Z"
+  },
+  {
+    "id": "cmqetv0nq0008grdfr0f610fv",
+    "name": "Nexus Biotech",
+    "logo": "/uploads/crud/uploads/1781509180656-Sponsors-logo.jpg",
+    "websiteUrl": null,
+    "tier": "standard",
+    "order": 8,
+    "createdAt": "2026-06-15T06:23:53.367Z",
+    "updatedAt": "2026-06-15T07:39:41.619Z"
+  },
+  {
+    "id": "cmqetv0ns0009grdfifpg9tnb",
+    "name": "Aethel Aerospace",
+    "logo": "/uploads/crud/uploads/1781509189811-Sponsors-logo.jpg",
+    "websiteUrl": null,
+    "tier": "standard",
+    "order": 9,
+    "createdAt": "2026-06-15T06:23:53.368Z",
+    "updatedAt": "2026-06-15T07:39:50.785Z"
+  },
+  {
+    "id": "cmqetv0nt000agrdfe6zrohki",
+    "name": "Medicore",
+    "logo": "/uploads/crud/uploads/1781509198531-Sponsors-logo.jpg",
+    "websiteUrl": null,
+    "tier": "standard",
+    "order": 10,
+    "createdAt": "2026-06-15T06:23:53.370Z",
+    "updatedAt": "2026-06-15T07:39:59.537Z"
+  },
+  {
+    "id": "cmqetv0nv000bgrdf692nodlo",
+    "name": "Aurora Publishing",
+    "logo": "/uploads/crud/uploads/1781509209244-Sponsors-logo.jpg",
+    "websiteUrl": null,
+    "tier": "standard",
+    "order": 11,
+    "createdAt": "2026-06-15T06:23:53.371Z",
+    "updatedAt": "2026-06-15T07:40:10.151Z"
+  }
+]

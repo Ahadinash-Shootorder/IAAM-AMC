@@ -1,0 +1,11 @@
+{
+  "pages": [
+    { "id": "home", "label": "Home Page", "route": "/" },
+    { "id": "about", "label": "About Page", "route": "/about" },
+    { "id": "upcoming-events", "label": "Upcoming Events", "route": "/upcoming-events" },
+    { "id": "individual-events", "label": "Individual Events", "route": "/individual-events" },
+    { "id": "congress-archive", "label": "Congress Archive", "route": "/congress-archive" },
+    { "id": "congress-proceedings", "label": "Congress Proceedings", "route": "/congress-proceedings" },
+    { "id": "global", "label": "Global Settings", "route": "" }
+  ]
+}

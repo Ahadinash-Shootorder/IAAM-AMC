@@ -1,0 +1,321 @@
+.eventsListSection {
+  background-color: white;
+  padding: 60px 0 100px;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.headerRow {
+  margin-top: 0;
+}
+
+.pageTitle {
+  color: #474555;
+  font-size: 56px;
+  font-family: 'PT Sans', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ─── Filters ─── */
+.filtersRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 18px 16px;
+  border-radius: 4px;
+  border: 1px solid #c1c1c1;
+  background: white;
+  min-width: 300px;
+  flex: 1;
+  max-width: 586px;
+}
+
+.searchIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.searchInput {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  color: #474555;
+  width: 100%;
+}
+
+.searchInput::placeholder {
+  color: #474555;
+}
+
+.filterPills {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  padding: 10px 21px;
+  background: white;
+  border: 1px solid #c1c1c1;
+  border-radius: 63px;
+  color: #474555;
+  font-size: 18px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filterBtn:hover {
+  background: #f8f8f8;
+  border-color: #474555;
+}
+
+/* ─── Grid & Cards ─── */
+.eventsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 58px;
+}
+
+.eventCard {
+  width: 100%;
+  height: 531px;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+}
+
+.imageContainer {
+  width: 869px;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: white;
+  flex-shrink: 0;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholderImage {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(45deg, #e0e0e0 25%, transparent 25%, transparent 75%, #e0e0e0 75%, #e0e0e0),
+    linear-gradient(45deg, #e0e0e0 25%, transparent 25%, transparent 75%, #e0e0e0 75%, #e0e0e0);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  opacity: 0.5;
+}
+
+.cardContent {
+  flex: 1;
+  padding: 112px 65px 112px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+.eventTitle {
+  font-size: 34px;
+  font-family: 'PT Sans', sans-serif;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.eventDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.location, .date {
+  font-size: 24px;
+  font-family: 'PT Sans', sans-serif;
+  font-weight: 400;
+  margin: 0;
+}
+
+.visitBtn {
+  padding: 13px 17px;
+  background: white;
+  border-radius: 4px;
+  font-size: 18px;
+  font-family: 'Helvetica', sans-serif;
+  font-weight: 400;
+  text-decoration: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.visitBtn:hover {
+  transform: translateY(-2px);
+}
+
+/* ─── Color Variations ─── */
+
+/* Pink Card */
+.cardPink {
+  background-color: #f04393;
+}
+.cardPink .eventTitle {
+  color: #240e8b;
+}
+.cardPink .location, .cardPink .date {
+  color: white;
+}
+.cardPink .visitBtn {
+  color: #240e8b;
+}
+
+/* Yellow Card */
+.cardYellow {
+  background-color: #f9c449;
+}
+.cardYellow .eventTitle {
+  color: #240e8b;
+}
+.cardYellow .location, .cardYellow .date {
+  color: #474555;
+}
+.cardYellow .visitBtn {
+  color: #240e8b;
+}
+
+/* Blue Card */
+.cardBlue {
+  background-color: #240e8b;
+}
+.cardBlue .eventTitle {
+  color: white;
+}
+.cardBlue .location, .cardBlue .date {
+  color: #e4e4e7;
+}
+.cardBlue .visitBtn {
+  color: #1c3e9c;
+}
+
+
+/* ─── Responsive ─── */
+@media (max-width: 1200px) {
+  .eventCard {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .imageContainer {
+    width: 100%;
+    height: 300px;
+  }
+  
+  .cardContent {
+    padding: 40px;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .eventsListSection {
+    padding: 40px 0;
+  }
+  
+  .container {
+    padding: 0 20px;
+  }
+  
+  .pageTitle {
+    font-size: 32px;
+  }
+  
+  .filtersRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  
+  .searchBox {
+    min-width: 100%;
+    padding: 12px 16px;
+  }
+  
+  .filterPills {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 12px;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .filterPills::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filterBtn {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+  
+  .imageContainer {
+    height: 200px; /* Prevents stretched look on mobile */
+  }
+
+  .cardContent {
+    padding: 24px 20px;
+    gap: 24px;
+  }
+  
+  .eventTitle {
+    font-size: 24px;
+  }
+  
+  .location, .date {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  
+  .visitBtn {
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -1,0 +1,261 @@
+.section {
+  width: 100%;
+  padding: 54px 70px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  color: var(--color-text-dark);
+  font-size: 56px;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin: 0 0 54px 0;
+  font-family: var(--font-pt-sans), sans-serif;
+}
+
+.content {
+  display: flex;
+  gap: 32px;
+  align-items: stretch;
+}
+
+/* Left Column */
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 33px;
+  flex: 1;
+}
+
+/* Right Column */
+.rightColumn {
+  flex: 1.2;
+}
+
+/* Shared Card Styles */
+.card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* Small Cards (left column) */
+.smallCard {
+  height: 283px;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Blur Overlay */
+.blurOverlay {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  left: -25%;
+  top: 25%;
+  filter: blur(93px);
+  opacity: 0.8;
+  border-radius: 50%;
+}
+
+.blurRed {
+  background: #ED4D3E;
+}
+
+.blurPurple {
+  background: #665261;
+}
+
+/* Small Card Content */
+.smallCardContent {
+  position: relative;
+  z-index: 2;
+  padding: 103px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.cardHeading {
+  color: white;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 24px 0;
+  max-width: 287px;
+  font-family: var(--font-pt-sans), sans-serif;
+}
+
+/* Find Out More Button */
+.findOutMoreBtn {
+  background: white;
+  color: #1C3E9C;
+  border: 1px solid #1C3E9C;
+  border-radius: 27px;
+  padding: 4px 13px;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: var(--font-pt-sans), sans-serif;
+  white-space: nowrap;
+}
+
+.findOutMoreBtn:hover {
+  background: #f5f5f5;
+}
+
+/* Large Card (right column) */
+.largeCard {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 47px 49px;
+}
+
+.largeCardInner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.largeCardTop {
+  /* Top heading in large card */
+}
+
+.largeCardBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.largeCardBottomHeading {
+  color: white;
+  font-size: 40px;
+  font-weight: 700;
+  margin: 0 0 24px 0;
+  max-width: 379px;
+  line-height: 1.2;
+  font-family: var(--font-pt-sans), sans-serif;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .section {
+    padding: 40px 30px;
+  }
+
+  .title {
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
+
+  .content {
+    flex-direction: column;
+  }
+
+  .smallCard {
+    height: 250px;
+  }
+
+  .rightColumn {
+    flex: unset;
+  }
+
+  .largeCard {
+    height: 400px;
+    min-height: 400px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .section {
+    padding: 30px 20px;
+  }
+
+  .title {
+    font-size: 32px;
+    margin-bottom: 32px;
+  }
+
+  .content {
+    gap: 24px;
+  }
+
+  .leftColumn {
+    gap: 24px;
+  }
+
+  .smallCard {
+    height: 220px;
+  }
+
+  .largeCard {
+    height: 350px;
+    min-height: 350px;
+    padding: 30px 25px;
+  }
+
+  .cardHeading {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  .largeCardBottomHeading {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+
+  .smallCardContent {
+    padding: 60px 24px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .section {
+    padding: 24px 16px;
+  }
+
+  .title {
+    font-size: 28px;
+    margin-bottom: 28px;
+  }
+
+  .smallCard {
+    height: 200px;
+  }
+
+  .largeCard {
+    height: 320px;
+    min-height: 320px;
+    padding: 24px 20px;
+  }
+
+  .cardHeading {
+    font-size: 24px;
+  }
+
+  .largeCardBottomHeading {
+    font-size: 24px;
+  }
+
+  .findOutMoreBtn {
+    font-size: 14px;
+    padding: 3px 10px;
+  }
+}

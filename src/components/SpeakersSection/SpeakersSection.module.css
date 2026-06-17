@@ -1,0 +1,174 @@
+.theyveSpokenAtOurEventsParent {
+  width: 100%;
+  padding: 60px 62px;
+  background: #FFFBFB;
+  display: flex;
+  flex-direction: column;
+}
+
+.theyveSpokenAt {
+  color: var(--color-text-dark);
+  font-size: 56px;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin: 0 0 48px 0;
+  font-family: var(--font-pt-sans), sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.frameParent {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+
+/* Using display: contents allows both frameGroup and frameParent5 to
+   participate in the single frameParent CSS grid layout, ensuring perfect responsiveness. */
+.frameGroup,
+.frameParent5 {
+  display: contents;
+}
+
+.frameContainer {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #E6E6E6;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.frameContainer:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 30px rgba(36, 14, 139, 0.06);
+  border-color: rgba(36, 14, 139, 0.2);
+}
+
+.imageWrapper {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 244 / 277;
+}
+
+.frameChild {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.frameContainer:hover .frameChild {
+  transform: scale(1.05);
+}
+
+.jennyWilson {
+  color: var(--color-text-dark);
+  font-size: 22px;
+  font-weight: 700;
+  font-family: var(--font-pt-sans), sans-serif;
+  margin: 0;
+  padding: 16px 16px 4px 16px;
+  transition: color 0.3s ease;
+}
+
+.frameContainer:hover .jennyWilson {
+  color: var(--color-primary);
+}
+
+.ceoGenetech {
+  color: var(--color-text-dark);
+  font-size: 16px;
+  font-weight: 400;
+  font-family: var(--font-pt-sans), sans-serif;
+  margin: 0;
+  padding: 0 16px 20px 16px;
+  opacity: 0.75;
+}
+
+/* ── Tablet ≤ 1024px ── */
+@media (max-width: 1024px) {
+  .theyveSpokenAtOurEventsParent {
+    padding: 48px 30px;
+  }
+
+  .theyveSpokenAt {
+    font-size: 40px;
+    margin-bottom: 36px;
+  }
+
+  .frameParent {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+/* ── Small Tablet ≤ 768px ── */
+@media (max-width: 768px) {
+  .theyveSpokenAtOurEventsParent {
+    padding: 36px 20px;
+  }
+
+  .theyveSpokenAt {
+    font-size: 32px;
+    margin-bottom: 28px;
+  }
+
+  .frameParent {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding-bottom: 16px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .frameParent::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+
+  .frameGroup, .frameParent5 {
+    display: flex;
+    gap: 16px;
+  }
+
+  .frameContainer {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    margin: 0;
+  }
+
+  .jennyWilson {
+    font-size: 18px;
+    padding: 12px 12px 2px 12px;
+  }
+
+  .ceoGenetech {
+    font-size: 14px;
+    padding: 0 12px 16px 12px;
+  }
+}
+
+/* ── Mobile / Portrait ≤ 480px ── */
+@media (max-width: 480px) {
+  .theyveSpokenAtOurEventsParent {
+    padding: 28px 16px;
+  }
+
+  .theyveSpokenAt {
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+
+  .frameContainer {
+    flex: 0 0 240px;
+  }
+}

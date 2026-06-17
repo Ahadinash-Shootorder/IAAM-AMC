@@ -1,0 +1,30 @@
+{
+  "title": "Explore More",
+  "cards": [
+    {
+      "heading": "Partner Masterclasses",
+      "buttonText": "Find Out More",
+      "buttonLink": "#",
+      "image": "Partner.png",
+      "overlayColor": "red",
+      "position": "left-top"
+    },
+    {
+      "heading": "Meet-ups",
+      "buttonText": "Find Out More",
+      "buttonLink": "#",
+      "image": "Meet.png",
+      "overlayColor": "purple",
+      "position": "left-bottom"
+    },
+    {
+      "heading": "Partner Masterclasses",
+      "subHeading": "Expert-led. Future-focused.",
+      "buttonText": "Find Out More",
+      "buttonLink": "#",
+      "image": "PM2.png",
+      "overlayColor": "none",
+      "position": "right"
+    }
+  ]
+}

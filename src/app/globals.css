@@ -1,0 +1,78 @@
+:root {
+  --color-primary: #240E8B;
+  --color-secondary: #193590;
+  --color-text-dark: #474555;
+  --color-text-light: #F3F3F3;
+  --color-border: #E4E4E4;
+  --color-bg-explore-1: #ED4D3E;
+  --color-bg-explore-2: #665261;
+  
+  --gradient-btn: linear-gradient(92deg, #F04393 53%, #F9C449 100%);
+  --gradient-hero: linear-gradient(92deg, black 0%, rgba(0, 0, 0, 0.18) 100%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  color: var(--color-text-dark);
+  background-color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-pt-sans), sans-serif;
+}
+
+.font-open-sans {
+  font-family: var(--font-open-sans), sans-serif;
+}
+
+.font-pt-sans {
+  font-family: var(--font-pt-sans), sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Utilities */
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.btn {
+  padding: 13px 17px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-family: var(--font-inter), sans-serif;
+}
+
+.btn-primary {
+  background: var(--gradient-btn);
+  color: white;
+}
+
+.btn-outline {
+  background: transparent;
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.20);
+  border: 1px solid #F04393;
+  color: #F04393;
+  border-radius: 3px;
+  padding: 12px 16px;
+}

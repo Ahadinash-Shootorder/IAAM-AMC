@@ -1,0 +1,34 @@
+{
+  "sections": [
+    {
+      "id": "aboutHero",
+      "label": "About Hero",
+      "visible": true,
+      "order": 1
+    },
+    {
+      "id": "ourStory",
+      "label": "Our Story",
+      "visible": true,
+      "order": 2
+    },
+    {
+      "id": "globalEvents",
+      "label": "Global Events",
+      "visible": true,
+      "order": 3
+    },
+    {
+      "id": "speakers",
+      "label": "Speakers Section",
+      "visible": true,
+      "order": 4
+    },
+    {
+      "id": "sponsors",
+      "label": "Sponsors Section",
+      "visible": true,
+      "order": 5
+    }
+  ]
+}

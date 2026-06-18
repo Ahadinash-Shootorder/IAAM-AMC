@@ -1,16 +1,31 @@
 {
-  "backgroundImage": "HeroBanner.jpg",
+  "backgroundImage": "/HeroBanner.jpg",
   "subtitle": "OFFICIAL SCIENTIFIC ASSEMBLY SERIES OF IAAM",
   "title": "Advanced Materials Congress",
   "tagline": "Advancing Materials for a Sustainable and Intelligent Future",
   "description": "The Advanced Materials Congress serves as the official assembly platform of IAAM, convening global scientific leadership across interdisciplinary domains of materials research and innovation.",
   "buttons": [
-    { "text": "Register Now", "link": "#", "style": "primary" },
-    { "text": "Upcoming Assemblies", "link": "#", "style": "outline" }
+    {
+      "text": "Register Now",
+      "link": "#",
+      "style": "primary"
+    },
+    {
+      "text": "Upcoming Assemblies",
+      "link": "#",
+      "style": "outline"
+    }
   ],
   "bottomStats": [
-    { "text": "Since 2011" },
-    { "text": "120+ Countries" },
-    { "text": "15000+ Delegates" }
-  ]
+    {
+      "text": "Since 2011"
+    },
+    {
+      "text": "120+ Countries"
+    },
+    {
+      "text": "15000+ Delegates"
+    }
+  ],
+  "backgroundImageMobile": "/uploads/home/hero/1781772134069-Landing-Page-Banners_Mobile.webp"
 }

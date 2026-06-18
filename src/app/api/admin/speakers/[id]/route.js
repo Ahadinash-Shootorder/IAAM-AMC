@@ -8,7 +8,7 @@ export async function PUT(req, { params }) {
     const data = await req.json();
     const item = await prisma.speaker.update({
       where: { id },
-      data: { name: data.name, designation: data.designation, organization: data.organization, image: data.image, bannerImage: data.bannerImage, location: data.location, shortBio: data.shortBio, fullBio: data.fullBio, expertise: data.expertise, stats: data.stats, ctaText: data.ctaText, ctaLink: data.ctaLink, slug: data.slug, order: parseInt(data.order) || 0 }
+      data: { name: data.name, designation: data.designation, organization: data.organization, image: data.image, bannerImage: data.bannerImage, bannerImageMobile: data.bannerImageMobile, location: data.location, shortBio: data.shortBio, fullBio: data.fullBio, expertise: data.expertise, stats: data.stats, ctaText: data.ctaText, ctaLink: data.ctaLink, slug: data.slug, order: parseInt(data.order) || 0 }
     });
     
     // Backup

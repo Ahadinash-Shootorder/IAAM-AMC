@@ -6,26 +6,47 @@ import Image from 'next/image';
 export default function MediaPickerModal({ isOpen, onClose, onSelect }) {
   const [assets, setAssets] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  async function fetchMedia() {
-    try {
-      const res = await fetch('/api/admin/media');
-      const data = await res.json();
-      setAssets(data.assets || []);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
+  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
+  if (isOpen !== prevIsOpen) {
+    setPrevIsOpen(isOpen);
+    setSearchTerm('');
   }
 
   useEffect(() => {
-    if (isOpen) {
-      fetchMedia();
+    if (!isOpen) return;
+
+    let active = true;
+    async function fetchMedia() {
+      try {
+        const res = await fetch('/api/admin/media');
+        const data = await res.json();
+        if (active) {
+          setAssets(data.assets || []);
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        if (active) {
+          setLoading(false);
+        }
+      }
     }
+
+    fetchMedia();
+
+    return () => {
+      active = false;
+    };
   }, [isOpen]);
 
   if (!isOpen) return null;
+
+  const filteredAssets = assets.filter(asset =>
+    (asset.filename || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (asset.url || '').toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div style={{
@@ -41,14 +62,31 @@ export default function MediaPickerModal({ isOpen, onClose, onSelect }) {
           <h2 style={{ margin: 0, fontSize: '20px' }}>Select from Media Library</h2>
           <button onClick={onClose} style={{ cursor: 'pointer', background: 'transparent', border: 'none', fontSize: '24px' }}>&times;</button>
         </div>
+        <div style={{ padding: '12px 20px', background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
+          <input
+            type="text"
+            placeholder="Search by filename..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={{
+              width: '100%',
+              padding: '10px 14px',
+              borderRadius: '8px',
+              border: '1px solid #cbd5e1',
+              fontSize: '14px',
+              outline: 'none',
+              boxSizing: 'border-box'
+            }}
+          />
+        </div>
         <div style={{ padding: '20px', overflowY: 'auto', flex: 1 }}>
           {loading ? (
             <p>Loading...</p>
-          ) : assets.length === 0 ? (
-            <p>No media found. Upload something first in the Media Library.</p>
+          ) : filteredAssets.length === 0 ? (
+            <p>No matching media found.</p>
           ) : (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '16px' }}>
-              {assets.map(asset => (
+              {filteredAssets.map(asset => (
                 <div 
                   key={asset.id} 
                   style={{ border: '1px solid #e2e8f0', borderRadius: '8px', overflow: 'hidden', cursor: 'pointer' }}

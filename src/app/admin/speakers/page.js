@@ -17,6 +17,7 @@ export default function SpeakersPage() {
     { key: 'location', label: 'Location' },
     { key: 'image', label: 'Image' },
     { key: 'bannerImage', label: 'Banner Image' },
+    { key: 'bannerImageMobile', label: 'Banner Image (Mobile)' },
     { key: 'shortBio', label: 'Short Bio', type: 'textarea' },
     { key: 'fullBio', label: 'Full Bio', type: 'textarea' },
     { key: 'expertise', label: 'Expertise', type: 'stringArray' },

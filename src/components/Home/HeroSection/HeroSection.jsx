@@ -5,6 +5,10 @@ import styles from './HeroSection.module.css';
 export default function HeroSection({ data }) {
   const rawBgImage = data?.backgroundImage || 'HeroBanner.jpg';
   const bgImage = rawBgImage.startsWith('/') || rawBgImage.startsWith('http') ? rawBgImage : `/${rawBgImage}`;
+  
+  const rawBgImageMobile = data?.backgroundImageMobile || data?.backgroundImage || 'HeroBanner.jpg';
+  const bgImageMobile = rawBgImageMobile.startsWith('/') || rawBgImageMobile.startsWith('http') ? rawBgImageMobile : `/${rawBgImageMobile}`;
+
   const subtitle = data?.subtitle || '';
   const title = data?.title || '';
   const tagline = data?.tagline || '';
@@ -16,14 +20,26 @@ export default function HeroSection({ data }) {
     <section className={styles.hero}>
       {/* Background Image and Gradient */}
       <div className={styles.bgWrapper}>
-        <Image
-          className={styles.bgImage}
-          src={bgImage}
-          alt="Hero Background"
-          fill
-          sizes="100vw"
-          priority
-        />
+        <div className={styles.desktopBg}>
+          <Image
+            className={styles.bgImage}
+            src={bgImage}
+            alt="Hero Background Desktop"
+            fill
+            sizes="100vw"
+            priority
+          />
+        </div>
+        <div className={styles.mobileBg}>
+          <Image
+            className={styles.bgImage}
+            src={bgImageMobile}
+            alt="Hero Background Mobile"
+            fill
+            sizes="100vw"
+            priority
+          />
+        </div>
         <div className={styles.bgOverlay} />
       </div>
 

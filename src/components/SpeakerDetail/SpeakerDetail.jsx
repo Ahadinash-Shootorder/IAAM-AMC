@@ -53,6 +53,7 @@ export default function SpeakerDetail({ speaker }) {
     title: role = '',
     company = '',
     bannerImage = '',
+    bannerImageMobile = '',
     image = '',
     location = '',
     shortBio = '',
@@ -65,24 +66,41 @@ export default function SpeakerDetail({ speaker }) {
 
   // Use bannerImage if available, otherwise fallback to image
   const displayImage = bannerImage || image;
+  const displayImageMobile = bannerImageMobile || displayImage;
   
   // Normalize image paths: handle both relative and absolute paths
   const imgSrc = displayImage && !displayImage.startsWith('/') && !displayImage.startsWith('http')
     ? `/${displayImage}`
     : displayImage;
 
+  const imgSrcMobile = displayImageMobile && !displayImageMobile.startsWith('/') && !displayImageMobile.startsWith('http')
+    ? `/${displayImageMobile}`
+    : displayImageMobile;
+
   return (
     <div className={styles.speakerDetailPage}>
       {/* ── Hero Banner ── */}
       <section className={styles.heroBanner}>
-        <Image
-          className={styles.heroImage}
-          src={imgSrc}
-          alt={name}
-          fill
-          sizes="100vw"
-          priority
-        />
+        <div className={styles.desktopBg}>
+          <Image
+            className={styles.heroImage}
+            src={imgSrc}
+            alt={name}
+            fill
+            sizes="100vw"
+            priority
+          />
+        </div>
+        <div className={styles.mobileBg}>
+          <Image
+            className={styles.heroImage}
+            src={imgSrcMobile}
+            alt={name}
+            fill
+            sizes="100vw"
+            priority
+          />
+        </div>
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
           <span className={styles.heroLabel}>SPEAKER PROFILE</span>

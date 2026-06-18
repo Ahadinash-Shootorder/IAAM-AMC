@@ -11,6 +11,9 @@ export default function BecomeSponsor({ data }) {
   const buttonLink = data?.buttonLink || '#';
   const rawBgImage = data?.backgroundImage || 'sponsor_cta_bg.png';
   const backgroundImage = rawBgImage.startsWith('/') || rawBgImage.startsWith('http') ? rawBgImage : `/${rawBgImage}`;
+  
+  const rawBgImageMobile = data?.backgroundImageMobile || data?.backgroundImage || 'sponsor_cta_bg.png';
+  const backgroundImageMobile = rawBgImageMobile.startsWith('/') || rawBgImageMobile.startsWith('http') ? rawBgImageMobile : `/${rawBgImageMobile}`;
 
   return (
     <div className={styles.wrapper}>
@@ -30,14 +33,26 @@ export default function BecomeSponsor({ data }) {
 
       <div className={styles.right}>
         <div className={styles.imageOverlay}>
-          <Image
-            src={backgroundImage}
-            alt={`${titlePrefix} ${type}`}
-            className={styles.ctaImage}
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            loading="lazy"
-          />
+          <div className={styles.desktopBg}>
+            <Image
+              src={backgroundImage}
+              alt={`${titlePrefix} ${type}`}
+              className={styles.ctaImage}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              loading="lazy"
+            />
+          </div>
+          <div className={styles.mobileBg}>
+            <Image
+              src={backgroundImageMobile}
+              alt={`${titlePrefix} ${type}`}
+              className={styles.ctaImage}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
     </div>

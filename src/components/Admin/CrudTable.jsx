@@ -7,6 +7,8 @@ import Image from 'next/image';
 import { FiEdit2, FiTrash2, FiPlus, FiX, FiSearch, FiFilter, FiUploadCloud, FiCheckCircle, FiAlertCircle, FiInbox } from 'react-icons/fi';
 import styles from './CrudTable.module.css';
 import MediaPickerModal from './MediaPickerModal';
+import RichTextEditor from './RichTextEditor';
+import LinkInput from './LinkInput';
 
 export default function CrudTable({ title, endpoint, tableColumns, formColumns, columns, defaultValues = {} }) {
   // Support both old 'columns' prop and new separate props
@@ -125,7 +127,25 @@ export default function CrudTable({ title, endpoint, tableColumns, formColumns, 
   };
 
   const handleInputChange = (key, value) => {
-    setFormData((prev) => ({ ...prev, [key]: value }));
+    setFormData((prev) => {
+      const next = { ...prev, [key]: value };
+      if (key === 'name' && editCols.some(c => c.key === 'slug')) {
+        const oldSlug = prev.slug || '';
+        const prevName = prev.name || '';
+        const expectedOldSlug = prevName
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/(^-|-$)/g, '');
+        
+        if (!oldSlug || oldSlug === expectedOldSlug) {
+          next.slug = value
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-|-$)/g, '');
+        }
+      }
+      return next;
+    });
   };
 
   const handleArrayItemChange = (arrayKey, index, fieldKey, value) => {
@@ -259,15 +279,16 @@ export default function CrudTable({ title, endpoint, tableColumns, formColumns, 
           <div className={styles.formGrid}>
             {editCols.map((col) => {
               const isImageField = col.key.toLowerCase().includes('image') || col.key === 'logo';
+              const isLinkField = col.key.toLowerCase().includes('link') || col.key.toLowerCase().includes('url');
               const isFullWidth = col.type === 'textarea' || col.type === 'stringArray' || col.type === 'objectArray' || isImageField;
               return (
                 <div key={col.key} className={`${styles.formGroup} ${isFullWidth ? styles.fullWidth : ''}`}>
                   <label>{col.label}</label>
                   {col.type === 'textarea' ? (
-                    <textarea
+                    <RichTextEditor
                       value={formData[col.key] || ''}
-                      onChange={(e) => handleInputChange(col.key, e.target.value)}
-                      required={col.required}
+                      onChange={(html) => handleInputChange(col.key, html)}
+                      placeholder={`Enter ${col.label.toLowerCase()}...`}
                     />
                   ) : col.type === 'select' && col.options ? (
                     <select
@@ -412,6 +433,12 @@ export default function CrudTable({ title, endpoint, tableColumns, formColumns, 
                           <FiPlus /> Add New {col.label}
                         </button>
                       </div>
+                    ) : isLinkField && !isImageField ? (
+                      <LinkInput
+                        value={formData[col.key] || ''}
+                        onChange={(val) => handleInputChange(col.key, val)}
+                        required={col.required}
+                      />
                     ) : (
                       <input
                         type={col.type || 'text'}

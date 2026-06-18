@@ -191,6 +191,24 @@
   cursor: pointer;
 }
 
+.btnDelete {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btnDelete:hover {
+  background: #dc2626;
+}
+
 .detailBody {
   padding: 24px;
   flex: 1;

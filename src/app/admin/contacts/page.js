@@ -43,6 +43,28 @@ export default function ContactsPage() {
     }
   }
 
+  async function deleteQuery(id) {
+    if (!window.confirm('Are you sure you want to delete this enquiry? This action cannot be undone.')) {
+      return;
+    }
+    try {
+      const res = await fetch('/api/admin/contacts', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id })
+      });
+      if (res.ok) {
+        setQueries(queries.filter(q => q.id !== id));
+        setSelectedQuery(null);
+      } else {
+        alert('Failed to delete query');
+      }
+    } catch (error) {
+      console.error(error);
+      alert('Failed to delete query');
+    }
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -102,6 +124,9 @@ export default function ContactsPage() {
                       <FiCornerUpLeft /> Mark Replied
                     </button>
                   )}
+                  <button onClick={() => deleteQuery(selectedQuery.id)} className={styles.btnDelete} title="Delete Query">
+                    <FiTrash2 /> Delete
+                  </button>
                   <button onClick={() => setSelectedQuery(null)} className={styles.btnClose}>
                     <FiX />
                   </button>

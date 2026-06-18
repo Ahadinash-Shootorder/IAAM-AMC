@@ -63,6 +63,7 @@ model Speaker {
   organization  String?
   image         String?
   bannerImage   String?
+  bannerImageMobile String?
   location      String?
   shortBio      String?
   fullBio       String?

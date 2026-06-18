@@ -11,7 +11,7 @@ export default function EventsPage() {
 
   const formColumns = [
     { key: 'title', label: 'Event Title', required: true },
-    { key: 'date', label: 'Date' },
+    { key: 'date', label: 'Date', type: 'date' },
     { key: 'location', label: 'Location' },
     {
       key: 'eventType',

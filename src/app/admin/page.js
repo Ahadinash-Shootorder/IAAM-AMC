@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import Link from 'next/link';
 import {
   FiFileText, FiLayers, FiCheckCircle, FiSettings,
@@ -29,7 +31,30 @@ export default async function AdminDashboard() {
   const speakersCount = await prisma.speaker.count();
   const eventsCount = await prisma.event.count();
   const sponsorsCount = await prisma.sponsor.count();
-  const mediaCount = await prisma.mediaAsset.count();
+
+  // Scan file system for media count
+  let mediaCount = 0;
+  try {
+    const uploadsRoot = path.join(process.cwd(), 'public', 'uploads');
+    const countFilesRecursively = (dir) => {
+      if (!fs.existsSync(dir)) return 0;
+      let count = 0;
+      const files = fs.readdirSync(dir);
+      for (const file of files) {
+        const fullPath = path.join(dir, file);
+        if (fs.statSync(fullPath).isDirectory()) {
+          count += countFilesRecursively(fullPath);
+        } else if (!file.startsWith('.')) {
+          count++;
+        }
+      }
+      return count;
+    };
+    mediaCount = countFilesRecursively(uploadsRoot);
+  } catch (error) {
+    console.error('Error scanning uploads folder for mediaCount:', error);
+    mediaCount = await prisma.mediaAsset.count();
+  }
 
   // Fetch new data
   const unreadContacts = await prisma.contactQuery.count({ where: { status: 'unread' } });

@@ -35,9 +35,9 @@ export default function AdminLayout({ children }) {
   useEffect(() => {
     const match = pathname.match(/^\/admin\/pages\/([^/]+)/);
     if (match && match[1]) {
-      setExpandedPages({ [match[1]]: true });
+      setTimeout(() => setExpandedPages({ [match[1]]: true }), 0);
     } else {
-      setExpandedPages({});
+      setTimeout(() => setExpandedPages({}), 0);
     }
   }, [pathname]);
 

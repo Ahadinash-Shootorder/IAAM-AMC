@@ -48,3 +48,29 @@ export async function PUT(request) {
     return NextResponse.json({ error: 'Failed to update contact query' }, { status: 500 });
   }
 }
+
+export async function DELETE(request) {
+  try {
+    const { id } = await request.json();
+
+    if (!id) {
+      return NextResponse.json({ error: 'ID is required' }, { status: 400 });
+    }
+
+    await prisma.contactQuery.delete({
+      where: { id }
+    });
+
+    try {
+      const token = request.cookies.get('admin_token')?.value;
+      if (token) {
+        const { payload } = await jwtVerify(token, JWT_SECRET);
+        await logActivity(payload.email, 'DELETE_CONTACT_QUERY', { id });
+      }
+    } catch (e) {}
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to delete contact query' }, { status: 500 });
+  }
+}

@@ -17,6 +17,19 @@
   background: black;
 }
 
+/* ── Background layer ── */
+.desktopBg {
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+.mobileBg {
+  display: none;
+  position: absolute;
+  inset: 0;
+}
+
 .heroImage {
   position: absolute;
   inset: 0;
@@ -401,6 +414,14 @@
 
 /* ── Small Tablet ≤ 768px ── */
 @media (max-width: 768px) {
+  .desktopBg {
+    display: none;
+  }
+
+  .mobileBg {
+    display: block;
+  }
+
   .heroBanner {
     height: 420px;
   }

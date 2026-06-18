@@ -6,6 +6,8 @@ import Image from 'next/image';
 import styles from './page.module.css';
 import CrudTable from '@/components/Admin/CrudTable';
 import MediaPickerModal from '@/components/Admin/MediaPickerModal';
+import RichTextEditor from '@/components/Admin/RichTextEditor';
+import LinkInput from '@/components/Admin/LinkInput';
 import { FiClock, FiSave, FiEye, FiUploadCloud, FiImage } from 'react-icons/fi';
 
 export const dynamic = 'force-dynamic';
@@ -35,7 +37,8 @@ const sectionSchemas = {
   hero: {
     label: 'Hero Banner',
     fields: [
-      { key: 'backgroundImage', label: 'Background Image', type: 'image' },
+      { key: 'backgroundImage', label: 'Background Image (Desktop / Default)', type: 'image' },
+      { key: 'backgroundImageMobile', label: 'Background Image (Mobile)', type: 'image' },
       { key: 'subtitle', label: 'Subtitle', type: 'text' },
       { key: 'title', label: 'Title', type: 'text' },
       { key: 'tagline', label: 'Tagline', type: 'text' },
@@ -123,7 +126,8 @@ const sectionSchemas = {
       { key: 'subDescription', label: 'Sub Description', type: 'textarea' },
       { key: 'buttonText', label: 'Button Text', type: 'text' },
       { key: 'buttonLink', label: 'Button Link', type: 'text' },
-      { key: 'backgroundImage', label: 'Background Image', type: 'image' },
+      { key: 'backgroundImage', label: 'Background Image (Desktop)', type: 'image' },
+      { key: 'backgroundImageMobile', label: 'Background Image (Mobile)', type: 'image' },
     ],
   },
   explore: {
@@ -154,7 +158,8 @@ const sectionSchemas = {
       { key: 'subDescription', label: 'Sub Description', type: 'textarea' },
       { key: 'buttonText', label: 'Button Text', type: 'text' },
       { key: 'buttonLink', label: 'Button Link', type: 'text' },
-      { key: 'backgroundImage', label: 'Background Image', type: 'image' },
+      { key: 'backgroundImage', label: 'Background Image (Desktop)', type: 'image' },
+      { key: 'backgroundImageMobile', label: 'Background Image (Mobile)', type: 'image' },
     ],
   },
   footer: {
@@ -203,8 +208,10 @@ export default function SectionEditor({ params }) {
   const { pageId, section } = use(params);
   const router = useRouter();
   const [data, setData] = useState(null);
+  const [initialData, setInitialData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
+  const [savingType, setSavingType] = useState(null); // 'draft' | 'publish' | null
+  const saving = savingType !== null;
   const [toast, setToast] = useState(null);
   const [uploading, setUploading] = useState(null);
   const [dragArrayKey, setDragArrayKey] = useState(null);
@@ -217,6 +224,9 @@ export default function SectionEditor({ params }) {
   const arrayDragItem = useRef(null);
   const arrayDragOverItem = useRef(null);
 
+  // Compute if there are unsaved changes
+  const isDirty = initialData !== null && JSON.stringify(data) !== JSON.stringify(initialData);
+
   const showToast = useCallback((message, type) => {
     setToast({ message, type });
     setTimeout(() => setToast(null), 3000);
@@ -226,6 +236,30 @@ export default function SectionEditor({ params }) {
 
   // Check if this section is DB-backed (events/proceedings)
   const dbConfig = dbBackedSections[`${pageId}.${section}`];
+
+  // Warn on browser unload
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      if (isDirty) {
+        e.preventDefault();
+        e.returnValue = 'You have unsaved changes. Are you sure you want to leave?';
+        return e.returnValue;
+      }
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [isDirty]);
+
+  const handleBack = () => {
+    if (isDirty) {
+      if (!window.confirm('You have unsaved changes. Are you sure you want to go back?')) {
+        return;
+      }
+    }
+    router.push(`/admin/pages/${pageId}`);
+  };
 
   useEffect(() => {
     if (!schema && !dbConfig) {
@@ -238,6 +272,7 @@ export default function SectionEditor({ params }) {
         const res = await fetch(`/api/admin/pages/${pageId}/content/${section}`);
         const json = await res.json();
         setData(json);
+        setInitialData(JSON.parse(JSON.stringify(json)));
       } catch (err) {
         showToast('Failed to load data', 'error');
       } finally {
@@ -249,7 +284,7 @@ export default function SectionEditor({ params }) {
   }, [pageId, section, schema, dbConfig, router, showToast]);
 
   async function handleSave(asDraft = false) {
-    setSaving(true);
+    setSavingType(asDraft ? 'draft' : 'publish');
     try {
       const res = await fetch(`/api/admin/pages/${pageId}/content/${section}${asDraft ? '?draft=true' : ''}`, {
         method: 'PUT',
@@ -258,13 +293,14 @@ export default function SectionEditor({ params }) {
       });
       if (res.ok) {
         showToast(asDraft ? 'Draft saved!' : 'Published successfully!', 'success');
+        setInitialData(JSON.parse(JSON.stringify(data)));
       } else {
         showToast('Failed to save', 'error');
       }
     } catch (err) {
       showToast('Failed to save', 'error');
     } finally {
-      setSaving(false);
+      setSavingType(null);
     }
   }
 
@@ -295,6 +331,7 @@ export default function SectionEditor({ params }) {
       const result = await res.json();
       if (result.success) {
         setData(result.restoredContent);
+        setInitialData(JSON.parse(JSON.stringify(result.restoredContent)));
         setHistoryOpen(false);
         showToast('Version restored to draft!', 'success');
       } else {
@@ -453,7 +490,7 @@ export default function SectionEditor({ params }) {
     ];
     const eventsFormColumns = [
       { key: 'title', label: 'Event Title', required: true },
-      { key: 'date', label: 'Date' },
+      { key: 'date', label: 'Date', type: 'date' },
       { key: 'location', label: 'Location' },
       { key: 'link', label: 'Event Link' },
       { key: 'image', label: 'Image URL' },
@@ -470,7 +507,7 @@ export default function SectionEditor({ params }) {
       { key: 'category', label: 'Category' },
       { key: 'authors', label: 'Authors' },
       { key: 'pdfUrl', label: 'PDF URL' },
-      { key: 'date', label: 'Date' },
+      { key: 'date', label: 'Date', type: 'date' },
       { key: 'coverImage', label: 'Cover Image URL' },
       { key: 'link', label: 'Link' },
       { key: 'order', label: 'Order', type: 'number' },
@@ -489,7 +526,7 @@ export default function SectionEditor({ params }) {
           </div>
         )}
         <div className={styles.editorHeader}>
-          <button className={styles.backBtn} onClick={() => router.push(`/admin/pages/${pageId}`)}>
+          <button className={styles.backBtn} onClick={handleBack}>
             ← Back
           </button>
           <div className={styles.editorTitleGroup}>
@@ -543,7 +580,7 @@ export default function SectionEditor({ params }) {
 
       {/* Header */}
       <div className={styles.editorHeader}>
-        <button className={styles.backBtn} onClick={() => router.push(`/admin/pages/${pageId}`)}>
+        <button className={styles.backBtn} onClick={handleBack}>
           ← Back
         </button>
         <div className={styles.editorTitleGroup}>
@@ -562,7 +599,11 @@ export default function SectionEditor({ params }) {
             onClick={() => handleSave(true)}
             disabled={saving}
           >
-            {saving ? '...' : <><FiSave /> Save Draft</>}
+            {savingType === 'draft' ? (
+              <span className={styles.btnSpinnerContainer}><div className={styles.btnSpinner} /> Saving Draft...</span>
+            ) : (
+              <><FiSave /> Save Draft</>
+            )}
           </button>
           <button
             className={styles.secondaryBtn}
@@ -576,7 +617,11 @@ export default function SectionEditor({ params }) {
             onClick={() => handleSave(false)}
             disabled={saving}
           >
-            {saving ? 'Publishing...' : <><FiUploadCloud /> Publish Live</>}
+            {savingType === 'publish' ? (
+              <span className={styles.btnSpinnerContainer}><div className={styles.btnSpinner} /> Publishing...</span>
+            ) : (
+              <><FiUploadCloud /> Publish Live</>
+            )}
           </button>
         </div>
       </div>
@@ -588,23 +633,29 @@ export default function SectionEditor({ params }) {
             {field.type === 'text' && (
               <>
                 <label className={styles.fieldLabel}>{field.label}</label>
-                <input
-                  type="text"
-                  className={styles.textInput}
-                  value={getNestedValue(data, field.key) || ''}
-                  onChange={(e) => handleFieldChange(field.key, e.target.value)}
-                />
+                {field.key.toLowerCase().includes('link') || field.key.toLowerCase().includes('url') ? (
+                  <LinkInput
+                    value={getNestedValue(data, field.key) || ''}
+                    onChange={(val) => handleFieldChange(field.key, val)}
+                  />
+                ) : (
+                  <input
+                    type="text"
+                    className={styles.textInput}
+                    value={getNestedValue(data, field.key) || ''}
+                    onChange={(e) => handleFieldChange(field.key, e.target.value)}
+                  />
+                )}
               </>
             )}
 
             {field.type === 'textarea' && (
               <>
                 <label className={styles.fieldLabel}>{field.label}</label>
-                <textarea
-                  className={styles.textArea}
-                  rows={4}
+                <RichTextEditor
                   value={getNestedValue(data, field.key) || ''}
-                  onChange={(e) => handleFieldChange(field.key, e.target.value)}
+                  onChange={(html) => handleFieldChange(field.key, html)}
+                  placeholder={`Enter ${field.label.toLowerCase()}...`}
                 />
               </>
             )}
@@ -758,23 +809,31 @@ export default function SectionEditor({ params }) {
                                   {subField.label}
                                 </label>
                             {subField.type === 'text' && (
-                              <input
-                                type="text"
-                                className={styles.textInput}
-                                value={item[subField.key] || ''}
-                                onChange={(e) =>
-                                  handleArrayItemChange(field.key, idx, subField.key, e.target.value)
-                                }
-                              />
+                              subField.key.toLowerCase().includes('link') || subField.key.toLowerCase().includes('url') ? (
+                                <LinkInput
+                                  value={item[subField.key] || ''}
+                                  onChange={(val) =>
+                                    handleArrayItemChange(field.key, idx, subField.key, val)
+                                  }
+                                />
+                              ) : (
+                                <input
+                                  type="text"
+                                  className={styles.textInput}
+                                  value={item[subField.key] || ''}
+                                  onChange={(e) =>
+                                    handleArrayItemChange(field.key, idx, subField.key, e.target.value)
+                                  }
+                                />
+                              )
                             )}
                             {subField.type === 'textarea' && (
-                              <textarea
-                                className={styles.textArea}
-                                rows={3}
+                              <RichTextEditor
                                 value={item[subField.key] || ''}
-                                onChange={(e) =>
-                                  handleArrayItemChange(field.key, idx, subField.key, e.target.value)
+                                onChange={(html) =>
+                                  handleArrayItemChange(field.key, idx, subField.key, html)
                                 }
+                                placeholder={`Enter ${subField.label.toLowerCase()}...`}
                               />
                             )}
                             {subField.type === 'commaSeparated' && (

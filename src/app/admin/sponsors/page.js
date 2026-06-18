@@ -10,7 +10,20 @@ export default function SponsorsPage() {
 
   const formColumns = [
     { key: 'name', label: 'Sponsor Name', required: true },
-    { key: 'tier', label: 'Tier' },
+    {
+      key: 'tier',
+      label: 'Tier',
+      type: 'select',
+      options: [
+        { value: 'Platinum', label: 'Platinum' },
+        { value: 'Gold', label: 'Gold' },
+        { value: 'Silver', label: 'Silver' },
+        { value: 'Bronze', label: 'Bronze' },
+        { value: 'Supporter', label: 'Supporter' },
+        { value: 'Partner', label: 'Partner' }
+      ],
+      required: true
+    },
     { key: 'websiteUrl', label: 'Website URL' },
     { key: 'logo', label: 'Logo URL' },
     { key: 'order', label: 'Order', type: 'number' },

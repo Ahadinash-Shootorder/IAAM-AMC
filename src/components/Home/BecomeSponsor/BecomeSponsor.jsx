@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './BecomeSponsor.module.css';
 
 export default function BecomeSponsor({ data }) {
@@ -14,6 +15,8 @@ export default function BecomeSponsor({ data }) {
   
   const rawBgImageMobile = data?.backgroundImageMobile || data?.backgroundImage || 'sponsor_cta_bg.png';
   const backgroundImageMobile = rawBgImageMobile.startsWith('/') || rawBgImageMobile.startsWith('http') ? rawBgImageMobile : `/${rawBgImageMobile}`;
+  
+  const isInternal = buttonLink && buttonLink.startsWith('/') && !buttonLink.startsWith('//');
 
   return (
     <div className={styles.wrapper}>
@@ -26,9 +29,15 @@ export default function BecomeSponsor({ data }) {
         <p className={styles.description}>{description}</p>
         <p className={styles.subDescription}>{subDescription}</p>
 
-        <a href={buttonLink} className={`btn btn-primary ${styles.ctaButton}`}>
-          {buttonText}
-        </a>
+        {isInternal ? (
+          <Link href={buttonLink} className={`btn btn-primary ${styles.ctaButton}`}>
+            {buttonText}
+          </Link>
+        ) : (
+          <a href={buttonLink} className={`btn btn-primary ${styles.ctaButton}`}>
+            {buttonText}
+          </a>
+        )}
       </div>
 
       <div className={styles.right}>

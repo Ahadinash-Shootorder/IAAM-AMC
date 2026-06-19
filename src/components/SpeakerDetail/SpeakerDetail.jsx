@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './SpeakerDetail.module.css';
 
 /* SVG icons matching the Figma design (deep indigo #240E8B) */
@@ -107,9 +108,15 @@ export default function SpeakerDetail({ speaker }) {
           <h1 className={styles.heroName}>{name}</h1>
           <p className={styles.heroDescription}>{shortBio}</p>
           <div className={styles.heroCta}>
-            <a href={ctaLink} className={styles.ctaButton}>
-              {ctaText}
-            </a>
+            {ctaLink && ctaLink.startsWith('/') && !ctaLink.startsWith('//') ? (
+              <Link href={ctaLink} className={styles.ctaButton}>
+                {ctaText}
+              </Link>
+            ) : (
+              <a href={ctaLink || '#'} className={styles.ctaButton}>
+                {ctaText}
+              </a>
+            )}
           </div>
         </div>
       </section>

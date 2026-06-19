@@ -92,6 +92,18 @@
   border-color: #474555;
 }
 
+.filterBtnActive {
+  background: #240e8b;
+  border-color: #240e8b;
+  color: white;
+}
+
+.filterBtnActive:hover {
+  background: #1c3e9c;
+  border-color: #1c3e9c;
+  color: white;
+}
+
 /* ─── Grid & Cards ─── */
 .eventsGrid {
   display: flex;

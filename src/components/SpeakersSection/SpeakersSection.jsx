@@ -45,13 +45,17 @@ export default function SpeakersSection({ data }) {
     };
   }, []);
 
+  const midpoint = Math.ceil(speakers.length / 2);
+  const group1 = speakers.slice(0, midpoint);
+  const group2 = speakers.slice(midpoint);
+
   return (
     <section className={styles.theyveSpokenAtOurEventsParent}>
       <h2 className={styles.theyveSpokenAt}>{title}</h2>
 
       <div className={styles.frameParent} ref={scrollRef}>
         <div className={styles.frameGroup}>
-          {speakers.slice(0, 5).map((speaker, index) => (
+          {group1.map((speaker, index) => (
             <Link
               key={`group1-${index}`}
               href={`/speakers/${speaker.slug || speaker.name.toLowerCase().replace(/\s+/g, '-')}`}
@@ -84,7 +88,7 @@ export default function SpeakersSection({ data }) {
         </div>
 
         <div className={styles.frameParent5}>
-          {speakers.slice(5, 10).map((speaker, index) => (
+          {group2.map((speaker, index) => (
             <Link
               key={`group2-${index}`}
               href={`/speakers/${speaker.slug || speaker.name.toLowerCase().replace(/\s+/g, '-')}`}

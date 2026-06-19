@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './HeroSection.module.css';
 
 export default function HeroSection({ data }) {
@@ -15,6 +16,8 @@ export default function HeroSection({ data }) {
   const description = data?.description || '';
   const buttons = data?.buttons || [];
   const bottomStats = data?.bottomStats || [];
+
+  const isInternal = (url) => url && url.startsWith('/') && !url.startsWith('//');
 
   return (
     <section className={styles.hero}>
@@ -53,15 +56,23 @@ export default function HeroSection({ data }) {
         </div>
 
         <div className={styles.buttons}>
-          {buttons.map((btn, index) => (
-            <a
-              key={index}
-              href={btn.link || '#'}
-              className={`btn ${btn.style === 'primary' ? 'btn-primary' : 'btn-outline'}`}
-            >
-              {btn.text}
-            </a>
-          ))}
+          {buttons.map((btn, index) => {
+            const isBtnInternal = isInternal(btn.link);
+            const btnClass = `btn ${btn.style === 'primary' ? 'btn-primary' : 'btn-outline'}`;
+            return isBtnInternal ? (
+              <Link key={index} href={btn.link} className={btnClass}>
+                {btn.text}
+              </Link>
+            ) : (
+              <a
+                key={index}
+                href={btn.link || '#'}
+                className={btnClass}
+              >
+                {btn.text}
+              </a>
+            );
+          })}
         </div>
       </div>
 

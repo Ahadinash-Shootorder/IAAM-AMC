@@ -2,23 +2,47 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { FiSearch } from 'react-icons/fi';
 import styles from './EventsList.module.css';
 
 export default function EventsList({ data }) {
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedYear, setSelectedYear] = useState('all');
 
   if (!data) return null;
 
   const events = data.events || [];
   
-  // Basic search filter
-  const filteredEvents = events.filter(event => 
-    (event.title || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-    (event.location || '').toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Extract unique years from the events list
+  const years = Array.from(
+    new Set(
+      events
+        .map((event) => {
+          const match = (event.date || '').match(/\b(20\d{2})\b/);
+          return match ? match[1] : null;
+        })
+        .filter(Boolean)
+    )
+  ).sort((a, b) => b - a); // Sort descending
+
+  // Filter events based on search term AND selected year
+  const filteredEvents = events.filter(event => {
+    const matchesSearch = 
+      (event.title || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (event.location || '').toLowerCase().includes(searchTerm.toLowerCase());
+      
+    if (!matchesSearch) return false;
+    if (selectedYear === 'all') return true;
+
+    const match = (event.date || '').match(/\b(20\d{2})\b/);
+    const eventYear = match ? match[1] : null;
+    return eventYear === selectedYear;
+  });
 
   const colors = [styles.cardPink, styles.cardYellow, styles.cardBlue];
+  
+  const isInternal = (url) => url && url.startsWith('/') && !url.startsWith('//');
 
   return (
     <section className={styles.eventsListSection}>
@@ -42,10 +66,21 @@ export default function EventsList({ data }) {
           </div>
           
           <div className={styles.filterPills}>
-            <button className={styles.filterBtn}>Filter By Year</button>
-            <button className={styles.filterBtn}>Filter By Year</button>
-            <button className={styles.filterBtn}>Filter By Year</button>
-            <button className={styles.filterBtn}>Filter By Year</button>
+            <button 
+              className={`${styles.filterBtn} ${selectedYear === 'all' ? styles.filterBtnActive : ''}`}
+              onClick={() => setSelectedYear('all')}
+            >
+              All
+            </button>
+            {years.map((year) => (
+              <button 
+                key={year}
+                className={`${styles.filterBtn} ${selectedYear === year ? styles.filterBtnActive : ''}`}
+                onClick={() => setSelectedYear(year)}
+              >
+                {year}
+              </button>
+            ))}
           </div>
         </div>
 
@@ -73,9 +108,20 @@ export default function EventsList({ data }) {
                     </div>
                   </div>
                   
-                  <a href={event.link || '#'} className={styles.visitBtn}>
-                    Visit Website
-                  </a>
+                  {isInternal(event.link) ? (
+                    <Link href={event.link} className={styles.visitBtn}>
+                      Visit Website
+                    </Link>
+                  ) : (
+                    <a 
+                      href={event.link || '#'} 
+                      className={styles.visitBtn}
+                      target={event.link && event.link.startsWith('http') ? '_blank' : undefined}
+                      rel={event.link && event.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    >
+                      Visit Website
+                    </a>
+                  )}
                 </div>
               </div>
             );

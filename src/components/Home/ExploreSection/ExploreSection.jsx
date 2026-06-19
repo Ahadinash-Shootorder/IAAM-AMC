@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import styles from './ExploreSection.module.css';
 
@@ -14,6 +15,8 @@ export default function ExploreSection({ data }) {
     red: styles.blurRed,
     purple: styles.blurPurple,
   };
+
+  const isInternal = (url) => url && url.startsWith('/') && !url.startsWith('//');
 
   return (
     <section className={styles.section}>
@@ -43,9 +46,15 @@ export default function ExploreSection({ data }) {
               )}
               <div className={styles.smallCardContent}>
                 <h3 className={styles.cardHeading}>{card.heading}</h3>
-                <a href={card.buttonLink || '#'} className={styles.findOutMoreBtn}>
-                  {card.buttonText}
-                </a>
+                {isInternal(card.buttonLink) ? (
+                  <Link href={card.buttonLink} className={styles.findOutMoreBtn}>
+                    {card.buttonText}
+                  </Link>
+                ) : (
+                  <a href={card.buttonLink || '#'} className={styles.findOutMoreBtn}>
+                    {card.buttonText}
+                  </a>
+                )}
               </div>
             </div>
           ))}
@@ -79,9 +88,15 @@ export default function ExploreSection({ data }) {
                       {rightCard.subHeading}
                     </h3>
                   )}
-                  <a href={rightCard.buttonLink || '#'} className={styles.findOutMoreBtn}>
-                    {rightCard.buttonText}
-                  </a>
+                  {isInternal(rightCard.buttonLink) ? (
+                    <Link href={rightCard.buttonLink} className={styles.findOutMoreBtn}>
+                      {rightCard.buttonText}
+                    </Link>
+                  ) : (
+                    <a href={rightCard.buttonLink || '#'} className={styles.findOutMoreBtn}>
+                      {rightCard.buttonText}
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { FiTwitter, FiLinkedin, FiFacebook, FiYoutube } from 'react-icons/fi';
 import styles from './Footer.module.css';
 
@@ -13,6 +14,8 @@ export default function Footer({ data }) {
   const midpoint = Math.ceil(links.length / 2);
   const linksCol1 = links.slice(0, midpoint);
   const linksCol2 = links.slice(midpoint);
+
+  const isInternal = (url) => url && url.startsWith('/') && !url.startsWith('//');
 
   return (
     <footer className={styles.footer}>
@@ -37,20 +40,34 @@ export default function Footer({ data }) {
           <div className={styles.linksGroup}>
             <div className={styles.linkColumn}>
               <span className={styles.linkTitle}>Quick Links</span>
-              {linksCol1.map((link) => (
-                <a key={link.label} href={link.link || '#'} className={styles.link}>
-                  {link.label}
-                </a>
-              ))}
+              {linksCol1.map((link) => {
+                const isItemInternal = isInternal(link.link);
+                return isItemInternal ? (
+                  <Link key={link.label} href={link.link} className={styles.link}>
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a key={link.label} href={link.link || '#'} className={styles.link}>
+                    {link.label}
+                  </a>
+                );
+              })}
             </div>
             {linksCol2.length > 0 && (
               <div className={styles.linkColumn}>
                 <span className={styles.linkTitle}>Resources</span>
-                {linksCol2.map((link) => (
-                  <a key={link.label} href={link.link || '#'} className={styles.link}>
-                    {link.label}
-                  </a>
-                ))}
+                {linksCol2.map((link) => {
+                  const isItemInternal = isInternal(link.link);
+                  return isItemInternal ? (
+                    <Link key={link.label} href={link.link} className={styles.link}>
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a key={link.label} href={link.link || '#'} className={styles.link}>
+                      {link.label}
+                    </a>
+                  );
+                })}
               </div>
             )}
           </div>

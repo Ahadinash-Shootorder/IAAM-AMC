@@ -2,9 +2,9 @@ import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { logActivity } from '@/lib/logger';
 import { jwtVerify } from 'jose';
+import { getJwtSecret } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
-const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'iaam_super_secret_key_2026');
 
 export async function GET(request) {
   try {
@@ -38,7 +38,7 @@ export async function PUT(request) {
     try {
       const token = request.cookies.get('admin_token')?.value;
       if (token) {
-        const { payload } = await jwtVerify(token, JWT_SECRET);
+        const { payload } = await jwtVerify(token, getJwtSecret());
         await logActivity(payload.email, 'UPDATE_CONTACT_STATUS', { id, status });
       }
     } catch (e) {}
@@ -64,7 +64,7 @@ export async function DELETE(request) {
     try {
       const token = request.cookies.get('admin_token')?.value;
       if (token) {
-        const { payload } = await jwtVerify(token, JWT_SECRET);
+        const { payload } = await jwtVerify(token, getJwtSecret());
         await logActivity(payload.email, 'DELETE_CONTACT_QUERY', { id });
       }
     } catch (e) {}

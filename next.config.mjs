@@ -1,19 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    // Only allow images served from the same origin (locally uploaded assets
+    // under /public/uploads/ and the public/ static directory). Wildcard
+    // hostnames previously allowed any HTTP(S) source, which combined with
+    // admin-controlled image fields enables SSRF / bandwidth abuse via the
+    // Next image optimizer. Add specific hosts here only if you need them.
     remotePatterns: [
-      // Allow locally uploaded images served from the same origin
       {
         protocol: 'http',
         hostname: 'localhost',
-      },
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-      {
-        protocol: 'http',
-        hostname: '**',
       },
     ],
   },

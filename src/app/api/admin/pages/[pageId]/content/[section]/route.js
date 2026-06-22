@@ -1,9 +1,9 @@
 import { readPageSectionData, writePageSectionData, validateId } from '@/lib/data';
 import { logActivity } from '@/lib/logger';
 import { jwtVerify } from 'jose';
+import { getJwtSecret } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
-const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'iaam_super_secret_key_2026');
 
 export async function GET(request, { params }) {
   try {
@@ -36,7 +36,7 @@ export async function PUT(request, { params }) {
     try {
       const token = request.cookies.get('admin_token')?.value;
       if (token) {
-        const { payload } = await jwtVerify(token, JWT_SECRET);
+        const { payload } = await jwtVerify(token, getJwtSecret());
         await logActivity(payload.email, asDraft ? 'SAVE_DRAFT' : 'PUBLISH_CONTENT', { pageId, section });
       }
     } catch (e) {}

@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/set-state-in-effect */
-/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
@@ -41,13 +39,11 @@ export default function MediaLibraryPage() {
   }
 
   useEffect(() => {
-    fetchMedia();
+    const timer = setTimeout(() => {
+      fetchMedia();
+    }, 0);
+    return () => clearTimeout(timer);
   }, []);
-
-  // Reset page when filter changes
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [searchTerm, activeTab]);
 
   const showToast = (message) => {
     setToast(message);
@@ -158,10 +154,16 @@ export default function MediaLibraryPage() {
           className={styles.searchInput}
           placeholder="Search files by name..."
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+            setCurrentPage(1);
+          }}
         />
         {searchTerm && (
-          <button className={styles.clearSearch} onClick={() => setSearchTerm('')}>✕</button>
+          <button className={styles.clearSearch} onClick={() => {
+            setSearchTerm('');
+            setCurrentPage(1);
+          }}>✕</button>
         )}
       </div>
 
@@ -171,7 +173,10 @@ export default function MediaLibraryPage() {
           <button
             key={tab.key}
             className={`${styles.tab} ${activeTab === tab.key ? styles.tabActive : ''}`}
-            onClick={() => setActiveTab(tab.key)}
+            onClick={() => {
+              setActiveTab(tab.key);
+              setCurrentPage(1);
+            }}
           >
             {tab.label}
           </button>

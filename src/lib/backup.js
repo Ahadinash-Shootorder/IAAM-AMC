@@ -33,6 +33,11 @@ export async function backupPageSection(pageId, sectionId, data) {
  * Backs up a full collection array to data/[collectionName].json
  */
 export async function backupCollection(collectionName, items) {
+  // Defense in depth: reject empty names and any character outside
+  // [A-Za-z0-9_-] to defend against path traversal from future callers.
+  if (!collectionName || !/^[a-zA-Z0-9_-]+$/.test(collectionName)) {
+    throw new Error('Invalid collection name');
+  }
   try {
     await ensureDir(DATA_DIR);
     const filePath = path.join(DATA_DIR, `${collectionName}.json`);

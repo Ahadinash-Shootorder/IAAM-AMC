@@ -8,7 +8,13 @@ if (process.env.NODE_ENV === 'production' && !process.env.JWT_SECRET) {
   throw new Error('JWT_SECRET environment variable is not set. This is required in production.');
 }
 
-const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'iaam_super_secret_key_2026');
+function getJwtSecret() {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error('JWT_SECRET environment variable is not set. This is required.');
+  }
+  return new TextEncoder().encode(secret);
+}
 
 // Simple in-memory rate limiter (Warning: won't persist across serverless instances, but provides basic protection)
 const rateLimitMap = new Map();
@@ -22,7 +28,12 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Email and password are required' }, { status: 400 });
     }
 
-    const ip = request.ip || request.headers.get('x-forwarded-for') || 'unknown';
+    // Drop request.ip (removed in Next.js 16). Parse x-forwarded-for: first hop
+    // is the real client when the request has been forwarded by a trusted proxy.
+    const xff = request.headers.get('x-forwarded-for');
+    const ip = (xff ? xff.split(',')[0].trim() : null)
+      || request.headers.get('x-real-ip')
+      || 'unknown';
     const currentTime = Date.now();
     const rateLimitData = rateLimitMap.get(ip) || { attempts: 0, lockoutUntil: 0 };
 
@@ -59,7 +70,7 @@ export async function POST(request) {
     const token = await new SignJWT({ id: admin.id, email: admin.email })
       .setProtectedHeader({ alg: 'HS256' })
       .setExpirationTime('24h')
-      .sign(JWT_SECRET);
+      .sign(getJwtSecret());
       
     await logActivity(admin.email, 'LOGIN', { ip });
 

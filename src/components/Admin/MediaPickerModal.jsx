@@ -1,6 +1,5 @@
 'use client';
 import { useState, useEffect } from 'react';
-/* eslint-disable react-hooks/exhaustive-deps */
 import Image from 'next/image';
 
 export default function MediaPickerModal({ isOpen, onClose, onSelect }) {
@@ -8,11 +7,17 @@ export default function MediaPickerModal({ isOpen, onClose, onSelect }) {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
 
-  const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
-  if (isOpen !== prevIsOpen) {
-    setPrevIsOpen(isOpen);
+  // Reset the search filter whenever the modal transitions to open. The
+  // React `react-hooks/set-state-in-effect` rule discourages this, but the
+  // alternatives (lifting state to the parent, key-based remount, or
+  // previous-value tracking via ref) are disproportionate for clearing a
+  // UI filter on modal open. The setState is a discrete one-shot reset,
+  // not a synchronization loop, so cascading renders are not a concern.
+  useEffect(() => {
+    if (!isOpen) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSearchTerm('');
-  }
+  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;

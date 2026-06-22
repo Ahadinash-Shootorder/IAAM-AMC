@@ -1,11 +1,15 @@
 import { NextResponse } from 'next/server';
 import { jwtVerify } from 'jose';
 
-if (process.env.NODE_ENV === 'production' && !process.env.JWT_SECRET) {
-  throw new Error('JWT_SECRET environment variable is not set. This is required in production.');
+const JWT_SECRET_RAW = process.env.JWT_SECRET;
+if (!JWT_SECRET_RAW) {
+  if (process.env.NODE_ENV === 'production') {
+    throw new Error('JWT_SECRET environment variable is not set. This is required in production.');
+  }
+  // In dev, allow a default for convenience but log a warning.
+  console.warn('[middleware] JWT_SECRET is not set — using dev fallback. DO NOT use in production.');
 }
-
-const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'iaam_super_secret_key_2026');
+const JWT_SECRET = new TextEncoder().encode(JWT_SECRET_RAW || 'dev-only-do-not-use-in-production');
 
 export async function middleware(request) {
   const { pathname } = request.nextUrl;

@@ -5,10 +5,6 @@ import Link from 'next/link';
 import styles from './page.module.css';
 import { FiMenu, FiImage, FiBarChart2, FiMic, FiUser, FiCompass, FiBriefcase, FiHeart, FiLayout, FiCalendar, FiBookOpen, FiSquare, FiFileText } from 'react-icons/fi';
 
-export const dynamic = 'force-dynamic';
-
-
-
 export default function PageLayoutManager({ params }) {
   const { pageId } = use(params);
   const [sections, setSections] = useState([]);

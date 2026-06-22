@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/set-state-in-effect */
-/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -11,20 +9,27 @@ export default function ContactsPage() {
   const [loading, setLoading] = useState(true);
   const [selectedQuery, setSelectedQuery] = useState(null);
 
-  async function fetchQueries() {
-    try {
-      const res = await fetch('/api/admin/contacts');
-      const data = await res.json();
-      setQueries(data.queries || []);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
   useEffect(() => {
+    let active = true;
+    async function fetchQueries() {
+      try {
+        const res = await fetch('/api/admin/contacts');
+        const data = await res.json();
+        if (active) {
+          setQueries(data.queries || []);
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        if (active) {
+          setLoading(false);
+        }
+      }
+    }
     fetchQueries();
+    return () => {
+      active = false;
+    };
   }, []);
 
   async function updateStatus(id, newStatus) {

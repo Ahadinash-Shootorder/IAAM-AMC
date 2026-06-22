@@ -10,8 +10,6 @@ import RichTextEditor from '@/components/Admin/RichTextEditor';
 import LinkInput from '@/components/Admin/LinkInput';
 import { FiClock, FiSave, FiEye, FiUploadCloud, FiImage } from 'react-icons/fi';
 
-export const dynamic = 'force-dynamic';
-
 // Map page IDs to their DB event type for interlinked filtering
 const dbBackedSections = {
   'upcoming-events.eventsList': { type: 'events', filter: 'upcoming', label: 'Upcoming Events' },

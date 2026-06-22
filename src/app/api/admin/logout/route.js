@@ -1,14 +1,13 @@
 import { NextResponse } from 'next/server';
 import { logActivity } from '@/lib/logger';
 import { jwtVerify } from 'jose';
-
-const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'iaam_super_secret_key_2026');
+import { getJwtSecret } from '@/lib/auth';
 
 export async function POST(request) {
   const token = request.cookies.get('admin_token')?.value;
   if (token) {
     try {
-      const { payload } = await jwtVerify(token, JWT_SECRET);
+      const { payload } = await jwtVerify(token, getJwtSecret());
       await logActivity(payload.email, 'LOGOUT');
     } catch (e) {
       // ignore

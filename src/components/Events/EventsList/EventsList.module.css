@@ -118,6 +118,8 @@
   overflow: hidden;
   display: flex;
   position: relative;
+  background-color: white;
+  border: 1px solid #c1c1c1;
 }
 
 .imageContainer {
@@ -166,6 +168,7 @@
   font-weight: 400;
   margin: 0;
   line-height: 1.2;
+  color: #240e8b;
 }
 
 .eventDetails {
@@ -179,11 +182,13 @@
   font-family: 'PT Sans', sans-serif;
   font-weight: 400;
   margin: 0;
+  color: #474555;
 }
 
 .visitBtn {
   padding: 13px 17px;
-  background: white;
+  background: #f04393;
+  color: white;
   border-radius: 4px;
   font-size: 18px;
   font-family: 'Helvetica', sans-serif;
@@ -200,48 +205,9 @@
 }
 
 /* ─── Color Variations ─── */
-
-/* Pink Card */
-.cardPink {
-  background-color: #f04393;
-}
-.cardPink .eventTitle {
-  color: #240e8b;
-}
-.cardPink .location, .cardPink .date {
-  color: white;
-}
-.cardPink .visitBtn {
-  color: #240e8b;
-}
-
-/* Yellow Card */
-.cardYellow {
-  background-color: #f9c449;
-}
-.cardYellow .eventTitle {
-  color: #240e8b;
-}
-.cardYellow .location, .cardYellow .date {
-  color: #474555;
-}
-.cardYellow .visitBtn {
-  color: #240e8b;
-}
-
-/* Blue Card */
-.cardBlue {
-  background-color: #240e8b;
-}
-.cardBlue .eventTitle {
-  color: white;
-}
-.cardBlue .location, .cardBlue .date {
-  color: #e4e4e7;
-}
-.cardBlue .visitBtn {
-  color: #1c3e9c;
-}
+.cardPink {}
+.cardYellow {}
+.cardBlue {}
 
 
 /* ─── Responsive ─── */

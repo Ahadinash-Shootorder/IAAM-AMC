@@ -28,27 +28,20 @@ export default async function AssembliesPage({ searchParams }) {
   const headerData = await readPageSectionData('global', 'header', isPreview);
   const footerData = await readPageSectionData('global', 'footer', isPreview);
 
-  // Sort body sections by order and filter visible ones
-  const bodySections = (sectionsConfig.sections || [])
+  // Sort and map visible body sections to components and reuse fetched content
+  const activeBodySections = (sectionsConfig.sections || [])
+    .filter((s) => s.visible && s.id !== 'header' && s.id !== 'footer')
     .sort((a, b) => a.order - b.order)
-    .filter((s) => s.visible && s.id !== 'header' && s.id !== 'footer');
-
-  // Fetch all body sections data in parallel
-  const bodySectionsWithData = await Promise.all(
-    bodySections.map(async (section) => {
+    .map((section) => {
       const config = sectionComponents[section.id];
       if (!config) return null;
-      const data = await readPageSectionData('assemblies', config.dataKey, isPreview);
-
       return {
         ...section,
         Component: config.Component,
-        data,
+        data: section.content,
       };
     })
-  );
-
-  const activeBodySections = bodySectionsWithData.filter(Boolean);
+    .filter(Boolean);
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>

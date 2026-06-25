@@ -1,0 +1,333 @@
+.laureatesSection {
+  width: 100%;
+  background-color: #F8F9FA;
+  padding: 80px 48px;
+  border-top: 1px solid rgba(196, 197, 212, 0.1);
+  border-bottom: 1px solid rgba(196, 197, 212, 0.1);
+}
+
+.container {
+  width: 100%;
+  max-width: 1184px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.headerRow {
+  display: flex;
+  align-self: stretch;
+  justify-content: space-between;
+  align-items: flex-end;
+  display: inline-flex;
+  width: 100%;
+}
+
+.headerLeft {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.titleWrapper {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #1C3F9E;
+  font-size: 32px;
+  font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+  font-weight: 600;
+  line-height: 40px;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.descWrapper {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #444652;
+  font-size: 16px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.headerRight {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 7.99px;
+  flex-shrink: 0;
+}
+
+.ctaLink {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 7.99px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.ctaText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: #F04393;
+  font-size: 14px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 600;
+  line-height: 20px;
+  word-wrap: break-word;
+  transition: color 0.2s ease;
+}
+
+.ctaLink:hover .ctaText {
+  color: #d9327a;
+}
+
+.ctaIconWrapper {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ctaIcon {
+  width: 10.50px;
+  height: 10.50px;
+  background-color: #F04393;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.ctaLink:hover .ctaIcon {
+  background-color: #d9327a;
+  transform: scale(1.1);
+}
+
+/* Laureates Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-self: stretch;
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 32px;
+  border-radius: 16px;
+  outline: 1px solid rgba(196, 197, 212, 0.1);
+  outline-offset: -1px;
+  border: none;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 10px 20px -8px rgba(0, 0, 0, 0.08), 0px 4px 10px -2px rgba(0, 0, 0, 0.04);
+}
+
+.cardHeader {
+  align-self: stretch;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatarWrapper {
+  width: 72px;
+  height: 80px;
+  background-color: #F2EBF8;
+  overflow: hidden;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.avatar {
+  align-self: stretch;
+  flex: 1 1 0%;
+  position: relative;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.avatarPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1C3F9E, #00287E);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 24px;
+  font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+.headerInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.nameWrapper {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #1C3F9E;
+  font-size: 24px;
+  font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.badgeWrapper {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.badge {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #F04393;
+  font-size: 12px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 16px;
+  word-wrap: break-word;
+}
+
+.bioWrapper {
+  align-self: stretch;
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.bio {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #444652;
+  font-size: 16px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.cardFooter {
+  align-self: stretch;
+  padding-top: 21.5px;
+  padding-bottom: 2.5px;
+  border-top: 1px solid rgba(196, 197, 212, 0.05);
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.affiliationWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.affiliation {
+  color: #444652;
+  font-size: 12px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 500;
+  line-height: 16px;
+  word-wrap: break-word;
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .laureatesSection {
+    padding: 60px 32px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .headerRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .laureatesSection {
+    padding: 48px 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .card {
+    padding: 24px;
+  }
+}

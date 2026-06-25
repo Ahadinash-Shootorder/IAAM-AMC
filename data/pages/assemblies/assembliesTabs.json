@@ -1,8 +1,8 @@
 {
   "tabs": [
-    "2026 Congresses",
-    "Fellow Assemblies",
-    "Advanced Materials Lecture Series",
-    "Contact Us"
+    { "label": "2026 Congresses", "link": "/assemblies", "isActive": "true" },
+    { "label": "Fellow Assemblies", "link": "/individual-events", "isActive": "false" },
+    { "label": "Advanced Materials Lecture Series", "link": "/congress-proceedings", "isActive": "false" },
+    { "label": "Contact Us", "link": "/#contacts", "isActive": "false" }
   ]
 }

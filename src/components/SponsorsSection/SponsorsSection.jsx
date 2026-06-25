@@ -45,7 +45,7 @@ export default function SponsorsSection({ data }) {
   }, []);
 
   return (
-    <section className={styles.section}>
+    <section id="sponsors" className={styles.section}>
       <h2 className={styles.title}>{title}</h2>
 
       <div className={styles.grid} ref={scrollRef}>

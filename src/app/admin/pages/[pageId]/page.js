@@ -129,6 +129,12 @@ export default function PageLayoutManager({ params }) {
     assembliesTabs: <FiMenu />,
     assembliesCards: <FiCalendar />,
     assembliesCta: <FiCompass />,
+    awardsHero: <FiImage />,
+    awardsIntro: <FiBookOpen />,
+    awardsCategories: <FiBarChart2 />,
+    awardsNomination: <FiFileText />,
+    awardsPublications: <FiBookOpen />,
+    awardsLaureates: <FiUser />,
   };
 
   if (loading) {

@@ -43,12 +43,12 @@ export default async function Home() {
   const dbSponsorsRow = await prisma.sponsor.findMany({ orderBy: { order: 'asc' } });
   const dbSponsors = dbSponsorsRow.map(s => ({ ...s, image: s.logo, alt: s.name }));
 
-  // Fetch all body sections data in parallel
-  const bodySectionsWithData = await Promise.all(
-    bodySections.map(async (section) => {
+  // Map visible body sections to components and reuse fetched content
+  const activeBodySections = bodySections
+    .map((section) => {
       const config = sectionComponents[section.id];
       if (!config) return null;
-      let data = await readPageSectionData('home', config.dataKey);
+      let data = section.content;
 
       // Inject relational data from DB
       if (section.id === 'speakers') {
@@ -65,10 +65,7 @@ export default async function Home() {
         data,
       };
     })
-  );
-
-  // Filter out any null configurations
-  const activeBodySections = bodySectionsWithData.filter(Boolean);
+    .filter(Boolean);
 
   return (
     <div className={styles.wrapper}>

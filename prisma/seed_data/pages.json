@@ -38,5 +38,10 @@
     "id": "congress-proceedings",
     "label": "Congress Proceedings",
     "route": "/congress-proceedings"
+  },
+  {
+    "id": "fellow-awards",
+    "label": "Fellow & Awards",
+    "route": "/fellow-&-awards"
   }
 ]

@@ -1,0 +1,288 @@
+.categoriesSection {
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 48px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.title {
+  text-align: center;
+  color: #1C3F9E;
+  font-size: 32px;
+  font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+  font-weight: 600;
+  line-height: 40px;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+.description {
+  width: 576px;
+  max-width: 576px;
+  text-align: center;
+  color: #444652;
+  font-size: 16px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 24px;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+/* 3-Column Grid matching Figma Image 2 */
+.grid {
+  align-self: stretch;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 16px -6px rgba(0, 0, 0, 0.08);
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.cardBadge {
+  display: none;
+}
+
+.cardTitle {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 20px;
+  letter-spacing: 0.35px;
+  word-wrap: break-word;
+  margin: 0;
+  padding-top: 4px;
+}
+
+.cardDesc {
+  color: #444652;
+  font-size: 16px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 24px;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+/* Laureate Card - 2/3 Width (spans 2 of 3 columns) */
+.laureateCard {
+  grid-column: span 2;
+  padding: 40px;
+  background: #00287E;
+  border-radius: 16px;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+/* Translucent star/medal ribbon watermark inside Laureate card */
+.watermark {
+  position: absolute;
+  right: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 250px;
+  height: 250px;
+  color: white;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.watermark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.laureateCard .cardTitle {
+  color: white;
+  font-size: 24px;
+  font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+  font-weight: 600;
+  line-height: 32px;
+  text-transform: none;
+  letter-spacing: 0;
+  padding-top: 8px;
+}
+
+.laureateCard .cardDesc {
+  color: white;
+  opacity: 0.9;
+  max-width: 512px;
+}
+
+.laureateAction {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 10.5px;
+  cursor: pointer;
+}
+
+.actionText {
+  color: #F4A261;
+  font-size: 14px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 600;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.actionArrow {
+  color: #F4A261;
+  transition: transform 0.2s ease;
+}
+
+.laureateAction:hover .actionArrow {
+  transform: translateX(4px);
+}
+
+/* Theme: Purple (Researcher) */
+.themePurple {
+  padding: 32px 32px 114px 32px;
+  background: #F2EBF8;
+  border-radius: 16px;
+  outline: 1px solid rgba(196, 197, 212, 0.10);
+  outline-offset: -1px;
+}
+
+.themePurple .cardTitle {
+  color: #1C3F9E;
+  font-size: 24px;
+  font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+  font-weight: 600;
+  line-height: 32px;
+  text-transform: none;
+  letter-spacing: 0;
+  padding-top: 4px;
+}
+
+.themePurple .cardDesc {
+  color: #444652;
+}
+
+/* Theme: White (Scientist, Young Scientist) */
+.themeWhite {
+  padding: 32px;
+  background: white;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  outline: 1px solid rgba(196, 197, 212, 0.20);
+  outline-offset: -1px;
+}
+
+.themeWhite .cardTitle {
+  color: #1C3F9E;
+  font-size: 14px;
+}
+
+.themeWhite .cardDesc {
+  color: #444652;
+}
+
+/* Theme: Dark Blue (Laureate) */
+.themeDarkBlue {
+  background: #00287E;
+}
+
+.themeDarkBlue .iconContainer {
+  color: #F4A261;
+}
+
+/* Theme: Light Orange (Innovation) */
+.themeLightOrange {
+  padding: 32px;
+  background: rgba(244, 162, 97, 0.05);
+  border-radius: 16px;
+  outline: 1px solid rgba(244, 162, 97, 0.20);
+  outline-offset: -1px;
+}
+
+.themeLightOrange .cardTitle {
+  color: #1C3F9E;
+  font-size: 14px;
+}
+
+.themeLightOrange .cardDesc {
+  color: #444652;
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .categoriesSection {
+    padding: 60px 32px;
+  }
+
+  .description {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .laureateCard {
+    grid-column: span 1;
+    padding: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .categoriesSection {
+    padding: 48px 16px;
+  }
+
+  .title {
+    font-size: 26px;
+    line-height: 34px;
+  }
+}

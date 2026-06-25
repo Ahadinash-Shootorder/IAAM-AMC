@@ -1,4 +1,4 @@
-import { Inter, PT_Sans, Open_Sans, Poppins } from "next/font/google";
+import { Inter, PT_Sans, Open_Sans, Poppins, Montserrat } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -20,6 +20,12 @@ const openSans = Open_Sans({
 const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
   variable: "--font-poppins",
+  subsets: ["latin"],
+});
+
+const montserrat = Montserrat({
+  weight: ['400', '500', '600', '700'],
+  variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
@@ -87,7 +93,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${ptSans.variable} ${openSans.variable} ${poppins.variable}`}
+      className={`${inter.variable} ${ptSans.variable} ${openSans.variable} ${poppins.variable} ${montserrat.variable}`}
     >
       <body>{children}</body>
     </html>

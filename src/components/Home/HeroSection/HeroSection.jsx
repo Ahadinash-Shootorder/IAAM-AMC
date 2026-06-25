@@ -5,10 +5,10 @@ import styles from './HeroSection.module.css';
 
 export default function HeroSection({ data }) {
   const rawBgImage = data?.backgroundImage || 'HeroBanner.jpg';
-  const bgImage = rawBgImage.startsWith('/') || rawBgImage.startsWith('http') ? rawBgImage : `/${rawBgImage}`;
+  const bgImage = typeof rawBgImage === 'string' && (rawBgImage.startsWith('/') || rawBgImage.startsWith('http')) ? rawBgImage : `/${rawBgImage}`;
   
   const rawBgImageMobile = data?.backgroundImageMobile || data?.backgroundImage || 'HeroBanner.jpg';
-  const bgImageMobile = rawBgImageMobile.startsWith('/') || rawBgImageMobile.startsWith('http') ? rawBgImageMobile : `/${rawBgImageMobile}`;
+  const bgImageMobile = typeof rawBgImageMobile === 'string' && (rawBgImageMobile.startsWith('/') || rawBgImageMobile.startsWith('http')) ? rawBgImageMobile : `/${rawBgImageMobile}`;
 
   const subtitle = data?.subtitle || '';
   const title = data?.title || '';
@@ -17,7 +17,7 @@ export default function HeroSection({ data }) {
   const buttons = data?.buttons || [];
   const bottomStats = data?.bottomStats || [];
 
-  const isInternal = (url) => url && url.startsWith('/') && !url.startsWith('//');
+  const isInternal = (url) => typeof url === 'string' && url.startsWith('/') && !url.startsWith('//');
 
   return (
     <section className={styles.hero}>

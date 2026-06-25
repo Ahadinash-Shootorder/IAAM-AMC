@@ -15,10 +15,10 @@ export default function Footer({ data }) {
   const linksCol1 = links.slice(0, midpoint);
   const linksCol2 = links.slice(midpoint);
 
-  const isInternal = (url) => url && url.startsWith('/') && !url.startsWith('//');
+  const isInternal = (url) => typeof url === 'string' && url.startsWith('/') && !url.startsWith('//');
 
   return (
-    <footer className={styles.footer}>
+    <footer id="contacts" className={styles.footer}>
       <div className={styles.inner}>
         
         <div className={styles.topSection}>

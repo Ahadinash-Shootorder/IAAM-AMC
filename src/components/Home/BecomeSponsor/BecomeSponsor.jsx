@@ -11,12 +11,12 @@ export default function BecomeSponsor({ data }) {
   const buttonText = data?.buttonText || 'Become a Sponsor';
   const buttonLink = data?.buttonLink || '#';
   const rawBgImage = data?.backgroundImage || 'sponsor_cta_bg.png';
-  const backgroundImage = rawBgImage.startsWith('/') || rawBgImage.startsWith('http') ? rawBgImage : `/${rawBgImage}`;
+  const backgroundImage = typeof rawBgImage === 'string' && (rawBgImage.startsWith('/') || rawBgImage.startsWith('http')) ? rawBgImage : `/${rawBgImage}`;
   
   const rawBgImageMobile = data?.backgroundImageMobile || data?.backgroundImage || 'sponsor_cta_bg.png';
-  const backgroundImageMobile = rawBgImageMobile.startsWith('/') || rawBgImageMobile.startsWith('http') ? rawBgImageMobile : `/${rawBgImageMobile}`;
+  const backgroundImageMobile = typeof rawBgImageMobile === 'string' && (rawBgImageMobile.startsWith('/') || rawBgImageMobile.startsWith('http')) ? rawBgImageMobile : `/${rawBgImageMobile}`;
   
-  const isInternal = buttonLink && buttonLink.startsWith('/') && !buttonLink.startsWith('//');
+  const isInternal = typeof buttonLink === 'string' && buttonLink.startsWith('/') && !buttonLink.startsWith('//');
 
   return (
     <div className={styles.wrapper}>

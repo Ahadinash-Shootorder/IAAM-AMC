@@ -21,9 +21,7 @@ async function seedAssembliesOnTheFly() {
           update: {
             label: sec.label,
             visible: sec.visible,
-            order: sec.order,
-            content: sec.content,
-            draftContent: sec.draftContent
+            order: sec.order
           },
           create: {
             id: sec.id,
@@ -39,6 +37,81 @@ async function seedAssembliesOnTheFly() {
     }
   } catch (err) {
     console.error('Failed to auto-seed Assemblies:', err);
+  }
+}
+
+async function seedAwardsOnTheFly() {
+  try {
+    await prisma.page.upsert({
+      where: { id: 'fellow-awards' },
+      update: { label: 'Fellow & Awards', route: '/fellow-&-awards' },
+      create: { id: 'fellow-awards', label: 'Fellow & Awards', route: '/fellow-&-awards' }
+    });
+
+    const sectionsPath = path.join(process.cwd(), 'prisma', 'seed_data', 'sections.json');
+    if (fs.existsSync(sectionsPath)) {
+      const sections = JSON.parse(fs.readFileSync(sectionsPath, 'utf-8'));
+      const awardsSections = sections.filter(sec => sec.pageId === 'fellow-awards');
+      for (const sec of awardsSections) {
+        await prisma.section.upsert({
+          where: { pageId_id: { pageId: sec.pageId, id: sec.id } },
+          update: {
+            label: sec.label,
+            visible: sec.visible,
+            order: sec.order
+          },
+          create: {
+            id: sec.id,
+            pageId: sec.pageId,
+            label: sec.label,
+            visible: sec.visible,
+            order: sec.order,
+            content: sec.content,
+            draftContent: sec.draftContent
+          }
+        });
+      }
+    }
+  } catch (err) {
+    console.error('Failed to auto-seed Fellow & Awards:', err);
+  }
+}
+
+
+async function migrateAssembliesTabsOnTheFly() {
+  try {
+    const section = await prisma.section.findUnique({
+      where: { pageId_id: { pageId: 'assemblies', id: 'assembliesTabs' } }
+    });
+    if (section && section.content) {
+      const content = JSON.parse(section.content);
+      let needsUpdate = false;
+      const updatedTabs = (content.tabs || []).map(tab => {
+        if (tab.label === 'Fellow Assemblies' && tab.link === '#') {
+          tab.link = '/individual-events';
+          needsUpdate = true;
+        }
+        if (tab.label === 'Advanced Materials Lecture Series' && tab.link === '#') {
+          tab.link = '/congress-proceedings';
+          needsUpdate = true;
+        }
+        if (tab.label === 'Contact Us' && tab.link === '/contacts') {
+          tab.link = '/#contacts';
+          needsUpdate = true;
+        }
+        return tab;
+      });
+      
+      if (needsUpdate) {
+        await prisma.section.update({
+          where: { pageId_id: { pageId: 'assemblies', id: 'assembliesTabs' } },
+          data: { content: JSON.stringify({ ...content, tabs: updatedTabs }) }
+        });
+        console.log('[Migration] Migrated assembliesTabs links successfully.');
+      }
+    }
+  } catch (err) {
+    console.error('Failed to migrate assembliesTabs on the fly:', err);
   }
 }
 
@@ -161,13 +234,33 @@ export async function getPageLayout(pageId, preview = false) {
     orderBy: { order: 'asc' },
   });
 
-  if (pageId === 'assemblies' && sections.length === 0) {
-    await seedAssembliesOnTheFly();
+  if (pageId === 'assemblies') {
+    if (sections.length === 0) {
+      await seedAssembliesOnTheFly();
+      sections = await prisma.section.findMany({
+        where: { pageId },
+        orderBy: { order: 'asc' },
+      });
+    }
+    // Perform migrations for tabs links on-the-fly
+    await migrateAssembliesTabsOnTheFly();
+    // Re-fetch sections in case we updated content
     sections = await prisma.section.findMany({
       where: { pageId },
       orderBy: { order: 'asc' },
     });
   }
+
+  if (pageId === 'fellow-awards') {
+    if (sections.length === 0) {
+      await seedAwardsOnTheFly();
+      sections = await prisma.section.findMany({
+        where: { pageId },
+        orderBy: { order: 'asc' },
+      });
+    }
+  }
+
 
   return {
     sections: sections.map((sec) => ({
@@ -207,6 +300,13 @@ export async function readPageSectionData(pageId, sectionId, preview = false) {
 
   if (pageId === 'assemblies' && !section) {
     await seedAssembliesOnTheFly();
+    section = await prisma.section.findUnique({
+      where: { pageId_id: { pageId, id: sectionId } },
+    });
+  }
+
+  if (pageId === 'fellow-awards' && !section) {
+    await seedAwardsOnTheFly();
     section = await prisma.section.findUnique({
       where: { pageId_id: { pageId, id: sectionId } },
     });

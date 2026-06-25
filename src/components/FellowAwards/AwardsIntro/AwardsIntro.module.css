@@ -1,0 +1,264 @@
+.introSection {
+  width: 100%;
+  background-color: #F8F9FA;
+  border-top: 1px solid rgba(196, 197, 212, 0.10);
+  border-bottom: 1px solid rgba(196, 197, 212, 0.10);
+  padding: 80px 48px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Left Column */
+.leftCol {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding-bottom: 32px;
+}
+
+
+
+.sectionTitle {
+  align-self: stretch;
+  color: #1C3F9E;
+  font-size: 32px;
+  font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+  font-weight: 600;
+  line-height: 40px;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+.sectionDesc {
+  align-self: stretch;
+  color: #444652;
+  font-size: 16px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 26px;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+.criteriaContainer {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.criteriaCard {
+  align-self: stretch;
+  padding: 16px;
+  background: white;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  outline: 1px solid rgba(196, 197, 212, 0.05);
+  outline-offset: -1px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.criteriaCard:hover {
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.iconWrapper {
+  width: 22px;
+  height: 22px;
+  color: #00287E;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.criteriaInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.criteriaTitle {
+  color: #00287E;
+  font-size: 14px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 600;
+  line-height: 20px;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+.criteriaDesc {
+  color: #444652;
+  font-size: 16px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 24px;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+/* Right Column */
+.rightCol {
+  flex: 1 1 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.imageOutlineWrapper {
+  align-self: stretch;
+  padding: 32px;
+  border-radius: 12px;
+  outline: 2px solid rgba(28, 63, 158, 0.10);
+  outline-offset: -2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+}
+
+.imageContainer {
+  flex: 1 1 0;
+  align-self: stretch;
+  background: rgba(255, 255, 255, 0);
+  box-shadow: 0px 8px 10px -6px rgba(0, 0, 0, 0.10), 0px 20px 25px -5px rgba(0, 0, 0, 0.10);
+  overflow: hidden;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+}
+
+.trophyImage {
+  align-self: stretch;
+  flex: 1 1 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholderImage {
+  width: 100%;
+  height: 100%;
+  background: #f8f9fa;
+  color: #94a3b8;
+  font-size: 13px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 32px;
+}
+
+.floatingQuoteCard {
+  max-width: 320px;
+  padding: 24px 32.47px 24px 24px;
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  background: white;
+  border-radius: 16px;
+  outline: 1px solid rgba(196, 197, 212, 0.10);
+  outline-offset: -1px;
+  box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.10), 0px 10px 15px -3px rgba(0, 0, 0, 0.10);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 3;
+}
+
+.quoteBadge {
+  color: #F4A261;
+  font-size: 12px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 16px;
+  letter-spacing: 0.6px;
+}
+
+.quoteText {
+  color: #1D1A23;
+  font-size: 16px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 24px;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .introSection {
+    padding: 60px 32px;
+  }
+
+  .floatingQuoteCard {
+    right: 0;
+    bottom: -24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .introSection {
+    padding: 48px 16px;
+  }
+
+  .grid {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .leftCol {
+    padding-bottom: 0;
+  }
+
+  .rightCol {
+    width: 100%;
+    padding-bottom: 40px;
+  }
+
+  .floatingQuoteCard {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    margin-top: 20px;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .sectionTitle {
+    font-size: 26px;
+    line-height: 34px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}

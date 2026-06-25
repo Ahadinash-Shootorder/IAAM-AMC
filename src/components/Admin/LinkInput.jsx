@@ -23,13 +23,18 @@ const SITE_ROUTES = [
  *  - placeholder: string (optional)
  *  - required: boolean (optional)
  */
-export default function LinkInput({ value = '', onChange, placeholder = 'Enter URL or select page...', required = false }) {
+export default function LinkInput({ value: rawValue = '', onChange, placeholder = 'Enter URL or select page...', required = false }) {
+  const value = typeof rawValue === 'string' ? rawValue : String(rawValue ?? '');
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [filteredRoutes, setFilteredRoutes] = useState(SITE_ROUTES);
   const wrapperRef = useRef(null);
 
   const isValidUrl = useCallback((url) => {
     if (!url) return true; // empty is OK
+    if (typeof url !== 'string') {
+      console.warn('isValidUrl received non-string value:', url, typeof url);
+      return false;
+    }
     return url.startsWith('/') || url.startsWith('http://') || url.startsWith('https://') || url.startsWith('#') || url.startsWith('mailto:') || url.startsWith('tel:');
   }, []);
 

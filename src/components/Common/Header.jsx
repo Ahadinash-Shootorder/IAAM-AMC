@@ -3,9 +3,11 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import styles from './Header.module.css';
 
 export default function Header({ data }) {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const rawLogo = data?.logo || 'LOGO.jpg';
   const logo = rawLogo.startsWith('/') || rawLogo.startsWith('http') ? rawLogo : `/${rawLogo}`;
@@ -14,7 +16,7 @@ export default function Header({ data }) {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  const isInternal = (url) => url && url.startsWith('/') && !url.startsWith('//');
+  const isInternal = (url) => typeof url === 'string' && url.startsWith('/') && !url.startsWith('//');
   const isCtaInternal = isInternal(ctaButton.link);
 
   return (
@@ -52,11 +54,14 @@ export default function Header({ data }) {
 
       <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
         {navItems.map((item) => {
-          const isItemInternal = isInternal(item.link);
+          const linkHref = (pathname !== '/' && item.link?.startsWith('#'))
+            ? `/${item.link}`
+            : (item.link || '#');
+          const isItemInternal = isInternal(linkHref);
           return isItemInternal ? (
             <Link
               key={item.label}
-              href={item.link}
+              href={linkHref}
               className={styles.navLink}
               onClick={() => setIsMenuOpen(false)}
             >
@@ -65,7 +70,7 @@ export default function Header({ data }) {
           ) : (
             <a
               key={item.label}
-              href={item.link || '#'}
+              href={linkHref}
               className={styles.navLink}
               onClick={() => setIsMenuOpen(false)}
             >

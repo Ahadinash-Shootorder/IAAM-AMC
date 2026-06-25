@@ -3,31 +3,23 @@
   "navItems": [
     {
       "label": "About",
-      "link": "#about"
+      "link": "about"
     },
     {
       "label": "Assemblies",
-      "link": "#assemblies"
+      "link": "assemblies"
     },
     {
       "label": "Scientific Tracks",
-      "link": "#scientific-tracks"
+      "link": "scientific-tracks"
     },
     {
       "label": "Fellow & Awards",
-      "link": "#fellow-&-awards"
-    },
-    {
-      "label": "Sponsors",
-      "link": "#sponsors"
-    },
-    {
-      "label": "Publications",
-      "link": "#publications"
+      "link": "fellow-&-awards"
     },
     {
       "label": "Contacts",
-      "link": "#contacts"
+      "link": "contacts"
     }
   ],
   "ctaButton": {

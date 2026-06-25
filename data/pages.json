@@ -7,6 +7,7 @@
     { "id": "individual-events", "label": "Individual Events", "route": "/individual-events" },
     { "id": "congress-archive", "label": "Congress Archive", "route": "/congress-archive" },
     { "id": "congress-proceedings", "label": "Congress Proceedings", "route": "/congress-proceedings" },
+    { "id": "fellow-awards", "label": "Fellow & Awards", "route": "/fellow-&-awards" },
     { "id": "global", "label": "Global Settings", "route": "" }
   ]
 }

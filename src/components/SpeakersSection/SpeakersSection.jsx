@@ -50,7 +50,7 @@ export default function SpeakersSection({ data }) {
   const group2 = speakers.slice(midpoint);
 
   return (
-    <section className={styles.theyveSpokenAtOurEventsParent}>
+    <section id="speakers" className={styles.theyveSpokenAtOurEventsParent}>
       <h2 className={styles.theyveSpokenAt}>{title}</h2>
 
       <div className={styles.frameParent} ref={scrollRef}>

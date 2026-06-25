@@ -185,7 +185,7 @@
     "label": "Tab Navigation",
     "visible": true,
     "order": 2,
-    "content": "{\"tabs\":[\"2026 Congresses\",\"Fellow Assemblies\",\"Advanced Materials Lecture Series\",\"Contact Us\"]}",
+    "content": "{\"tabs\":[{\"label\":\"2026 Congresses\",\"link\":\"/assemblies\",\"isActive\":\"true\"},{\"label\":\"Fellow Assemblies\",\"link\":\"/individual-events\",\"isActive\":\"false\"},{\"label\":\"Advanced Materials Lecture Series\",\"link\":\"/congress-proceedings\",\"isActive\":\"false\"},{\"label\":\"Contact Us\",\"link\":\"/#contacts\",\"isActive\":\"false\"}]}",
     "draftContent": null
   },
   {
@@ -204,6 +204,60 @@
     "visible": true,
     "order": 4,
     "content": "{\"title\":\"Cannot find your congress?\",\"description\":\"Browse our full archive of past events or subscribe to our newsletter to receive notifications for newly announced assemblies.\",\"buttons\":[{\"text\":\"Browse Archives\",\"link\":\"#\"},{\"text\":\"Subscribe Now\",\"link\":\"#\"}],\"features\":[{\"title\":\"Network with Experts\",\"iconType\":\"sparkles\"},{\"title\":\"Publish Results\",\"iconType\":\"publish\"}]}",
+    "draftContent": null
+  },
+  {
+    "id": "awardsHero",
+    "pageId": "fellow-awards",
+    "label": "Awards Hero Banner",
+    "visible": true,
+    "order": 1,
+    "content": "{\"subtitle\":\"HONORING EXCELLENCE\",\"title\":\"Fellows & Awards\",\"description\":\"Celebrating the luminaries of global research. Our fellowship program recognizes outstanding contributions to science, humanities, and technology, fostering a community of unparalleled intellectual leadership.\"}",
+    "draftContent": null
+  },
+  {
+    "id": "awardsIntro",
+    "pageId": "fellow-awards",
+    "label": "FIAAM Introduction",
+    "visible": true,
+    "order": 2,
+    "content": "{\"title\":\"Fellow of IAAM (FIAAM)\",\"description\":\"The title 'Fellow of IAAM' is a prestigious honor conferred upon eminent researchers who have demonstrated significant impact in the field of materials science. Those honored are entitled to use the designatory letters 'FIAAM'.\",\"image\":\"/uploads/fellow-awards/trophy.jpg\",\"quoteText\":\"Being a FIAAM is a testament to a lifelong commitment to scientific excellence and global innovation.\",\"criteriaList\":[{\"title\":\"Eligibility Criteria\",\"description\":\"Open to world-class scientists with a minimum of 15 years of professional experience in advanced materials research.\"},{\"title\":\"Impact & Leadership\",\"description\":\"Candidates must demonstrate sustained scientific leadership, innovation, and global outreach in sustainable energy solutions.\"}]}",
+    "draftContent": null
+  },
+  {
+    "id": "awardsCategories",
+    "pageId": "fellow-awards",
+    "label": "Awards Categories Grid",
+    "visible": true,
+    "order": 3,
+    "content": "{\"title\":\"IAAM Awards Categories\",\"description\":\"Diverse categories designed to recognize excellence at every stage of the scientific journey.\",\"categories\":[{\"badge\":\"PREMIUM DISTINCTION\",\"title\":\"Advanced Materials Laureate\",\"description\":\"IAAM's highest honor awarded to individuals for their seminal and lasting contributions to the advancement of materials science and technology globally.\",\"theme\":\"dark-blue\"},{\"badge\":\"RESEARCHER AWARD\",\"title\":\"Researcher of the Year\",\"description\":\"Celebrating outstanding researchers who have published high-impact work within the last 3 calendar years.\",\"theme\":\"purple\"},{\"badge\":\"SCIENTIST AWARD\",\"title\":\"Scientist Award\",\"description\":\"For mid-career scientists demonstrating exceptional research leadership and innovation.\",\"theme\":\"white\"},{\"badge\":\"YOUNG SCIENTIST MEDAL\",\"title\":\"Young Scientist Medal\",\"description\":\"Encouraging early-career researchers under the age of 35 for their promising initial work.\",\"theme\":\"white-2\"},{\"badge\":\"INNOVATION AWARD\",\"title\":\"Innovation Award\",\"description\":\"Focusing on researchers who bridge the gap between academic discovery and industrial application.\",\"theme\":\"light-orange\"}]}",
+    "draftContent": null
+  },
+  {
+    "id": "awardsPublications",
+    "pageId": "fellow-awards",
+    "label": "Indexed Publications Grid",
+    "visible": true,
+    "order": 4,
+    "content": "{\"title\":\"Indexed Publications\",\"description\":\"Disseminating groundbreaking research through globally recognized and indexed academic channels.\",\"items\":[{\"title\":\"Congress Proceedings\",\"description\":\"All accepted abstracts and papers are published with ISBN and DOI indexing, and submitted for Scopus evaluation.\",\"linkText\":\"View Guidelines\",\"linkUrl\":\"/congress-proceedings\"},{\"title\":\"Advanced Materials Letters\",\"description\":\"The official open-access journal of IAAM, providing a high-impact platform with no subscription fees for researchers.\",\"linkText\":\"Learn More\",\"linkUrl\":\"#\"},{\"title\":\"Video Proceedings\",\"description\":\"An innovative open-access video journal dedicated to documented lectures and visual scientific presentations.\",\"linkText\":\"Watch Now\",\"linkUrl\":\"#\"}]}",
+    "draftContent": null
+  },
+  {
+    "id": "awardsNomination",
+    "pageId": "fellow-awards",
+    "label": "Nomination Process & Form",
+    "visible": true,
+    "order": 5,
+    "content": "{\"title\":\"Nomination Process\",\"description\":\"IAAM follows a transparent, peer-reviewed nomination process to ensure the highest standards of integrity and excellence.\",\"steps\":[{\"number\":\"01\",\"title\":\"Submission\",\"description\":\"Submit the nomination dossier including CV, publication list, and impact statement.\"},{\"number\":\"02\",\"title\":\"Peer Review\",\"description\":\"The Scientific Committee evaluates nominations based on originality, impact, and legacy.\"},{\"number\":\"03\",\"title\":\"Conferment\",\"description\":\"Final awardees are announced and celebrated during the EAEMC 2026 gala dinner.\"}],\"formTitle\":\"Submit Nomination\",\"categories\":[\"Advanced Materials Laureate\",\"Researcher of the Year\",\"Scientist Award\",\"Young Scientist Medal\",\"Innovation Award\"]}",
+    "draftContent": null
+  },
+  {
+    "id": "awardsLaureates",
+    "pageId": "fellow-awards",
+    "label": "Distinguished Fellows Directory",
+    "visible": true,
+    "order": 6,
+    "content": "{\"title\":\"Distinguished Fellows\",\"description\":\"Celebrating a legacy of scientific leadership and extraordinary vision.\",\"ctaText\":\"View All Fellows\",\"ctaLink\":\"#\",\"laureates\":[{\"image\":\"/uploads/fellow-awards/rodrigo.jpg\",\"name\":\"Prof. Rodrigo Martins\",\"title\":\"FIAAM LAUREATE\",\"description\":\"Pioneer in paper electronics and transparent semiconductors, shaping the next generation of sustainable technology.\",\"affiliation\":\"NOVA University Lisbon\"},{\"image\":\"/uploads/fellow-awards/federico.jpg\",\"name\":\"Prof. Federico Rosei\",\"title\":\"FIAAM LAUREATE\",\"description\":\"World-renowned for his work in nanomaterials and their applications in solar energy harvesting and storage solutions.\",\"affiliation\":\"INRS-EMT, Canada\"},{\"image\":\"/uploads/fellow-awards/sarah.jpg\",\"name\":\"Prof. Dr. Sarah Chen\",\"title\":\"FIAAM FELLOW\",\"description\":\"Leading innovations in 2D materials for ultra-efficient hydrogen production and zero-emission energy cycles.\",\"affiliation\":\"ETH Zurich\"}]}",
     "draftContent": null
   }
 ]

@@ -16,7 +16,7 @@ export default function ExploreSection({ data }) {
     purple: styles.blurPurple,
   };
 
-  const isInternal = (url) => url && url.startsWith('/') && !url.startsWith('//');
+  const isInternal = (url) => typeof url === 'string' && url.startsWith('/') && !url.startsWith('//');
 
   return (
     <section className={styles.section}>
@@ -29,7 +29,7 @@ export default function ExploreSection({ data }) {
             <div key={index} className={`${styles.card} ${styles.smallCard}`}>
               {(() => {
                 const rawImg = card.image || '';
-                const imgSrc = rawImg && !rawImg.startsWith('/') && !rawImg.startsWith('http') ? `/${rawImg}` : rawImg;
+                const imgSrc = typeof rawImg === 'string' && rawImg && !rawImg.startsWith('/') && !rawImg.startsWith('http') ? `/${rawImg}` : rawImg;
                 return imgSrc ? (
                   <Image
                     src={imgSrc}
@@ -66,7 +66,7 @@ export default function ExploreSection({ data }) {
             <div className={`${styles.card} ${styles.largeCard}`}>
               {(() => {
                 const rawImg = rightCard.image || '';
-                const imgSrc = rawImg && !rawImg.startsWith('/') && !rawImg.startsWith('http') ? `/${rawImg}` : rawImg;
+                const imgSrc = typeof rawImg === 'string' && rawImg && !rawImg.startsWith('/') && !rawImg.startsWith('http') ? `/${rawImg}` : rawImg;
                 return imgSrc ? (
                   <Image
                     src={imgSrc}

@@ -34,6 +34,7 @@
   white-space: nowrap;
   position: relative;
   transition: color 0.2s ease;
+  text-decoration: none;
 }
 
 .tabBtn:hover {

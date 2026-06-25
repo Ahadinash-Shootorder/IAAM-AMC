@@ -36,9 +36,7 @@ async function main() {
         update: {
           label: sec.label,
           visible: sec.visible,
-          order: sec.order,
-          content: sec.content,
-          draftContent: sec.draftContent
+          order: sec.order
         },
         create: {
           id: sec.id,

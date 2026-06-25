@@ -24,10 +24,12 @@ const sectionSchemas = {
     label: 'Header / Navigation',
     fields: [
       { key: 'logo', label: 'Logo Image', type: 'image' },
-      { key: 'navItems', label: 'Navigation Items', type: 'array', itemFields: [
-        { key: 'label', label: 'Label', type: 'text' },
-        { key: 'link', label: 'Link URL', type: 'text' },
-      ]},
+      {
+        key: 'navItems', label: 'Navigation Items', type: 'array', itemFields: [
+          { key: 'label', label: 'Label', type: 'text' },
+          { key: 'link', label: 'Link URL', type: 'text' },
+        ]
+      },
       { key: 'ctaButton.text', label: 'CTA Button Text', type: 'text' },
       { key: 'ctaButton.link', label: 'CTA Button Link', type: 'text' },
     ],
@@ -41,23 +43,29 @@ const sectionSchemas = {
       { key: 'title', label: 'Title', type: 'text' },
       { key: 'tagline', label: 'Tagline', type: 'text' },
       { key: 'description', label: 'Description', type: 'textarea' },
-      { key: 'buttons', label: 'Buttons', type: 'array', itemFields: [
-        { key: 'text', label: 'Button Text', type: 'text' },
-        { key: 'link', label: 'Button Link', type: 'text' },
-        { key: 'style', label: 'Style (primary/outline)', type: 'text' },
-      ]},
-      { key: 'bottomStats', label: 'Bottom Stats', type: 'array', itemFields: [
-        { key: 'text', label: 'Stat Text', type: 'text' },
-      ]},
+      {
+        key: 'buttons', label: 'Buttons', type: 'array', itemFields: [
+          { key: 'text', label: 'Button Text', type: 'text' },
+          { key: 'link', label: 'Button Link', type: 'text' },
+          { key: 'style', label: 'Style (primary/outline)', type: 'text' },
+        ]
+      },
+      {
+        key: 'bottomStats', label: 'Bottom Stats', type: 'array', itemFields: [
+          { key: 'text', label: 'Stat Text', type: 'text' },
+        ]
+      },
     ],
   },
   stats: {
     label: 'Stats Bar',
     fields: [
-      { key: 'items', label: 'Stats', type: 'array', itemFields: [
-        { key: 'number', label: 'Number', type: 'text' },
-        { key: 'label', label: 'Label', type: 'text' },
-      ]},
+      {
+        key: 'items', label: 'Stats', type: 'array', itemFields: [
+          { key: 'number', label: 'Number', type: 'text' },
+          { key: 'label', label: 'Label', type: 'text' },
+        ]
+      },
     ],
   },
   'home.speakers': {
@@ -98,9 +106,11 @@ const sectionSchemas = {
     label: 'Global Events',
     fields: [
       { key: 'title', label: 'Title', type: 'text' },
-      { key: 'events', label: 'Event Images', type: 'array', itemFields: [
-        { key: 'image', label: 'Image', type: 'image' },
-      ]},
+      {
+        key: 'events', label: 'Event Images', type: 'array', itemFields: [
+          { key: 'image', label: 'Image', type: 'image' },
+        ]
+      },
     ],
   },
   eventsList: {
@@ -132,13 +142,15 @@ const sectionSchemas = {
     label: 'Explore More',
     fields: [
       { key: 'title', label: 'Section Title', type: 'text' },
-      { key: 'cards', label: 'Cards', type: 'array', itemFields: [
-        { key: 'heading', label: 'Heading', type: 'text' },
-        { key: 'subHeading', label: 'Sub Heading', type: 'text' },
-        { key: 'buttonText', label: 'Button Text', type: 'text' },
-        { key: 'buttonLink', label: 'Button Link', type: 'text' },
-        { key: 'image', label: 'Card Image', type: 'image' },
-      ]},
+      {
+        key: 'cards', label: 'Cards', type: 'array', itemFields: [
+          { key: 'heading', label: 'Heading', type: 'text' },
+          { key: 'subHeading', label: 'Sub Heading', type: 'text' },
+          { key: 'buttonText', label: 'Button Text', type: 'text' },
+          { key: 'buttonLink', label: 'Button Link', type: 'text' },
+          { key: 'image', label: 'Card Image', type: 'image' },
+        ]
+      },
     ],
   },
   sponsors: {
@@ -166,10 +178,12 @@ const sectionSchemas = {
       { key: 'title', label: 'Organization Name', type: 'text' },
       { key: 'subtitle', label: 'Location', type: 'text' },
       { key: 'infoTexts', label: 'Info Texts', type: 'stringArray' },
-      { key: 'links', label: 'Quick Links', type: 'array', itemFields: [
-        { key: 'label', label: 'Link Text', type: 'text' },
-        { key: 'link', label: 'Link URL', type: 'text' },
-      ]},
+      {
+        key: 'links', label: 'Quick Links', type: 'array', itemFields: [
+          { key: 'label', label: 'Link Text', type: 'text' },
+          { key: 'link', label: 'Link URL', type: 'text' },
+        ]
+      },
       { key: 'bottomText', label: 'Bottom Text', type: 'text' },
     ],
   },
@@ -190,37 +204,51 @@ const sectionSchemas = {
       { key: 'subtitle', label: 'Subtitle', type: 'text' },
       { key: 'title', label: 'Title', type: 'text' },
       { key: 'description', label: 'Description', type: 'textarea' },
-      { key: 'badges', label: 'Badges', type: 'array', itemFields: [
-        { key: 'icon', label: 'Icon Type (globe/radio/etc.)', type: 'text' },
-        { key: 'text', label: 'Badge Text', type: 'text' },
-      ]},
+      {
+        key: 'badges', label: 'Badges', type: 'array', itemFields: [
+          { key: 'icon', label: 'Icon Type (globe/radio/etc.)', type: 'text' },
+          { key: 'text', label: 'Badge Text', type: 'text' },
+        ]
+      },
     ],
   },
   assembliesTabs: {
     label: 'Assemblies Tab Buttons',
     fields: [
-      { key: 'tabs', label: 'Tabs List', type: 'stringArray' },
+      {
+        key: 'tabs', label: 'Tabs List', type: 'array', itemFields: [
+          { key: 'label', label: 'Tab Label', type: 'text' },
+          { key: 'link', label: 'Link URL', type: 'text' },
+          { key: 'isActive', label: 'Is Active (true/false)', type: 'text' },
+        ]
+      },
     ],
   },
   assembliesCards: {
     label: 'Congress Cards',
     fields: [
-      { key: 'cards', label: 'Event Cards', type: 'array', itemFields: [
-        { key: 'image', label: 'Card Image', type: 'image' },
-        { key: 'isFeatured', label: 'Is Featured (true/false)', type: 'text' },
-        { key: 'date', label: 'Date', type: 'text' },
-        { key: 'location', label: 'Location', type: 'text' },
-        { key: 'title', label: 'Title', type: 'text' },
-        { key: 'description', label: 'Description', type: 'textarea' },
-        { key: 'stats', label: 'Stats', type: 'subArray', subFields: [
-          { key: 'value', label: 'Value (e.g. 500+)' },
-          { key: 'label', label: 'Label (e.g. Delegates)' },
-        ]},
-        { key: 'buttons', label: 'Buttons', type: 'subArray', subFields: [
-          { key: 'text', label: 'Button Text' },
-          { key: 'link', label: 'Button Link' },
-        ]}
-      ]}
+      {
+        key: 'cards', label: 'Event Cards', type: 'array', itemFields: [
+          { key: 'image', label: 'Card Image', type: 'image' },
+          { key: 'isFeatured', label: 'Is Featured (true/false)', type: 'text' },
+          { key: 'date', label: 'Date', type: 'text' },
+          { key: 'location', label: 'Location', type: 'text' },
+          { key: 'title', label: 'Title', type: 'text' },
+          { key: 'description', label: 'Description', type: 'textarea' },
+          {
+            key: 'stats', label: 'Stats', type: 'subArray', subFields: [
+              { key: 'value', label: 'Value (e.g. 500+)' },
+              { key: 'label', label: 'Label (e.g. Delegates)' },
+            ]
+          },
+          {
+            key: 'buttons', label: 'Buttons', type: 'subArray', subFields: [
+              { key: 'text', label: 'Button Text' },
+              { key: 'link', label: 'Button Link' },
+            ]
+          }
+        ]
+      }
     ]
   },
   assembliesCta: {
@@ -228,15 +256,106 @@ const sectionSchemas = {
     fields: [
       { key: 'title', label: 'Title', type: 'text' },
       { key: 'description', label: 'Description', type: 'textarea' },
-      { key: 'buttons', label: 'Action Buttons', type: 'array', itemFields: [
-        { key: 'text', label: 'Button Text', type: 'text' },
-        { key: 'link', label: 'Button Link', type: 'text' },
-      ]},
-      { key: 'features', label: 'Right Side Feature Cards', type: 'array', itemFields: [
-        { key: 'title', label: 'Card Title', type: 'text' },
-        { key: 'iconType', label: 'Icon Type (sparkles / publish)', type: 'text' },
-      ]}
+      {
+        key: 'buttons', label: 'Action Buttons', type: 'array', itemFields: [
+          { key: 'text', label: 'Button Text', type: 'text' },
+          { key: 'link', label: 'Button Link', type: 'text' },
+        ]
+      },
+      {
+        key: 'features', label: 'Right Side Feature Cards', type: 'array', itemFields: [
+          { key: 'title', label: 'Card Title', type: 'text' },
+          { key: 'iconType', label: 'Icon Type (sparkles / publish)', type: 'text' },
+        ]
+      }
     ]
+  },
+  awardsHero: {
+    label: 'Awards Hero Banner',
+    fields: [
+      { key: 'subtitle', label: 'Subtitle', type: 'text' },
+      { key: 'title', label: 'Title', type: 'text' },
+      { key: 'description', label: 'Description', type: 'textarea' },
+    ],
+  },
+  awardsIntro: {
+    label: 'FIAAM Introduction',
+    fields: [
+      { key: 'title', label: 'Title', type: 'text' },
+      { key: 'description', label: 'Description', type: 'textarea' },
+      { key: 'image', label: 'Trophy Image', type: 'image' },
+      { key: 'quoteText', label: 'Quote Text', type: 'textarea' },
+      {
+        key: 'criteriaList', label: 'Criteria Cards', type: 'array', itemFields: [
+          { key: 'title', label: 'Card Title', type: 'text' },
+          { key: 'description', label: 'Card Description', type: 'textarea' },
+        ]
+      },
+    ],
+  },
+  awardsCategories: {
+    label: 'Awards Categories Grid',
+    fields: [
+      { key: 'title', label: 'Section Title', type: 'text' },
+      { key: 'description', label: 'Section Description', type: 'textarea' },
+      {
+        key: 'categories', label: 'Awards Categories', type: 'array', itemFields: [
+          { key: 'badge', label: 'Badge (uppercase label)', type: 'text' },
+          { key: 'title', label: 'Award Title', type: 'text' },
+          { key: 'description', label: 'Award Description', type: 'textarea' },
+          { key: 'theme', label: 'Theme (dark-blue/purple/white/white-2/light-orange)', type: 'text' },
+        ]
+      },
+    ],
+  },
+  awardsPublications: {
+    label: 'Indexed Publications Grid',
+    fields: [
+      { key: 'title', label: 'Section Title', type: 'text' },
+      { key: 'description', label: 'Section Description', type: 'textarea' },
+      {
+        key: 'items', label: 'Publication Columns', type: 'array', itemFields: [
+          { key: 'title', label: 'Publication Title', type: 'text' },
+          { key: 'description', label: 'Publication Description', type: 'textarea' },
+          { key: 'linkText', label: 'Link Label Text', type: 'text' },
+          { key: 'linkUrl', label: 'Link URL / Path', type: 'text' },
+        ]
+      },
+    ],
+  },
+  awardsNomination: {
+    label: 'Nomination Process & Form',
+    fields: [
+      { key: 'title', label: 'Process Title', type: 'text' },
+      { key: 'description', label: 'Process Description', type: 'textarea' },
+      {
+        key: 'steps', label: 'Process Steps', type: 'array', itemFields: [
+          { key: 'number', label: 'Step Number (e.g. 01)', type: 'text' },
+          { key: 'title', label: 'Step Title', type: 'text' },
+          { key: 'description', label: 'Step Description', type: 'textarea' },
+        ]
+      },
+      { key: 'formTitle', label: 'Form Box Title', type: 'text' },
+      { key: 'categories', label: 'Form Category Options (string array)', type: 'stringArray' },
+    ],
+  },
+  awardsLaureates: {
+    label: 'Distinguished Fellows Directory',
+    fields: [
+      { key: 'title', label: 'Section Title', type: 'text' },
+      { key: 'description', label: 'Section Description', type: 'textarea' },
+      { key: 'ctaText', label: 'CTA Link Label', type: 'text' },
+      { key: 'ctaLink', label: 'CTA Link URL', type: 'text' },
+      {
+        key: 'laureates', label: 'Laureate Cards', type: 'array', itemFields: [
+          { key: 'image', label: 'Laureate Image', type: 'image' },
+          { key: 'name', label: 'Full Name', type: 'text' },
+          { key: 'title', label: 'Award Title / Designation', type: 'text' },
+          { key: 'description', label: 'Biography', type: 'textarea' },
+          { key: 'affiliation', label: 'Academic Affiliation', type: 'text' },
+        ]
+      },
+    ],
   },
 };
 
@@ -327,6 +446,8 @@ export default function SectionEditor({ params }) {
         setData(json);
         setInitialData(JSON.parse(JSON.stringify(json)));
       } catch (err) {
+        setData({});
+        setInitialData({});
         showToast('Failed to load data', 'error');
       } finally {
         setLoading(false);
@@ -358,7 +479,14 @@ export default function SectionEditor({ params }) {
   }
 
   function handlePreview() {
-    const route = pageId === 'home' || pageId === 'global' ? '/' : `/${pageId}`;
+    let route;
+    if (pageId === 'home' || pageId === 'global') {
+      route = '/';
+    } else if (pageId === 'fellow-awards') {
+      route = '/fellow-&-awards';
+    } else {
+      route = `/${pageId}`;
+    }
     window.open(`${route}?preview=true`, '_blank');
   }
 
@@ -374,7 +502,7 @@ export default function SectionEditor({ params }) {
 
   async function handleRestoreHistory(historyId) {
     if (!confirm('This will overwrite your current draft with the selected version. Are you sure?')) return;
-    
+
     try {
       const res = await fetch(`/api/admin/pages/${pageId}/history/${section}`, {
         method: 'POST',
@@ -762,8 +890,8 @@ export default function SectionEditor({ params }) {
                       <FiImage /> Select from Library
                     </button>
                     {getNestedValue(data, field.key) && (
-                      <button 
-                        className={styles.removeBtn} 
+                      <button
+                        className={styles.removeBtn}
                         onClick={() => handleFieldChange(field.key, '')}
                         title="Remove Image"
                       >
@@ -779,7 +907,7 @@ export default function SectionEditor({ params }) {
               <>
                 <label className={styles.fieldLabel}>{field.label}</label>
                 <div className={styles.arrayContainer}>
-                  {(data[field.key] || []).map((item, idx) => (
+                  {(data?.[field.key] || []).map((item, idx) => (
                     <div key={idx} className={styles.stringArrayItem}>
                       <input
                         type="text"
@@ -810,212 +938,218 @@ export default function SectionEditor({ params }) {
                 <label className={styles.fieldLabel}>
                   {field.label}
                   <span className={styles.arrayCount}>
-                    {(data[field.key] || []).length} items
+                    {(data?.[field.key] || []).length} items
                   </span>
                 </label>
                 <div className={styles.arrayContainer}>
-                  {(data[field.key] || []).map((item, idx) => (
-                    <div
-                      key={idx}
-                      className={`${styles.arrayItem} ${dragArrayKey === field.key && dragArrayOverIdx === idx ? styles.arrayItemDragOver : ''}`}
-                      draggable
-                      onDragStart={(e) => handleArrayDragStart(e, field.key, idx)}
-                      onDragEnter={() => handleArrayDragEnter(field.key, idx)}
-                      onDragEnd={() => handleArrayDragEnd(field.key)}
-                      onDragOver={(e) => e.preventDefault()}
-                    >
-                      <div className={styles.arrayItemHeader}>
-                        <div className={styles.arrayItemLeft}>
-                          <span className={styles.arrayDragHandle} title="Drag to reorder">⠿</span>
-                          <span className={styles.arrayItemIndex}>
-                            #{idx + 1}
-                            {(() => {
-                              const titleField = field.itemFields.find(f => f.type === 'text');
-                              const val = titleField ? item[titleField.key] : null;
-                              return val ? ` - ${val}` : '';
-                            })()}
-                          </span>
+                  {(data?.[field.key] || []).map((rawItem, idx) => {
+                    const item = typeof rawItem === 'object' && rawItem !== null ? rawItem : {};
+                    return (
+                      <div
+                        key={idx}
+                        className={`${styles.arrayItem} ${dragArrayKey === field.key && dragArrayOverIdx === idx ? styles.arrayItemDragOver : ''}`}
+                        draggable
+                        onDragStart={(e) => handleArrayDragStart(e, field.key, idx)}
+                        onDragEnter={() => handleArrayDragEnter(field.key, idx)}
+                        onDragEnd={() => handleArrayDragEnd(field.key)}
+                        onDragOver={(e) => e.preventDefault()}
+                      >
+                        <div className={styles.arrayItemHeader}>
+                          <div className={styles.arrayItemLeft}>
+                            <span className={styles.arrayDragHandle} title="Drag to reorder">⠿</span>
+                            <span className={styles.arrayItemIndex}>
+                              #{idx + 1}
+                              {(() => {
+                                const titleField = field.itemFields.find(f => f.type === 'text');
+                                const val = titleField ? item[titleField.key] : null;
+                                return val ? ` - ${val}` : '';
+                              })()}
+                            </span>
+                          </div>
+                          <div className={styles.arrayItemActions}>
+                            <button
+                              className={styles.editBtn}
+                              onClick={() => toggleArrayItem(field.key, idx)}
+                            >
+                              {expandedArrayItems[`${field.key}-${idx}`] ? '▲ Collapse' : '▼ Edit Item'}
+                            </button>
+                            <button
+                              className={styles.removeBtn}
+                              onClick={() => removeArrayItem(field.key, idx)}
+                            >
+                              Remove
+                            </button>
+                          </div>
                         </div>
-                        <div className={styles.arrayItemActions}>
-                          <button
-                            className={styles.editBtn}
-                            onClick={() => toggleArrayItem(field.key, idx)}
-                          >
-                            {expandedArrayItems[`${field.key}-${idx}`] ? '▲ Collapse' : '▼ Edit Item'}
-                          </button>
-                          <button
-                            className={styles.removeBtn}
-                            onClick={() => removeArrayItem(field.key, idx)}
-                          >
-                            Remove
-                          </button>
-                        </div>
-                      </div>
-                      
-                      {expandedArrayItems[`${field.key}-${idx}`] && (
-                        <div className={styles.arrayItemFields}>
-                          {field.itemFields.map((subField) => {
-                            const isFullWidth = subField.type === 'textarea' || subField.type === 'subArray' || subField.type === 'commaSeparated';
-                            return (
-                              <div key={subField.key} className={`${styles.subField} ${isFullWidth ? styles.subFieldFull : ''}`}>
-                                <label className={styles.subFieldLabel}>
-                                  {subField.label}
-                                </label>
-                            {subField.type === 'text' && (
-                              subField.key.toLowerCase().includes('link') || subField.key.toLowerCase().includes('url') ? (
-                                <LinkInput
-                                  value={item[subField.key] || ''}
-                                  onChange={(val) =>
-                                    handleArrayItemChange(field.key, idx, subField.key, val)
-                                  }
-                                />
-                              ) : (
-                                <input
-                                  type="text"
-                                  className={styles.textInput}
-                                  value={item[subField.key] || ''}
-                                  onChange={(e) =>
-                                    handleArrayItemChange(field.key, idx, subField.key, e.target.value)
-                                  }
-                                />
-                              )
-                            )}
-                            {subField.type === 'textarea' && (
-                              <RichTextEditor
-                                value={item[subField.key] || ''}
-                                onChange={(html) =>
-                                  handleArrayItemChange(field.key, idx, subField.key, html)
-                                }
-                                placeholder={`Enter ${subField.label.toLowerCase()}...`}
-                              />
-                            )}
-                            {subField.type === 'commaSeparated' && (
-                              <input
-                                type="text"
-                                className={styles.textInput}
-                                value={Array.isArray(item[subField.key]) ? item[subField.key].join(', ') : (item[subField.key] || '')}
-                                onChange={(e) => {
-                                  const val = e.target.value.split(',').map(s => s.trim()).filter(Boolean);
-                                  handleArrayItemChange(field.key, idx, subField.key, val);
-                                }}
-                                placeholder="Tag1, Tag2, Tag3"
-                              />
-                            )}
-                            {subField.type === 'subArray' && (
-                              <div className={styles.subArrayContainer}>
-                                {(item[subField.key] || []).map((subItem, subIdx) => (
-                                  <div key={subIdx} className={styles.subArrayItem}>
-                                    <div className={styles.subArrayHeader}>
-                                      <span className={styles.arrayItemIndex}>#{subIdx + 1}</span>
+
+                        {expandedArrayItems[`${field.key}-${idx}`] && (
+                          <div className={styles.arrayItemFields}>
+                            {field.itemFields.map((subField) => {
+                              const isFullWidth = subField.type === 'textarea' || subField.type === 'subArray' || subField.type === 'commaSeparated';
+                              return (
+                                <div key={subField.key} className={`${styles.subField} ${isFullWidth ? styles.subFieldFull : ''}`}>
+                                  <label className={styles.subFieldLabel}>
+                                    {subField.label}
+                                  </label>
+                                  {subField.type === 'text' && (
+                                    subField.key.toLowerCase().includes('link') || subField.key.toLowerCase().includes('url') ? (
+                                      <LinkInput
+                                        value={item[subField.key] || ''}
+                                        onChange={(val) =>
+                                          handleArrayItemChange(field.key, idx, subField.key, val)
+                                        }
+                                      />
+                                    ) : (
+                                      <input
+                                        type="text"
+                                        className={styles.textInput}
+                                        value={item[subField.key] || ''}
+                                        onChange={(e) =>
+                                          handleArrayItemChange(field.key, idx, subField.key, e.target.value)
+                                        }
+                                      />
+                                    )
+                                  )}
+                                  {subField.type === 'textarea' && (
+                                    <RichTextEditor
+                                      value={item[subField.key] || ''}
+                                      onChange={(html) =>
+                                        handleArrayItemChange(field.key, idx, subField.key, html)
+                                      }
+                                      placeholder={`Enter ${subField.label.toLowerCase()}...`}
+                                    />
+                                  )}
+                                  {subField.type === 'commaSeparated' && (
+                                    <input
+                                      type="text"
+                                      className={styles.textInput}
+                                      value={Array.isArray(item[subField.key]) ? item[subField.key].join(', ') : (item[subField.key] || '')}
+                                      onChange={(e) => {
+                                        const val = e.target.value.split(',').map(s => s.trim()).filter(Boolean);
+                                        handleArrayItemChange(field.key, idx, subField.key, val);
+                                      }}
+                                      placeholder="Tag1, Tag2, Tag3"
+                                    />
+                                  )}
+                                  {subField.type === 'subArray' && (
+                                    <div className={styles.subArrayContainer}>
+                                      {(item[subField.key] || []).map((rawSubItem, subIdx) => {
+                                      const subItem = typeof rawSubItem === 'object' && rawSubItem !== null ? rawSubItem : {};
+                                      return (
+                                        <div key={subIdx} className={styles.subArrayItem}>
+                                          <div className={styles.subArrayHeader}>
+                                            <span className={styles.arrayItemIndex}>#{subIdx + 1}</span>
+                                            <button
+                                              className={styles.removeBtn}
+                                              onClick={() => {
+                                                const updated = JSON.parse(JSON.stringify(data));
+                                                updated[field.key][idx][subField.key].splice(subIdx, 1);
+                                                setData(updated);
+                                              }}
+                                            >
+                                              ✕
+                                            </button>
+                                          </div>
+                                          {subField.subFields.map((sf) => (
+                                            <div key={sf.key} className={styles.subField}>
+                                              <label className={styles.subFieldLabel}>{sf.label}</label>
+                                              <input
+                                                type="text"
+                                                className={styles.textInput}
+                                                value={subItem[sf.key] || ''}
+                                                onChange={(e) => {
+                                                  const updated = JSON.parse(JSON.stringify(data));
+                                                  updated[field.key][idx][subField.key][subIdx][sf.key] = e.target.value;
+                                                  setData(updated);
+                                                }}
+                                              />
+                                            </div>
+                                          ))}
+                                        </div>
+                                      );
+                                    })}
                                       <button
-                                        className={styles.removeBtn}
+                                        className={styles.addBtn}
                                         onClick={() => {
                                           const updated = JSON.parse(JSON.stringify(data));
-                                          updated[field.key][idx][subField.key].splice(subIdx, 1);
+                                          const newSub = {};
+                                          subField.subFields.forEach((sf) => { newSub[sf.key] = ''; });
+                                          if (!updated[field.key][idx][subField.key]) {
+                                            updated[field.key][idx][subField.key] = [];
+                                          }
+                                          updated[field.key][idx][subField.key].push(newSub);
                                           setData(updated);
                                         }}
                                       >
-                                        ✕
+                                        + Add Stat
                                       </button>
                                     </div>
-                                    {subField.subFields.map((sf) => (
-                                      <div key={sf.key} className={styles.subField}>
-                                        <label className={styles.subFieldLabel}>{sf.label}</label>
+                                  )}
+                                  {subField.type === 'image' && (
+                                    <div className={styles.imageField}>
+                                      {item[subField.key] && (() => {
+                                        const rawImg = item[subField.key];
+                                        const imgSrc = rawImg.startsWith('/') || rawImg.startsWith('http') ? rawImg : `/${rawImg}`;
+                                        return (
+                                          <div className={styles.imagePreviewSmall}>
+                                            <Image
+                                              src={imgSrc}
+                                              alt={subField.label}
+                                              className={styles.previewImgSmall}
+                                              width={100}
+                                              height={50}
+                                              style={{ objectFit: 'contain' }}
+                                            />
+                                          </div>
+                                        );
+                                      })()}
+                                      <div className={styles.imageControls}>
                                         <input
                                           type="text"
                                           className={styles.textInput}
-                                          value={subItem[sf.key] || ''}
-                                          onChange={(e) => {
-                                            const updated = JSON.parse(JSON.stringify(data));
-                                            updated[field.key][idx][subField.key][subIdx][sf.key] = e.target.value;
-                                            setData(updated);
-                                          }}
+                                          value={item[subField.key] || ''}
+                                          onChange={(e) =>
+                                            handleArrayItemChange(field.key, idx, subField.key, e.target.value)
+                                          }
+                                          placeholder="Image path or URL"
                                         />
+                                        <label className={styles.uploadBtn}>
+                                          {uploading === `${field.key}.${subField.key}-${idx}` ? 'Uploading...' : <><FiUploadCloud /> Upload</>}
+                                          <input
+                                            type="file"
+                                            accept="image/*"
+                                            hidden
+                                            onChange={(e) => {
+                                              if (e.target.files?.[0]) {
+                                                handleImageUpload(
+                                                  `${field.key}.${subField.key}`,
+                                                  e.target.files[0],
+                                                  idx
+                                                );
+                                              }
+                                            }}
+                                          />
+                                        </label>
+                                        {item[subField.key] && (
+                                          <button
+                                            className={styles.removeBtn}
+                                            onClick={() => handleArrayItemChange(field.key, idx, subField.key, '')}
+                                            title="Remove Image"
+                                          >
+                                            ✕ Remove
+                                          </button>
+                                        )}
                                       </div>
-                                    ))}
-                                  </div>
-                                ))}
-                                <button
-                                  className={styles.addBtn}
-                                  onClick={() => {
-                                    const updated = JSON.parse(JSON.stringify(data));
-                                    const newSub = {};
-                                    subField.subFields.forEach((sf) => { newSub[sf.key] = ''; });
-                                    if (!updated[field.key][idx][subField.key]) {
-                                      updated[field.key][idx][subField.key] = [];
-                                    }
-                                    updated[field.key][idx][subField.key].push(newSub);
-                                    setData(updated);
-                                  }}
-                                >
-                                  + Add Stat
-                                </button>
-                              </div>
-                            )}
-                            {subField.type === 'image' && (
-                              <div className={styles.imageField}>
-                                {item[subField.key] && (() => {
-                                  const rawImg = item[subField.key];
-                                  const imgSrc = rawImg.startsWith('/') || rawImg.startsWith('http') ? rawImg : `/${rawImg}`;
-                                  return (
-                                    <div className={styles.imagePreviewSmall}>
-                                      <Image
-                                        src={imgSrc}
-                                        alt={subField.label}
-                                        className={styles.previewImgSmall}
-                                        width={100}
-                                        height={50}
-                                        style={{ objectFit: 'contain' }}
-                                      />
                                     </div>
-                                  );
-                                })()}
-                                <div className={styles.imageControls}>
-                                  <input
-                                    type="text"
-                                    className={styles.textInput}
-                                    value={item[subField.key] || ''}
-                                    onChange={(e) =>
-                                      handleArrayItemChange(field.key, idx, subField.key, e.target.value)
-                                    }
-                                    placeholder="Image path or URL"
-                                  />
-                                  <label className={styles.uploadBtn}>
-                                    {uploading === `${field.key}.${subField.key}-${idx}` ? 'Uploading...' : <><FiUploadCloud /> Upload</>}
-                                    <input
-                                      type="file"
-                                      accept="image/*"
-                                      hidden
-                                      onChange={(e) => {
-                                        if (e.target.files?.[0]) {
-                                          handleImageUpload(
-                                            `${field.key}.${subField.key}`,
-                                            e.target.files[0],
-                                            idx
-                                          );
-                                        }
-                                      }}
-                                    />
-                                  </label>
-                                  {item[subField.key] && (
-                                    <button 
-                                      className={styles.removeBtn} 
-                                      onClick={() => handleArrayItemChange(field.key, idx, subField.key, '')}
-                                      title="Remove Image"
-                                    >
-                                      ✕ Remove
-                                    </button>
                                   )}
                                 </div>
-                              </div>
-                            )}
+                              );
+                            })}
                           </div>
-                        );
-                        })}
+                        )}
                       </div>
-                    )}
-                  </div>
-                  ))}
+                    );
+                  })}
                   <button
                     className={styles.addBtn}
                     onClick={() => addArrayItem(field.key, field.itemFields)}
@@ -1029,15 +1163,15 @@ export default function SectionEditor({ params }) {
         ))}
       </div>
 
-      <MediaPickerModal 
-        isOpen={mediaPickerOpen} 
-        onClose={() => setMediaPickerOpen(false)} 
+      <MediaPickerModal
+        isOpen={mediaPickerOpen}
+        onClose={() => setMediaPickerOpen(false)}
         onSelect={(url) => {
           // If the field contains a dot, it might be an array item or nested, but handleFieldChange handles simple keys.
           // Wait, handleFieldChange just sets simple root keys in the data state.
           handleFieldChange(mediaPickerField, url);
           setMediaPickerOpen(false);
-        }} 
+        }}
       />
 
       {/* History Modal */}
@@ -1066,7 +1200,7 @@ export default function SectionEditor({ params }) {
                         <div style={{ fontWeight: '600', fontSize: '14px' }}>Version {historyItems.length - i}</div>
                         <div style={{ fontSize: '12px', color: '#64748b' }}>{new Date(h.createdAt).toLocaleString()}</div>
                       </div>
-                      <button 
+                      <button
                         onClick={() => handleRestoreHistory(h.id)}
                         style={{ background: '#240E8B', color: 'white', border: 'none', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px' }}
                       >

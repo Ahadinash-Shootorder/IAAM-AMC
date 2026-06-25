@@ -42,7 +42,7 @@ export default function EventsList({ data }) {
 
   const colors = [styles.cardPink, styles.cardYellow, styles.cardBlue];
   
-  const isInternal = (url) => url && url.startsWith('/') && !url.startsWith('//');
+  const isInternal = (url) => typeof url === 'string' && url.startsWith('/') && !url.startsWith('//');
 
   return (
     <section className={styles.eventsListSection}>
@@ -92,7 +92,7 @@ export default function EventsList({ data }) {
                 <div className={styles.imageContainer}>
                   {event.image ? (() => {
                     const rawImg = event.image;
-                    const imgSrc = rawImg.startsWith('/') || rawImg.startsWith('http') ? rawImg : `/${rawImg}`;
+                    const imgSrc = typeof rawImg === 'string' && (rawImg.startsWith('/') || rawImg.startsWith('http')) ? rawImg : `/${rawImg}`;
                     return <Image src={imgSrc} alt={event.title} className={styles.image} fill sizes="(max-width: 768px) 100vw, 50vw" priority={index === 0} loading={index === 0 ? undefined : "lazy"} />;
                   })() : (
                     <div className={styles.placeholderImage}></div>
@@ -116,8 +116,8 @@ export default function EventsList({ data }) {
                     <a 
                       href={event.link || '#'} 
                       className={styles.visitBtn}
-                      target={event.link && event.link.startsWith('http') ? '_blank' : undefined}
-                      rel={event.link && event.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      target={typeof event.link === 'string' && event.link.startsWith('http') ? '_blank' : undefined}
+                      rel={typeof event.link === 'string' && event.link.startsWith('http') ? 'noopener noreferrer' : undefined}
                     >
                       Visit Website
                     </a>

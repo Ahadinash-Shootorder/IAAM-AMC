@@ -1,0 +1,12 @@
+{
+  "title": "Cannot find your congress?",
+  "description": "Browse our full archive of past events or subscribe to our newsletter to receive notifications for newly announced assemblies.",
+  "buttons": [
+    { "text": "Browse Archives", "link": "#" },
+    { "text": "Subscribe Now", "link": "#" }
+  ],
+  "features": [
+    { "title": "Network with Experts", "iconType": "sparkles" },
+    { "title": "Publish Results", "iconType": "publish" }
+  ]
+}

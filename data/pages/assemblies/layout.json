@@ -1,0 +1,6 @@
+[
+  { "id": "assembliesHero", "label": "Hero Section", "visible": true, "order": 1 },
+  { "id": "assembliesTabs", "label": "Tab Navigation", "visible": true, "order": 2 },
+  { "id": "assembliesCards", "label": "Congress Cards", "visible": true, "order": 3 },
+  { "id": "assembliesCta", "label": "Cannot Find Congress CTA", "visible": true, "order": 4 }
+]

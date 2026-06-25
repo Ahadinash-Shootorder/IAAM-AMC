@@ -125,6 +125,10 @@ export default function PageLayoutManager({ params }) {
     globalEvents: <FiCompass />,
     eventsList: <FiCalendar />,
     proceedingsList: <FiFileText />,
+    assembliesHero: <FiImage />,
+    assembliesTabs: <FiMenu />,
+    assembliesCards: <FiCalendar />,
+    assembliesCta: <FiCompass />,
   };
 
   if (loading) {

@@ -1,5 +1,46 @@
 import prisma from './db';
 import { backupPageSection } from './backup';
+import fs from 'fs';
+import path from 'path';
+
+async function seedAssembliesOnTheFly() {
+  try {
+    await prisma.page.upsert({
+      where: { id: 'assemblies' },
+      update: { label: 'Assemblies Page', route: '/assemblies' },
+      create: { id: 'assemblies', label: 'Assemblies Page', route: '/assemblies' }
+    });
+
+    const sectionsPath = path.join(process.cwd(), 'prisma', 'seed_data', 'sections.json');
+    if (fs.existsSync(sectionsPath)) {
+      const sections = JSON.parse(fs.readFileSync(sectionsPath, 'utf-8'));
+      const assembliesSections = sections.filter(sec => sec.pageId === 'assemblies');
+      for (const sec of assembliesSections) {
+        await prisma.section.upsert({
+          where: { pageId_id: { pageId: sec.pageId, id: sec.id } },
+          update: {
+            label: sec.label,
+            visible: sec.visible,
+            order: sec.order,
+            content: sec.content,
+            draftContent: sec.draftContent
+          },
+          create: {
+            id: sec.id,
+            pageId: sec.pageId,
+            label: sec.label,
+            visible: sec.visible,
+            order: sec.order,
+            content: sec.content,
+            draftContent: sec.draftContent
+          }
+        });
+      }
+    }
+  } catch (err) {
+    console.error('Failed to auto-seed Assemblies:', err);
+  }
+}
 
 export function validateId(id) {
   return typeof id === 'string' && /^[a-zA-Z0-9_-]+$/.test(id);
@@ -115,10 +156,18 @@ export async function getPages() {
 export async function getPageLayout(pageId, preview = false) {
   if (!validateId(pageId)) throw new Error('Invalid page ID');
 
-  const sections = await prisma.section.findMany({
+  let sections = await prisma.section.findMany({
     where: { pageId },
     orderBy: { order: 'asc' },
   });
+
+  if (pageId === 'assemblies' && sections.length === 0) {
+    await seedAssembliesOnTheFly();
+    sections = await prisma.section.findMany({
+      where: { pageId },
+      orderBy: { order: 'asc' },
+    });
+  }
 
   return {
     sections: sections.map((sec) => ({
@@ -152,9 +201,16 @@ export async function readPageSectionData(pageId, sectionId, preview = false) {
     throw new Error('Invalid page or section ID');
   }
 
-  const section = await prisma.section.findUnique({
+  let section = await prisma.section.findUnique({
     where: { pageId_id: { pageId, id: sectionId } },
   });
+
+  if (pageId === 'assemblies' && !section) {
+    await seedAssembliesOnTheFly();
+    section = await prisma.section.findUnique({
+      where: { pageId_id: { pageId, id: sectionId } },
+    });
+  }
 
   return safeParseJson((preview && section?.draftContent) ? section.draftContent : section?.content);
 }

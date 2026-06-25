@@ -183,6 +183,61 @@ const sectionSchemas = {
       { key: 'ogImage', label: 'OpenGraph Image (Banner for social sharing)', type: 'image' },
     ],
   },
+  assembliesHero: {
+    label: 'Assemblies Hero Banner',
+    fields: [
+      { key: 'backgroundImage', label: 'Background Image', type: 'image' },
+      { key: 'subtitle', label: 'Subtitle', type: 'text' },
+      { key: 'title', label: 'Title', type: 'text' },
+      { key: 'description', label: 'Description', type: 'textarea' },
+      { key: 'badges', label: 'Badges', type: 'array', itemFields: [
+        { key: 'icon', label: 'Icon Type (globe/radio/etc.)', type: 'text' },
+        { key: 'text', label: 'Badge Text', type: 'text' },
+      ]},
+    ],
+  },
+  assembliesTabs: {
+    label: 'Assemblies Tab Buttons',
+    fields: [
+      { key: 'tabs', label: 'Tabs List', type: 'stringArray' },
+    ],
+  },
+  assembliesCards: {
+    label: 'Congress Cards',
+    fields: [
+      { key: 'cards', label: 'Event Cards', type: 'array', itemFields: [
+        { key: 'image', label: 'Card Image', type: 'image' },
+        { key: 'isFeatured', label: 'Is Featured (true/false)', type: 'text' },
+        { key: 'date', label: 'Date', type: 'text' },
+        { key: 'location', label: 'Location', type: 'text' },
+        { key: 'title', label: 'Title', type: 'text' },
+        { key: 'description', label: 'Description', type: 'textarea' },
+        { key: 'stats', label: 'Stats', type: 'subArray', subFields: [
+          { key: 'value', label: 'Value (e.g. 500+)' },
+          { key: 'label', label: 'Label (e.g. Delegates)' },
+        ]},
+        { key: 'buttons', label: 'Buttons', type: 'subArray', subFields: [
+          { key: 'text', label: 'Button Text' },
+          { key: 'link', label: 'Button Link' },
+        ]}
+      ]}
+    ]
+  },
+  assembliesCta: {
+    label: 'Cannot Find Congress CTA',
+    fields: [
+      { key: 'title', label: 'Title', type: 'text' },
+      { key: 'description', label: 'Description', type: 'textarea' },
+      { key: 'buttons', label: 'Action Buttons', type: 'array', itemFields: [
+        { key: 'text', label: 'Button Text', type: 'text' },
+        { key: 'link', label: 'Button Link', type: 'text' },
+      ]},
+      { key: 'features', label: 'Right Side Feature Cards', type: 'array', itemFields: [
+        { key: 'title', label: 'Card Title', type: 'text' },
+        { key: 'iconType', label: 'Icon Type (sparkles / publish)', type: 'text' },
+      ]}
+    ]
+  },
 };
 
 // Helper to get nested value from an object using dot notation

@@ -169,5 +169,41 @@
     "order": 2,
     "content": "{\"schema\":{\"fields\":[{\"key\":\"websiteTitle\",\"label\":\"Website Title\",\"type\":\"text\"},{\"key\":\"websiteDescription\",\"label\":\"Website Description\",\"type\":\"textarea\"},{\"key\":\"keywords\",\"label\":\"Keywords (Comma separated)\",\"type\":\"text\"},{\"key\":\"faviconImage\",\"label\":\"Favicon (.ico or .png)\",\"type\":\"image\"},{\"key\":\"ogImage\",\"label\":\"OpenGraph Image (Banner for social sharing)\",\"type\":\"image\"}]},\"data\":{\"websiteTitle\":\"Advanced Materials Congress - Official Scientific Assembly Series of IAAM\",\"websiteDescription\":\"Official Scientific Assembly Series of IAAM. Join the global community of researchers and professionals.\",\"keywords\":\"IAAM, Advanced Materials, Congress, Scientific Assembly, Research, Materials Science\",\"faviconImage\":\"/favicon.ico\",\"ogImage\":\"/LOGO.jpg\"},\"websiteTitle\":\"AMC\",\"faviconImage\":\"/uploads/global/site-identity/1781511480589-AMC_LOGO.png\"}",
     "draftContent": null
+  },
+  {
+    "id": "assembliesHero",
+    "pageId": "assemblies",
+    "label": "Hero Section",
+    "visible": true,
+    "order": 1,
+    "content": "{\"backgroundImage\":\"/uploads/assemblies/A-HeroBanner.jpg\",\"subtitle\":\"SCIENTIFIC ASSEMBLIES 2026\",\"title\":\"Find Upcoming Advanced Materials Congresses\",\"description\":\"Join the world's leading researchers, scientists, and industry experts for a series of high-impact congresses dedicated to the future of advanced materials science.\",\"badges\":[{\"icon\":\"globe\",\"text\":\"Global Destinations\"},{\"icon\":\"radio\",\"text\":\"Hybrid Formats Available\"}]}",
+    "draftContent": null
+  },
+  {
+    "id": "assembliesTabs",
+    "pageId": "assemblies",
+    "label": "Tab Navigation",
+    "visible": true,
+    "order": 2,
+    "content": "{\"tabs\":[\"2026 Congresses\",\"Fellow Assemblies\",\"Advanced Materials Lecture Series\",\"Contact Us\"]}",
+    "draftContent": null
+  },
+  {
+    "id": "assembliesCards",
+    "pageId": "assemblies",
+    "label": "Congress Cards",
+    "visible": true,
+    "order": 3,
+    "content": "{\"cards\":[{\"image\":\"/uploads/assemblies/American.jpg\",\"isFeatured\":\"true\",\"date\":\"20-21 August 2026\",\"location\":\"New Jersey, USA\",\"title\":\"American Advanced Materials Congress\",\"description\":\"Exploration of next-generation semiconductors, sustainable polymers, and aerospace materials engineering. A premier gathering for the North American research community.\",\"stats\":[{\"value\":\"500+\",\"label\":\"Delegates\"},{\"value\":\"40+\",\"label\":\"Countries\"},{\"value\":\"120+\",\"label\":\"Speakers\"}],\"buttons\":[{\"text\":\"Visit Website\",\"link\":\"#\"},{\"text\":\"Submit Abstract\",\"link\":\"#\"}]},{\"image\":\"/uploads/assemblies/European.jpg\",\"isFeatured\":\"false\",\"date\":\"25-27 August 2026\",\"location\":\"Stockholm, Sweden\",\"title\":\"European Advanced Materials Congress\",\"description\":\"The 2026 European edition focuses on the Circular Economy of Materials and Bio-integrated Electronics within the prestigious environment of the Baltic Sea cruises.\",\"stats\":[{\"value\":\"850+\",\"label\":\"Delegates\"},{\"value\":\"65+\",\"label\":\"Countries\"},{\"value\":\"200+\",\"label\":\"Speakers\"}],\"buttons\":[{\"text\":\"Visit Website\",\"link\":\"#\"},{\"text\":\"Submit Abstract\",\"link\":\"#\"}]}]}",
+    "draftContent": null
+  },
+  {
+    "id": "assembliesCta",
+    "pageId": "assemblies",
+    "label": "Cannot Find Congress CTA",
+    "visible": true,
+    "order": 4,
+    "content": "{\"title\":\"Cannot find your congress?\",\"description\":\"Browse our full archive of past events or subscribe to our newsletter to receive notifications for newly announced assemblies.\",\"buttons\":[{\"text\":\"Browse Archives\",\"link\":\"#\"},{\"text\":\"Subscribe Now\",\"link\":\"#\"}],\"features\":[{\"title\":\"Network with Experts\",\"iconType\":\"sparkles\"},{\"title\":\"Publish Results\",\"iconType\":\"publish\"}]}",
+    "draftContent": null
   }
 ]

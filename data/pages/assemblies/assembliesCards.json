@@ -1,0 +1,38 @@
+{
+  "cards": [
+    {
+      "image": "/uploads/assemblies/American.jpg",
+      "isFeatured": "true",
+      "date": "20-21 August 2026",
+      "location": "New Jersey, USA",
+      "title": "American Advanced Materials Congress",
+      "description": "Exploration of next-generation semiconductors, sustainable polymers, and aerospace materials engineering. A premier gathering for the North American research community.",
+      "stats": [
+        { "value": "500+", "label": "Delegates" },
+        { "value": "40+", "label": "Countries" },
+        { "value": "120+", "label": "Speakers" }
+      ],
+      "buttons": [
+        { "text": "Visit Website", "link": "#" },
+        { "text": "Submit Abstract", "link": "#" }
+      ]
+    },
+    {
+      "image": "/uploads/assemblies/European.jpg",
+      "isFeatured": "false",
+      "date": "25-27 August 2026",
+      "location": "Stockholm, Sweden",
+      "title": "European Advanced Materials Congress",
+      "description": "The 2026 European edition focuses on the Circular Economy of Materials and Bio-integrated Electronics within the prestigious environment of the Baltic Sea cruises.",
+      "stats": [
+        { "value": "850+", "label": "Delegates" },
+        { "value": "65+", "label": "Countries" },
+        { "value": "200+", "label": "Speakers" }
+      ],
+      "buttons": [
+        { "text": "Visit Website", "link": "#" },
+        { "text": "Submit Abstract", "link": "#" }
+      ]
+    }
+  ]
+}

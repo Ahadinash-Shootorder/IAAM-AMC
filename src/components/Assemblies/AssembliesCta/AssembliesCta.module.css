@@ -1,0 +1,216 @@
+.ctaSection {
+  width: 100%;
+  background-color: #edeeef;
+  padding: 80px 0;
+}
+
+.ctaOuterContainer {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.ctaCard {
+  position: relative;
+  background-color: #00020e;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 80px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.ctaCardBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.1;
+  background: radial-gradient(ellipse 53.25% 145.28% at 50% 50%, #003dd2 0%, rgba(0, 61, 210, 0) 100%);
+  z-index: 1;
+}
+
+.ctaLeftColumn {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ctaTitle {
+  color: #ffffff;
+  font-size: 48px;
+  font-family: 'Hanken Grotesk', var(--font-pt-sans), sans-serif;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.ctaText {
+  color: #7784ad;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.ctaActions {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.btnCtaPrimary {
+  background-color: #fa2e6e;
+  color: #ffffff;
+  padding: 16px 32px;
+  border-radius: 4px;
+  font-family: 'Hanken Grotesk', var(--font-inter), sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.2s ease;
+}
+
+.btnCtaPrimary:hover {
+  opacity: 0.9;
+}
+
+.btnCtaOutline {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  padding: 16px 32px;
+  border-radius: 4px;
+  font-family: 'Hanken Grotesk', var(--font-inter), sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.btnCtaOutline:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.ctaRightColumn {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.gridBoxContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.gridBox {
+  flex: 1;
+  background-color: rgba(231, 232, 233, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  padding: 85px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+.gridBox:hover {
+  background-color: rgba(231, 232, 233, 0.15);
+}
+
+.gridBoxShifted {
+  margin-top: 32px;
+}
+
+.gridBoxIconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gridBoxTitle {
+  color: #ffffff;
+  font-family: 'Hanken Grotesk', var(--font-inter), sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+@media (max-width: 1024px) {
+  .ctaCard {
+    padding: 48px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ctaLeftColumn {
+    max-width: 100%;
+  }
+
+  .ctaRightColumn {
+    justify-content: center;
+  }
+
+  .gridBoxContainer {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .ctaSection {
+    padding: 40px 0;
+  }
+
+  .ctaOuterContainer {
+    padding: 0 16px;
+  }
+
+  .ctaCard {
+    padding: 32px 20px;
+    gap: 32px;
+  }
+
+  .ctaTitle {
+    font-size: 32px;
+  }
+
+  .ctaActions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .gridBoxContainer {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .gridBoxShifted {
+    margin-top: 0;
+  }
+
+  .gridBox {
+    min-height: 140px;
+    padding: 20px;
+  }
+}

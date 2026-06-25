@@ -15,6 +15,11 @@
     "route": "/about"
   },
   {
+    "id": "assemblies",
+    "label": "Assemblies Page",
+    "route": "/assemblies"
+  },
+  {
     "id": "upcoming-events",
     "label": "Upcoming Events",
     "route": "/upcoming-events"

@@ -22,6 +22,10 @@ const sectionIcons = {
   globalEvents: <FiCompass />,
   eventsList: <FiCalendar />,
   proceedingsList: <FiFileText />,
+  assembliesHero: <FiImage />,
+  assembliesTabs: <FiMenu />,
+  assembliesCards: <FiCalendar />,
+  assembliesCta: <FiCompass />,
 };
 
 export default function AdminLayout({ children }) {

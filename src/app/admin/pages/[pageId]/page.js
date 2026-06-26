@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, use, useCallback } from 'react';
+import React, { useState, useEffect, useRef, use, useCallback } from 'react';
 import Link from 'next/link';
 import styles from './page.module.css';
 import { FiMenu, FiImage, FiBarChart2, FiMic, FiUser, FiCompass, FiBriefcase, FiHeart, FiLayout, FiCalendar, FiBookOpen, FiSquare, FiFileText, FiEye } from 'react-icons/fi';
@@ -32,7 +32,15 @@ export default function PageLayoutManager({ params }) {
         const res = await fetch(`/api/admin/events/${eventId}`);
         const event = await res.json();
         if (event && event.slug) {
-          route = `/events/${event.slug}`;
+          if (event.eventType === 'upcoming') {
+            route = `/upcoming-events/${event.slug}`;
+          } else if (event.eventType === 'individual') {
+            route = `/individual-events/${event.slug}`;
+          } else if (event.eventType === 'archive') {
+            route = `/congress-archive/${event.slug}`;
+          } else {
+            route = `/events/${event.slug}`;
+          }
         } else {
           route = `/events/${eventId}`;
         }
@@ -169,6 +177,133 @@ export default function PageLayoutManager({ params }) {
     eventPublications: <FiFileText />,
   };
 
+  const sectionMeta = {
+    header: {
+      desc: 'Main navigation bar, website logo, page links, and primary CTA button.',
+      summary: (content) => `CTA: "${content.ctaButton?.text || ''}" • Nav Items: ${(content.navItems || []).map(i => i.label).join(', ')}`
+    },
+    hero: {
+      desc: 'The top prominent banner of the page with titles, tagline, buttons, and high-impact background.',
+      summary: (content) => `Title: "${content.title || ''}"`
+    },
+    stats: {
+      desc: 'Key numeric highlights and metrics displaying the organization\'s impact.',
+      summary: (content) => `Stats: ${(content.stats || []).map(s => `${s.value || ''} ${s.label || ''}`).join(' | ')}`
+    },
+    speakers: {
+      desc: 'Grid list of keynote and featured speakers loaded directly from the Speakers module.',
+      summary: (content) => `Headline: "${content.title || ''}"`
+    },
+    becomeMember: {
+      desc: 'Call-to-Action banner prompting visitors to submit applications and register as a fellow.',
+      summary: (content) => `Headline: "${content.titlePrefix || ''} ${content.type || ''}"`
+    },
+    explore: {
+      desc: 'Informative section displaying assemblies categories or navigation points.',
+      summary: (content) => `Title: "${content.title || ''}"`
+    },
+    sponsors: {
+      desc: 'Displays the logos of official sponsors categorized by tier.',
+      summary: (content) => `Title: "${content.title || ''}"`
+    },
+    becomeSponsor: {
+      desc: 'Call-to-Action inviting corporations to join and support the upcoming assemblies.',
+      summary: (content) => `Headline: "${content.titlePrefix || ''}"`
+    },
+    footer: {
+      desc: 'The website bottom menu containing address, copyright information, and social links.',
+      summary: (content) => `Copyright: "${content.copyright || ''}"`
+    },
+    aboutHero: {
+      desc: 'Introductory banner for the About page detailing the vision.',
+      summary: (content) => `Title: "${content.title || ''}"`
+    },
+    ourStory: {
+      desc: 'Timeline or history blocks illustrating the growth of the organization.',
+      summary: (content) => `Title: "${content.title || ''}"`
+    },
+    globalEvents: {
+      desc: 'Summary or interactive grid of worldwide assemblies.',
+      summary: (content) => `Title: "${content.title || ''}"`
+    },
+    eventHero: {
+      desc: 'Banner containing the title, date, venue location, and registration buttons of the event.',
+      summary: (content) => `Title: "${content.title || ''}" • Date: ${content.date || ''} • Location: ${content.location || ''}`
+    },
+    eventIntro: {
+      desc: 'Detailed introductory summary with paragraphs, metrics, and event description.',
+      summary: (content) => `Headline: "${content.title || ''}"`
+    },
+    eventSymposia: {
+      desc: 'List of focused scientific tracks and downloadable flyer attachment.',
+      summary: (content) => `Headline: "${content.title || ''}" • Tracks: ${(content.symposia || []).length}`
+    },
+    eventDeadlines: {
+      desc: 'Important timelines and key milestone dates for abstract submissions and registration.',
+      summary: (content) => `Headline: "${content.title || ''}" • Deadlines: ${(content.deadlines || []).length}`
+    },
+    eventHighlights: {
+      desc: 'Chronological summary highlighting past years\' milestones and achievements.',
+      summary: (content) => `Headline: "${content.title || ''}" • Highlights: ${(content.highlights || []).length}`
+    },
+    eventSDGs: {
+      desc: 'United Nations Sustainable Development Goals that this event aligns with.',
+      summary: (content) => `Headline: "${content.title || ''}" • Goals: ${(content.goals || []).map(g => g.number).join(', ')}`
+    },
+    eventPublications: {
+      desc: 'Indexed proceedings and academic publications associated with this congress.',
+      summary: (content) => `Headline: "${content.title || ''}" • Publications: ${(content.publications || []).length}`
+    },
+    eventsList: {
+      desc: 'Filterable list of events matching this category page.',
+      summary: (content) => `Page Title: "${content.title || ''}"`
+    },
+    proceedingsList: {
+      desc: 'List of published congress proceedings and PDF downloads.',
+      summary: (content) => `Page Title: "${content.title || ''}"`
+    },
+    assembliesHero: {
+      desc: 'Top prominent banner displaying the main title of the assemblies page.',
+      summary: (content) => `Title: "${content.title || ''}"`
+    },
+    assembliesTabs: {
+      desc: 'Interactive tab navigation between different categories of events.',
+      summary: (content) => `Tabs: ${(content.tabs || []).map(t => t.label).join(', ')}`
+    },
+    assembliesCards: {
+      desc: 'Cards showcasing assemblies categories and details.',
+      summary: (content) => `Title: "${content.title || ''}"`
+    },
+    assembliesCta: {
+      desc: 'Call-to-Action prompting members to join upcoming assemblies.',
+      summary: (content) => `Title: "${content.title || ''}"`
+    },
+    awardsHero: {
+      desc: 'Main banner for the Fellow & Awards page detailing criteria.',
+      summary: (content) => `Title: "${content.title || ''}"`
+    },
+    awardsIntro: {
+      desc: 'Introduction section detailing the award nominations process and criteria.',
+      summary: (content) => `Title: "${content.title || ''}"`
+    },
+    awardsCategories: {
+      desc: 'Categories of awards available for fellows.',
+      summary: (content) => `Title: "${content.title || ''}"`
+    },
+    awardsNomination: {
+      desc: 'Nomination submission details and links.',
+      summary: (content) => `Title: "${content.title || ''}"`
+    },
+    awardsPublications: {
+      desc: 'Academic publications related to the awards.',
+      summary: (content) => `Title: "${content.title || ''}"`
+    },
+    awardsLaureates: {
+      desc: 'List of past laureates and fellows in the organization.',
+      summary: (content) => `Title: "${content.title || ''}"`
+    }
+  };
+
   if (loading) {
     return (
       <div className={styles.loadingWrapper}>
@@ -222,53 +357,98 @@ export default function PageLayoutManager({ params }) {
 
       {/* Section Cards */}
       <div className={styles.grid}>
-        {sections.map((section, index) => (
-          <div
-            key={section.id}
-            className={`${styles.card} ${!section.visible ? styles.cardHidden : ''} ${dragOverIndex === index ? styles.cardDragOver : ''}`}
-            draggable
-            onDragStart={(e) => handleDragStart(e, index)}
-            onDragEnter={() => handleDragEnter(index)}
-            onDragLeave={handleDragLeave}
-            onDragEnd={handleDragEnd}
-            onDragOver={(e) => e.preventDefault()}
-          >
-            <div className={styles.cardDragHandle}>
-              <span className={styles.dragDots}><FiMenu size={16} /></span>
-            </div>
+        {sections.map((section, index) => {
+          const isHeader = section.id === 'header';
+          const isFooter = section.id === 'footer';
+          const prevSection = sections[index - 1];
+          const isFirstBodySection = !isHeader && !isFooter && (!prevSection || prevSection.id === 'header');
 
-            <div className={styles.cardBody}>
-              <div className={styles.cardIcon}>
-                {sectionIcons[section.id] || <FiSquare />}
-              </div>
-              <div className={styles.cardInfo}>
-                <h3 className={styles.cardTitle}>{section.label}</h3>
-                <span className={`${styles.statusBadge} ${section.visible ? styles.statusActive : styles.statusInactive}`}>
-                  {section.visible ? 'Visible' : 'Hidden'}
-                </span>
-              </div>
-            </div>
+          const meta = sectionMeta[section.id];
+          const descText = meta?.desc || 'Custom page content section.';
+          const summaryText = meta?.summary ? meta.summary(section.content || {}) : '';
 
-            <div className={styles.cardActions}>
-              {/* Visibility Toggle */}
-              <button
-                className={`${styles.toggle} ${section.visible ? styles.toggleOn : ''}`}
-                onClick={() => toggleVisibility(section.id)}
-                title={section.visible ? 'Hide section' : 'Show section'}
+          return (
+            <React.Fragment key={section.id}>
+              {/* Category Dividers for Strapi-Style visual zones */}
+              {isHeader && (
+                <div className={styles.zoneHeader}>
+                  <h4>Global Layout Components</h4>
+                  <p>Global headers are shared across page layouts</p>
+                </div>
+              )}
+              {isFirstBodySection && (
+                <div className={styles.zoneHeader}>
+                  <h4>Page Body Components</h4>
+                  <p>Drag components vertically to change the order of the page layout</p>
+                </div>
+              )}
+              {isFooter && (
+                <div className={styles.zoneHeader}>
+                  <h4>Global Footer components</h4>
+                  <p>Bottom navigation page settings</p>
+                </div>
+              )}
+
+              <div
+                className={`${styles.card} ${!section.visible ? styles.cardHidden : ''} ${dragOverIndex === index ? styles.cardDragOver : ''} ${isHeader || isFooter ? styles.cardFixed : ''}`}
+                draggable={!isHeader && !isFooter}
+                onDragStart={(e) => handleDragStart(e, index)}
+                onDragEnter={() => handleDragEnter(index)}
+                onDragLeave={handleDragLeave}
+                onDragEnd={handleDragEnd}
+                onDragOver={(e) => e.preventDefault()}
               >
-                <span className={styles.toggleKnob} />
-              </button>
+                <div className={styles.cardDragHandle}>
+                  {!isHeader && !isFooter ? (
+                    <span className={styles.dragDots} title="Drag to reorder"><FiMenu size={16} /></span>
+                  ) : (
+                    <span className={styles.dragDotsLock} title="Fixed component layout"><FiSquare size={12} /></span>
+                  )}
+                </div>
 
-              {/* Edit Button */}
-              <Link
-                href={`/admin/pages/${pageId}/${section.id}`}
-                className={styles.editBtn}
-              >
-                Edit →
-              </Link>
-            </div>
-          </div>
-        ))}
+                <div className={styles.cardBody}>
+                  <div className={styles.cardIcon}>
+                    {sectionIcons[section.id] || <FiSquare />}
+                  </div>
+                  <div className={styles.cardInfo}>
+                    <div className={styles.cardTitleRow}>
+                      <h3 className={styles.cardTitle}>{section.label}</h3>
+                      <span className={`${styles.statusBadge} ${section.visible ? styles.statusActive : styles.statusInactive}`}>
+                        {section.visible ? 'Visible' : 'Hidden'}
+                      </span>
+                    </div>
+                    <p className={styles.cardDescText}>{descText}</p>
+                    {summaryText && (
+                      <div className={styles.cardSummaryBadge}>
+                        <span className={styles.summaryLabel}>Active Content:</span>
+                        <span className={styles.summaryValue}>{summaryText}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className={styles.cardActions}>
+                  {/* Visibility Toggle */}
+                  <button
+                    className={`${styles.toggle} ${section.visible ? styles.toggleOn : ''}`}
+                    onClick={() => toggleVisibility(section.id)}
+                    title={section.visible ? 'Hide section' : 'Show section'}
+                  >
+                    <span className={styles.toggleKnob} />
+                  </button>
+
+                  {/* Edit Button */}
+                  <Link
+                    href={`/admin/pages/${pageId}/${section.id}`}
+                    className={styles.editBtn}
+                  >
+                    Edit Content →
+                  </Link>
+                </div>
+              </div>
+            </React.Fragment>
+          );
+        })}
       </div>
 
       {saving && (

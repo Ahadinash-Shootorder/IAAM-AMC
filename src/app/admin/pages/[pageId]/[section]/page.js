@@ -597,7 +597,15 @@ export default function SectionEditor({ params }) {
         const res = await fetch(`/api/admin/events/${eventId}`);
         const event = await res.json();
         if (event && event.slug) {
-          route = `/events/${event.slug}`;
+          if (event.eventType === 'upcoming') {
+            route = `/upcoming-events/${event.slug}`;
+          } else if (event.eventType === 'individual') {
+            route = `/individual-events/${event.slug}`;
+          } else if (event.eventType === 'archive') {
+            route = `/congress-archive/${event.slug}`;
+          } else {
+            route = `/events/${event.slug}`;
+          }
         } else {
           route = `/events/${eventId}`;
         }
@@ -786,18 +794,13 @@ export default function SectionEditor({ params }) {
     const eventsTableColumns = [
       { key: 'title', label: 'Event Title' },
       { key: 'slug', label: 'Slug' },
-      { key: 'date', label: 'Date' },
-      { key: 'location', label: 'Location' },
       { key: 'order', label: 'Order' },
     ];
     const eventsFormColumns = [
       { key: 'title', label: 'Event Title', required: true },
       { key: 'slug', label: 'Slug' },
-      { key: 'date', label: 'Date', type: 'date' },
-      { key: 'location', label: 'Location' },
-      { key: 'description', label: 'Description', type: 'textarea' },
-      { key: 'link', label: 'Event Link' },
-      { key: 'image', label: 'Image URL' },
+      { key: 'image', label: 'Card Image Override', type: 'image' },
+      { key: 'link', label: 'External Event Link (Optional)' },
       { key: 'order', label: 'Order', type: 'number' },
     ];
     const procTableColumns = [

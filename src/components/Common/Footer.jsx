@@ -15,6 +15,20 @@ export default function Footer({ data }) {
   const linksCol1 = links.slice(0, midpoint);
   const linksCol2 = links.slice(midpoint);
 
+  const sanitizeLink = (url) => {
+    if (typeof url !== 'string') return '#';
+    if (
+      url.startsWith('/') ||
+      url.startsWith('http') ||
+      url.startsWith('mailto:') ||
+      url.startsWith('tel:') ||
+      url.startsWith('#')
+    ) {
+      return url;
+    }
+    return `/${url}`;
+  };
+
   const isInternal = (url) => typeof url === 'string' && url.startsWith('/') && !url.startsWith('//');
 
   return (
@@ -41,13 +55,14 @@ export default function Footer({ data }) {
             <div className={styles.linkColumn}>
               <span className={styles.linkTitle}>Quick Links</span>
               {linksCol1.map((link) => {
-                const isItemInternal = isInternal(link.link);
+                const cleanLink = sanitizeLink(link.link);
+                const isItemInternal = isInternal(cleanLink);
                 return isItemInternal ? (
-                  <Link key={link.label} href={link.link} className={styles.link}>
+                  <Link key={link.label} href={cleanLink} className={styles.link}>
                     {link.label}
                   </Link>
                 ) : (
-                  <a key={link.label} href={link.link || '#'} className={styles.link}>
+                  <a key={link.label} href={cleanLink} className={styles.link}>
                     {link.label}
                   </a>
                 );
@@ -57,13 +72,14 @@ export default function Footer({ data }) {
               <div className={styles.linkColumn}>
                 <span className={styles.linkTitle}>Resources</span>
                 {linksCol2.map((link) => {
-                  const isItemInternal = isInternal(link.link);
+                  const cleanLink = sanitizeLink(link.link);
+                  const isItemInternal = isInternal(cleanLink);
                   return isItemInternal ? (
-                    <Link key={link.label} href={link.link} className={styles.link}>
+                    <Link key={link.label} href={cleanLink} className={styles.link}>
                       {link.label}
                     </Link>
                   ) : (
-                    <a key={link.label} href={link.link || '#'} className={styles.link}>
+                    <a key={link.label} href={cleanLink} className={styles.link}>
                       {link.label}
                     </a>
                   );

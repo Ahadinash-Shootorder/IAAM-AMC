@@ -16,8 +16,28 @@ export default function Header({ data }) {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+  const sanitizeLink = (url) => {
+    if (typeof url !== 'string') return '#';
+    if (
+      url.startsWith('/') ||
+      url.startsWith('http') ||
+      url.startsWith('mailto:') ||
+      url.startsWith('tel:') ||
+      url.startsWith('#')
+    ) {
+      return url;
+    }
+    return `/${url}`;
+  };
+
   const isInternal = (url) => typeof url === 'string' && url.startsWith('/') && !url.startsWith('//');
-  const isCtaInternal = isInternal(ctaButton.link);
+  
+  const cleanCtaLink = sanitizeLink(ctaButton.link);
+  const isCtaInternal = isCtaInternalHelper(cleanCtaLink);
+
+  function isCtaInternalHelper(url) {
+    return isInternal(url);
+  }
 
   return (
     <header className={styles.header}>
@@ -42,11 +62,11 @@ export default function Header({ data }) {
         </button>
 
         {isCtaInternal ? (
-          <Link href={ctaButton.link} className={`${styles.ctaButton} ${styles.mobileHiddenCta}`}>
+          <Link href={cleanCtaLink} className={`${styles.ctaButton} ${styles.mobileHiddenCta}`}>
             {ctaButton.text}
           </Link>
         ) : (
-          <a href={ctaButton.link || '#'} className={`${styles.ctaButton} ${styles.mobileHiddenCta}`}>
+          <a href={cleanCtaLink} className={`${styles.ctaButton} ${styles.mobileHiddenCta}`}>
             {ctaButton.text}
           </a>
         )}
@@ -54,9 +74,12 @@ export default function Header({ data }) {
 
       <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
         {navItems.map((item) => {
-          const linkHref = (pathname !== '/' && item.link?.startsWith('#'))
-            ? `/${item.link}`
-            : (item.link || '#');
+          let linkHref = item.link || '#';
+          if (pathname !== '/' && linkHref.startsWith('#')) {
+            linkHref = `/${linkHref}`;
+          } else {
+            linkHref = sanitizeLink(linkHref);
+          }
           const isItemInternal = isInternal(linkHref);
           return isItemInternal ? (
             <Link
@@ -80,11 +103,11 @@ export default function Header({ data }) {
         })}
         {/* Render CTA button inside mobile menu as well */}
         {isCtaInternal ? (
-          <Link href={ctaButton.link} className={`${styles.ctaButton} ${styles.mobileNavCta}`}>
+          <Link href={cleanCtaLink} className={`${styles.ctaButton} ${styles.mobileNavCta}`}>
             {ctaButton.text}
           </Link>
         ) : (
-          <a href={ctaButton.link || '#'} className={`${styles.ctaButton} ${styles.mobileNavCta}`}>
+          <a href={cleanCtaLink} className={`${styles.ctaButton} ${styles.mobileNavCta}`}>
             {ctaButton.text}
           </a>
         )}
@@ -92,11 +115,11 @@ export default function Header({ data }) {
       
       {/* Desktop right CTA */}
       {isCtaInternal ? (
-        <Link href={ctaButton.link} className={`${styles.ctaButton} ${styles.desktopCta}`}>
+        <Link href={cleanCtaLink} className={`${styles.ctaButton} ${styles.desktopCta}`}>
           {ctaButton.text}
         </Link>
       ) : (
-        <a href={ctaButton.link || '#'} className={`${styles.ctaButton} ${styles.desktopCta}`}>
+        <a href={cleanCtaLink} className={`${styles.ctaButton} ${styles.desktopCta}`}>
           {ctaButton.text}
         </a>
       )}

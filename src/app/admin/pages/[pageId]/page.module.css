@@ -320,3 +320,81 @@
     font-size: 12px;
   }
 }
+
+/* ─── CMS Zone Headers ─── */
+.zoneHeader {
+  margin-top: 24px;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.zoneHeader h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 2px 0;
+}
+
+.zoneHeader p {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ─── Card Info & Badge Layouts ─── */
+.cardTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cardDescText {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0 0 6px 0;
+  line-height: 1.4;
+}
+
+.cardSummaryBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  max-width: 480px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.summaryLabel {
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.summaryValue {
+  color: #111827;
+}
+
+/* ─── Fixed Component Overrides ─── */
+.cardFixed {
+  cursor: default !important;
+  background: #fafafa;
+  border-style: dashed;
+}
+
+.cardFixed:active {
+  transform: none !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
+}
+
+.dragDotsLock {
+  color: #d1d5db;
+  line-height: 1;
+}

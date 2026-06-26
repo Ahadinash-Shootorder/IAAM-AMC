@@ -1,5 +1,5 @@
 import prisma from './db';
-import { backupPageSection, backupPageLayout } from './backup';
+import { backupPageSection, backupPageLayout, backupCollection } from './backup';
 import fs from 'fs';
 import path from 'path';
 
@@ -83,10 +83,19 @@ async function seedEventOnTheFly(pageId) {
     const event = await prisma.event.findUnique({ where: { id: eventId } });
     if (!event) return;
 
+    let eventRoute = `/events/${event.slug || event.id}`;
+    if (event.eventType === 'upcoming') {
+      eventRoute = `/upcoming-events/${event.slug || event.id}`;
+    } else if (event.eventType === 'individual') {
+      eventRoute = `/individual-events/${event.slug || event.id}`;
+    } else if (event.eventType === 'archive') {
+      eventRoute = `/congress-archive/${event.slug || event.id}`;
+    }
+
     await prisma.page.upsert({
       where: { id: pageId },
-      update: { label: `Event: ${event.title}`, route: `/events/${event.slug || event.id}` },
-      create: { id: pageId, label: `Event: ${event.title}`, route: `/events/${event.slug || event.id}` }
+      update: { label: `Event: ${event.title}`, route: eventRoute },
+      create: { id: pageId, label: `Event: ${event.title}`, route: eventRoute }
     });
 
     const defaultSections = [
@@ -564,4 +573,69 @@ export async function writePageSectionData(pageId, sectionId, data, asDraft = fa
   backupPageSection(pageId, sectionId, sanitized).catch((err) =>
     console.error(`[Backup] ${pageId}/${sectionId} failed:`, err)
   );
+
+  // Sync Event page sections content with main Event model on publish path
+  if (!asDraft && pageId.startsWith('event-')) {
+    const eventId = pageId.slice(6);
+    let eventUpdated = false;
+    
+    if (sectionId === 'eventHero') {
+      await prisma.event.update({
+        where: { id: eventId },
+        data: {
+          title: sanitized.title,
+          date: sanitized.date,
+          location: sanitized.location,
+          image: sanitized.backgroundImage
+        }
+      });
+      eventUpdated = true;
+    } else if (sectionId === 'eventIntro') {
+      await prisma.event.update({
+        where: { id: eventId },
+        data: {
+          description: sanitized.paragraphs?.[0] || ''
+        }
+      });
+      eventUpdated = true;
+    }
+
+    if (eventUpdated) {
+      const allItems = await prisma.event.findMany({ orderBy: { order: 'asc' } });
+      backupCollection('events', allItems).catch(console.error);
+    }
+  }
+}
+
+export async function getEventsWithDetails(eventType) {
+  const dbEvents = await prisma.event.findMany({
+    where: { eventType },
+    orderBy: { order: 'asc' }
+  });
+
+  const enrichedEvents = await Promise.all(
+    dbEvents.map(async (event) => {
+      const pageId = `event-${event.id}`;
+      const sections = await prisma.section.findMany({
+        where: { pageId }
+      });
+
+      const heroSec = sections.find((s) => s.id === 'eventHero');
+      const introSec = sections.find((s) => s.id === 'eventIntro');
+
+      const heroContent = heroSec ? safeParseJson(heroSec.content) : {};
+      const introContent = introSec ? safeParseJson(introSec.content) : {};
+
+      return {
+        ...event,
+        title: heroContent.title || event.title,
+        date: heroContent.date || event.date || '',
+        location: heroContent.location || event.location || '',
+        image: event.image || heroContent.backgroundImage || '',
+        description: event.description || (introContent.paragraphs && introContent.paragraphs[0]) || ''
+      };
+    })
+  );
+
+  return enrichedEvents;
 }

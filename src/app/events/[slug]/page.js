@@ -8,7 +8,7 @@ import EventDeadlines from '@/components/EventDetails/EventDeadlines/EventDeadli
 import EventHighlights from '@/components/EventDetails/EventHighlights/EventHighlights';
 import EventSDGs from '@/components/EventDetails/EventSDGs/EventSDGs';
 import EventPublications from '@/components/EventDetails/EventPublications/EventPublications';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import prisma from '@/lib/prisma';
 import styles from '../../page.module.css';
 
@@ -40,7 +40,8 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function EventDetailPage({ params }) {
+// Named export for actual content rendering, imported by category pages to prevent redirect loop
+export async function EventDetailContent({ params }) {
   const { slug } = await params;
 
   const eventRow = await prisma.event.findUnique({
@@ -86,4 +87,28 @@ export default async function EventDetailPage({ params }) {
       <Footer data={footerData} />
     </div>
   );
+}
+
+// Default export wrapper that handles redirection when hitting generic /events/[slug]
+export default async function EventDetailPage({ params }) {
+  const { slug } = await params;
+
+  const eventRow = await prisma.event.findUnique({
+    where: { slug }
+  });
+
+  if (!eventRow) {
+    notFound();
+  }
+
+  // Redirect to correct category route
+  if (eventRow.eventType === 'upcoming') {
+    redirect(`/upcoming-events/${slug}`);
+  } else if (eventRow.eventType === 'individual') {
+    redirect(`/individual-events/${slug}`);
+  } else if (eventRow.eventType === 'archive') {
+    redirect(`/congress-archive/${slug}`);
+  }
+
+  return <EventDetailContent params={params} />;
 }

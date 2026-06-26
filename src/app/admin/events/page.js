@@ -8,17 +8,13 @@ export default function EventsPage() {
   const tableColumns = [
     { key: 'title', label: 'Event Title' },
     { key: 'slug', label: 'Slug' },
-    { key: 'date', label: 'Date' },
-    { key: 'location', label: 'Location' },
+    { key: 'eventType', label: 'Event Type' },
     { key: 'order', label: 'Order' },
   ];
 
   const formColumns = [
     { key: 'title', label: 'Event Title', required: true },
     { key: 'slug', label: 'Slug' },
-    { key: 'date', label: 'Date', type: 'date' },
-    { key: 'location', label: 'Location' },
-    { key: 'description', label: 'Description', type: 'textarea' },
     {
       key: 'eventType',
       label: 'Event Type',
@@ -30,8 +26,8 @@ export default function EventsPage() {
         { value: 'archive', label: 'Archive Event' },
       ],
     },
-    { key: 'link', label: 'Event Link' },
-    { key: 'image', label: 'Image URL' },
+    { key: 'image', label: 'Card Image Override', type: 'image' },
+    { key: 'link', label: 'External Event Link (Optional)' },
     { key: 'order', label: 'Order', type: 'number' },
   ];
 

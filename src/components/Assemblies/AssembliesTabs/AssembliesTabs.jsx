@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './AssembliesTabs.module.css';
 
-export default function AssembliesTabs({ data }) {
+export default function AssembliesTabs({ data, activeTab, onTabChange }) {
   const pathname = usePathname();
   if (!data) return null;
 
@@ -30,14 +30,24 @@ export default function AssembliesTabs({ data }) {
               );
             }
 
-            const isTabActive = tab.isActive === 'true' || tab.isActive === true || pathname === tab.link;
+            const isTabActive = activeTab !== undefined 
+              ? (activeTab === idx || activeTab === tab.link) 
+              : (tab.isActive === 'true' || tab.isActive === true || pathname === tab.link);
             const isTabInternal = isInternal(tab.link);
+
+            const handleClick = (e) => {
+              if (onTabChange) {
+                e.preventDefault();
+                onTabChange(idx, tab.link);
+              }
+            };
 
             if (isTabInternal) {
               return (
                 <Link
                   key={idx}
                   href={tab.link}
+                  onClick={handleClick}
                   className={`${styles.tabBtn} ${isTabActive ? styles.tabBtnActive : ''}`}
                 >
                   {tab.label}
@@ -49,6 +59,7 @@ export default function AssembliesTabs({ data }) {
               <a
                 key={idx}
                 href={tab.link || '#'}
+                onClick={handleClick}
                 className={`${styles.tabBtn} ${isTabActive ? styles.tabBtnActive : ''}`}
               >
                 {tab.label}

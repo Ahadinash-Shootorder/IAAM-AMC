@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, use, useCallback } from 'react';
 import Link from 'next/link';
 import styles from './page.module.css';
-import { FiMenu, FiImage, FiBarChart2, FiMic, FiUser, FiCompass, FiBriefcase, FiHeart, FiLayout, FiCalendar, FiBookOpen, FiSquare, FiFileText } from 'react-icons/fi';
+import { FiMenu, FiImage, FiBarChart2, FiMic, FiUser, FiCompass, FiBriefcase, FiHeart, FiLayout, FiCalendar, FiBookOpen, FiSquare, FiFileText, FiEye } from 'react-icons/fi';
 
 export default function PageLayoutManager({ params }) {
   const { pageId } = use(params);
@@ -19,6 +19,31 @@ export default function PageLayoutManager({ params }) {
     setToast({ message, type });
     setTimeout(() => setToast(null), 3000);
   }, []);
+
+  const handlePreview = async () => {
+    let route;
+    if (pageId === 'home' || pageId === 'global') {
+      route = '/';
+    } else if (pageId === 'fellow-awards') {
+      route = '/fellow-&-awards';
+    } else if (pageId.startsWith('event-')) {
+      try {
+        const eventId = pageId.slice(6);
+        const res = await fetch(`/api/admin/events/${eventId}`);
+        const event = await res.json();
+        if (event && event.slug) {
+          route = `/events/${event.slug}`;
+        } else {
+          route = `/events/${eventId}`;
+        }
+      } catch (err) {
+        route = `/events/${pageId.slice(6)}`;
+      }
+    } else {
+      route = `/${pageId}`;
+    }
+    window.open(`${route}?preview=true`, '_blank');
+  };
 
   useEffect(() => {
     async function fetchSections() {
@@ -135,6 +160,13 @@ export default function PageLayoutManager({ params }) {
     awardsNomination: <FiFileText />,
     awardsPublications: <FiBookOpen />,
     awardsLaureates: <FiUser />,
+    eventHero: <FiImage />,
+    eventIntro: <FiBookOpen />,
+    eventSymposia: <FiLayout />,
+    eventDeadlines: <FiCalendar />,
+    eventHighlights: <FiImage />,
+    eventSDGs: <FiCompass />,
+    eventPublications: <FiFileText />,
   };
 
   if (loading) {
@@ -163,8 +195,28 @@ export default function PageLayoutManager({ params }) {
             Drag to reorder • Toggle visibility • Click to edit content
           </p>
         </div>
-        <div className={styles.headerBadge}>
-          {sections.filter((s) => s.visible).length}/{sections.length} Active
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <button 
+            onClick={handlePreview} 
+            style={{
+              background: '#fff',
+              color: '#1C3F9E',
+              border: '1px solid #1C3F9E',
+              padding: '8px 16px',
+              borderRadius: '4px',
+              fontSize: '14px',
+              fontWeight: '500',
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px'
+            }}
+          >
+            <FiEye /> Preview Page
+          </button>
+          <div className={styles.headerBadge}>
+            {sections.filter((s) => s.visible).length}/{sections.length} Active
+          </div>
         </div>
       </div>
 

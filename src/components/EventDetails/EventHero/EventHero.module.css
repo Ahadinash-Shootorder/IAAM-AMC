@@ -1,0 +1,219 @@
+.heroSection {
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 100px 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(103deg, rgba(0, 40, 126, 0.95) 0%, rgba(28, 63, 158, 0.80) 100%);
+  z-index: 1;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 48px;
+  z-index: 2;
+}
+
+.content {
+  max-width: 896px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+/* Glassmorphism Anniversary Badge */
+.badge {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  outline: 1px solid rgba(255, 255, 255, 0.25);
+  outline-offset: -1px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.badgeHighlight {
+  color: #F04393;
+}
+
+.badgeText {
+  color: white;
+}
+
+/* Title */
+.title {
+  color: white;
+  font-size: 48px;
+  font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+  font-weight: 700;
+  line-height: 60px;
+  margin: 0;
+}
+
+/* Tagline */
+.tagline {
+  max-width: 672px;
+  color: rgba(255, 255, 255, 0.90);
+  font-size: 18px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 28px;
+  margin: 0;
+}
+
+/* Meta Information */
+.meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-top: 16px;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.metaIcon {
+  color: white;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.metaText {
+  color: white;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+/* Action Buttons */
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 32px;
+}
+
+.registerBtn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 28px;
+  background: linear-gradient(92deg, #F04393 0%, #d83580 100%);
+  border-radius: 4px;
+  color: white;
+  font-size: 18px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(240, 67, 147, 0.3);
+}
+
+.registerBtn:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+.programBtn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 28px;
+  background: transparent;
+  border-radius: 4px;
+  outline: 1px solid white;
+  outline-offset: -1px;
+  color: white;
+  font-size: 16px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.20);
+}
+
+.programBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    min-height: auto;
+    padding: 80px 0;
+  }
+  
+  .container {
+    padding: 0 16px;
+  }
+  
+  .title {
+    font-size: 36px;
+    line-height: 46px;
+  }
+  
+  .tagline {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding-top: 8px;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    padding-top: 16px;
+  }
+
+  .registerBtn, .programBtn {
+    width: 100%;
+    text-align: center;
+  }
+}

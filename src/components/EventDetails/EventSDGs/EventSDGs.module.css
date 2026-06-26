@@ -1,0 +1,208 @@
+.sdgSection {
+  width: 100%;
+  background: #FDF7FF;
+  padding: 80px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 48px;
+}
+
+.layout {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 64px;
+}
+
+/* Left Column */
+.leftCol {
+  flex: 0 0 373px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.sectionTitle {
+  color: #00287E;
+  font-size: 32px;
+  font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+  font-weight: 600;
+  line-height: 40px;
+  margin: 0;
+}
+
+.sectionDesc {
+  color: #444652;
+  font-size: 16px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 26px;
+  margin: 0;
+}
+
+.reportLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #0B615E;
+  font-size: 16px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 700;
+  line-height: 24px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  padding-top: 8px;
+}
+
+.reportLink:hover {
+  opacity: 0.85;
+}
+
+.linkIcon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+.reportLink:hover .linkIcon {
+  transform: translateX(4px);
+}
+
+/* Right Column (2x2 Grid of Goal Cards) */
+.rightCol {
+  flex: 0 0 746.67px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 32px;
+  background: #F8F9FA;
+  border-radius: 16px;
+  outline: 1px solid rgba(196, 197, 212, 0.20);
+  outline-offset: -1px;
+  min-height: 142px;
+  box-sizing: border-box;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.04);
+  background: #FFFFFF;
+  border-color: rgba(196, 197, 212, 0.40);
+}
+
+.iconWrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.cardTitle {
+  color: #1D1A23;
+  font-size: 14px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 600;
+  line-height: 20px;
+  margin: 0;
+}
+
+.cardDesc {
+  color: #444652;
+  font-size: 12px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 500;
+  line-height: 16px;
+  margin: 0;
+}
+
+/* Responsiveness */
+@media (max-width: 1200px) {
+  .rightCol {
+    flex: 1;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 32px;
+  }
+  .layout {
+    gap: 48px;
+  }
+  .leftCol {
+    flex: 0 0 300px;
+  }
+  .rightCol {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .layout {
+    flex-direction: column;
+    gap: 48px;
+  }
+  
+  .leftCol {
+    flex: 1;
+    width: 100%;
+  }
+
+  .rightCol {
+    width: 100%;
+    flex: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .sdgSection {
+    padding: 60px 0;
+  }
+  
+  .container {
+    padding: 0 16px;
+  }
+
+  .sectionTitle {
+    font-size: 26px;
+    line-height: 34px;
+  }
+  
+  .card {
+    padding: 24px;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .rightCol {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

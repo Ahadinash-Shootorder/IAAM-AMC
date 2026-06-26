@@ -10,7 +10,7 @@ import MediaPickerModal from './MediaPickerModal';
 import RichTextEditor from './RichTextEditor';
 import LinkInput from './LinkInput';
 
-export default function CrudTable({ title, endpoint, tableColumns, formColumns, columns, defaultValues = {} }) {
+export default function CrudTable({ title, endpoint, tableColumns, formColumns, columns, defaultValues = {}, customAction }) {
   // Support both old 'columns' prop and new separate props
   const displayCols = tableColumns || columns || [];
   const editCols = formColumns || columns || [];
@@ -129,10 +129,10 @@ export default function CrudTable({ title, endpoint, tableColumns, formColumns, 
   const handleInputChange = (key, value) => {
     setFormData((prev) => {
       const next = { ...prev, [key]: value };
-      if (key === 'name' && editCols.some(c => c.key === 'slug')) {
+      if ((key === 'name' || key === 'title') && editCols.some(c => c.key === 'slug')) {
         const oldSlug = prev.slug || '';
-        const prevName = prev.name || '';
-        const expectedOldSlug = prevName
+        const prevText = prev[key] || '';
+        const expectedOldSlug = prevText
           .toLowerCase()
           .replace(/[^a-z0-9]+/g, '-')
           .replace(/(^-|-$)/g, '');
@@ -516,6 +516,7 @@ export default function CrudTable({ title, endpoint, tableColumns, formColumns, 
                       </td>
                     ))}
                     <td className={styles.actionsCell}>
+                      {customAction && customAction(item)}
                       <button className={styles.editBtn} onClick={() => handleEdit(item)} title="Edit">
                         <FiEdit2 size={16} />
                       </button>

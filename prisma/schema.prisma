@@ -1,5 +1,5 @@
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -80,10 +80,12 @@ model Speaker {
 model Event {
   id          String   @id @default(cuid())
   title       String
+  slug        String?  @unique
   date        String?
   location    String?
   image       String?
   link        String?
+  description String?
   eventType   String   @default("upcoming") // upcoming, individual, archive
   order       Int      @default(0)
   createdAt   DateTime @default(now())

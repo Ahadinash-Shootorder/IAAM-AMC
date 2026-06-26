@@ -47,3 +47,21 @@ export async function backupCollection(collectionName, items) {
     console.error(`[Backup Error] Failed to backup collection ${collectionName}:`, error);
   }
 }
+
+/**
+ * Backs up page layout configuration (section visibility and order) to data/pages/[pageId]/layout.json
+ */
+export async function backupPageLayout(pageId, sections) {
+  if (!pageId || !/^[a-zA-Z0-9_-]+$/.test(pageId)) {
+    throw new Error('Invalid page ID');
+  }
+  try {
+    const pageDir = path.join(DATA_DIR, 'pages', pageId);
+    await ensureDir(pageDir);
+    const filePath = path.join(pageDir, 'layout.json');
+    await fs.writeFile(filePath, JSON.stringify({ sections }, null, 2));
+    console.log(`[Backup] Saved layout for page ${pageId}`);
+  } catch (error) {
+    console.error(`[Backup Error] Failed to backup page layout ${pageId}:`, error);
+  }
+}

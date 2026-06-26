@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, use, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './page.module.css';
 import CrudTable from '@/components/Admin/CrudTable';
 import MediaPickerModal from '@/components/Admin/MediaPickerModal';
@@ -357,6 +358,112 @@ const sectionSchemas = {
       },
     ],
   },
+  eventHero: {
+    label: 'Event Hero Banner',
+    fields: [
+      { key: 'edition', label: 'Edition Label (e.g. 8th)', type: 'text' },
+      { key: 'editionSuffix', label: 'Edition Suffix (e.g. Anniversary Edition)', type: 'text' },
+      { key: 'title', label: 'Title', type: 'text' },
+      { key: 'tagline', label: 'Tagline', type: 'textarea' },
+      { key: 'date', label: 'Date Text', type: 'text' },
+      { key: 'location', label: 'Location Text', type: 'text' },
+      { key: 'registerText', label: 'Register Button Text', type: 'text' },
+      { key: 'registerLink', label: 'Register Button Link', type: 'text' },
+      { key: 'programText', label: 'Program Button Text', type: 'text' },
+      { key: 'programLink', label: 'Program Button Link', type: 'text' },
+      { key: 'backgroundImage', label: 'Background Image', type: 'image' },
+    ]
+  },
+  eventIntro: {
+    label: 'Decade of Excellence (Intro)',
+    fields: [
+      { key: 'title', label: 'Section Title', type: 'text' },
+      { key: 'paragraphs', label: 'Paragraphs', type: 'stringArray' },
+      { key: 'image', label: 'Side Image', type: 'image' },
+      {
+        key: 'stats', label: 'Stats Boxes', type: 'array', itemFields: [
+          { key: 'value', label: 'Stat Value (e.g. 60+)', type: 'text' },
+          { key: 'label', label: 'Stat Label (e.g. PAST ASSEMBLIES)', type: 'text' },
+        ]
+      }
+    ]
+  },
+  eventSymposia: {
+    label: 'Conference Symposia',
+    fields: [
+      { key: 'title', label: 'Section Title', type: 'text' },
+      { key: 'description', label: 'Section Description', type: 'textarea' },
+      {
+        key: 'symposia', label: 'Symposia Cards', type: 'array', itemFields: [
+          { key: 'title', label: 'Card Title', type: 'text' },
+          { key: 'description', label: 'Card Description', type: 'textarea' },
+        ]
+      },
+      { key: 'flyerText', label: 'Download Button Text', type: 'text' },
+      { key: 'flyerLink', label: 'Download Button Link', type: 'text' },
+    ]
+  },
+  eventDeadlines: {
+    label: 'Critical Deadlines',
+    fields: [
+      { key: 'title', label: 'Section Title', type: 'text' },
+      { key: 'description', label: 'Section Description', type: 'textarea' },
+      {
+        key: 'deadlines', label: 'Deadline Cards', type: 'array', itemFields: [
+          { key: 'label', label: 'Label (e.g. EARLY-BIRD)', type: 'text' },
+          { key: 'date', label: 'Date Text', type: 'text' },
+          { key: 'description', label: 'Details', type: 'textarea' },
+        ]
+      }
+    ]
+  },
+  eventHighlights: {
+    label: 'Conference Highlights',
+    fields: [
+      { key: 'title', label: 'Section Title', type: 'text' },
+      { key: 'description', label: 'Section Description', type: 'textarea' },
+      {
+        key: 'highlights', label: 'Highlight Cards', type: 'array', itemFields: [
+          { key: 'yearRange', label: 'Year Range (e.g. 2011 to 2015)', type: 'text' },
+          { key: 'title', label: 'Card Title', type: 'text' },
+          { key: 'image', label: 'Card Image', type: 'image' },
+        ]
+      }
+    ]
+  },
+  eventSDGs: {
+    label: 'UNSDGs Commitments',
+    fields: [
+      { key: 'title', label: 'Section Title', type: 'text' },
+      { key: 'description', label: 'Section Description', type: 'textarea' },
+      { key: 'reportText', label: 'Report Link Text', type: 'text' },
+      { key: 'reportLink', label: 'Report Link URL', type: 'text' },
+      {
+        key: 'goals', label: 'SDG Cards', type: 'array', itemFields: [
+          { key: 'number', label: 'Goal Number (e.g. Goal 7)', type: 'text' },
+          { key: 'title', label: 'Goal Title', type: 'text' },
+          { key: 'description', label: 'Goal Description', type: 'textarea' },
+          { key: 'bgColor', label: 'Background Color (hex, e.g. #DBEAFE)', type: 'text' },
+          { key: 'iconColor', label: 'Icon / Text Color (hex, e.g. #2563EB)', type: 'text' },
+        ]
+      }
+    ]
+  },
+  eventPublications: {
+    label: 'Indexed Publications',
+    fields: [
+      { key: 'title', label: 'Section Title', type: 'text' },
+      { key: 'description', label: 'Section Description', type: 'textarea' },
+      {
+        key: 'publications', label: 'Publications', type: 'array', itemFields: [
+          { key: 'title', label: 'Publication Title', type: 'text' },
+          { key: 'description', label: 'Publication Description', type: 'textarea' },
+          { key: 'linkText', label: 'Link Text', type: 'text' },
+          { key: 'linkUrl', label: 'Link URL', type: 'text' },
+        ]
+      }
+    ]
+  },
 };
 
 // Helper to get nested value from an object using dot notation
@@ -478,12 +585,25 @@ export default function SectionEditor({ params }) {
     }
   }
 
-  function handlePreview() {
+  async function handlePreview() {
     let route;
     if (pageId === 'home' || pageId === 'global') {
       route = '/';
     } else if (pageId === 'fellow-awards') {
       route = '/fellow-&-awards';
+    } else if (pageId.startsWith('event-')) {
+      try {
+        const eventId = pageId.slice(6);
+        const res = await fetch(`/api/admin/events/${eventId}`);
+        const event = await res.json();
+        if (event && event.slug) {
+          route = `/events/${event.slug}`;
+        } else {
+          route = `/events/${eventId}`;
+        }
+      } catch (err) {
+        route = `/events/${pageId.slice(6)}`;
+      }
     } else {
       route = `/${pageId}`;
     }
@@ -665,14 +785,17 @@ export default function SectionEditor({ params }) {
   if (dbConfig) {
     const eventsTableColumns = [
       { key: 'title', label: 'Event Title' },
+      { key: 'slug', label: 'Slug' },
       { key: 'date', label: 'Date' },
       { key: 'location', label: 'Location' },
       { key: 'order', label: 'Order' },
     ];
     const eventsFormColumns = [
       { key: 'title', label: 'Event Title', required: true },
+      { key: 'slug', label: 'Slug' },
       { key: 'date', label: 'Date', type: 'date' },
       { key: 'location', label: 'Location' },
+      { key: 'description', label: 'Description', type: 'textarea' },
       { key: 'link', label: 'Event Link' },
       { key: 'image', label: 'Image URL' },
       { key: 'order', label: 'Order', type: 'number' },
@@ -698,6 +821,26 @@ export default function SectionEditor({ params }) {
     const endpoint = isEvents
       ? `/api/admin/events?eventType=${dbConfig.filter}`
       : '/api/admin/proceedings';
+
+    const renderCustomAction = (item) => (
+      <Link
+        href={`/admin/pages/event-${item.id}`}
+        style={{
+          background: '#1C3F9E',
+          color: '#fff',
+          padding: '6px 12px',
+          borderRadius: '4px',
+          fontSize: '13px',
+          fontWeight: '500',
+          textDecoration: 'none',
+          marginRight: '8px',
+          display: 'inline-flex',
+          alignItems: 'center'
+        }}
+      >
+        Manage Content
+      </Link>
+    );
 
     return (
       <div className={styles.editor}>
@@ -745,6 +888,7 @@ export default function SectionEditor({ params }) {
           tableColumns={isEvents ? eventsTableColumns : procTableColumns}
           formColumns={isEvents ? eventsFormColumns : procFormColumns}
           defaultValues={isEvents ? { eventType: dbConfig.filter } : {}}
+          customAction={isEvents ? renderCustomAction : undefined}
         />
       </div>
     );

@@ -108,7 +108,11 @@ export default function EventsList({ data }) {
                     </div>
                   </div>
                   
-                  {isInternal(event.link) ? (
+                  {event.slug ? (
+                    <Link href={`/events/${event.slug}`} className={styles.visitBtn}>
+                      Visit Website
+                    </Link>
+                  ) : isInternal(event.link) ? (
                     <Link href={event.link} className={styles.visitBtn}>
                       Visit Website
                     </Link>

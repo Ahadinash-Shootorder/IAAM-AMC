@@ -1,0 +1,178 @@
+.symposiaSection {
+  width: 100%;
+  background: #FDF7FF;
+  padding: 80px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.sectionTitle {
+  color: #00287E;
+  font-size: 32px;
+  font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+  font-weight: 600;
+  line-height: 40px;
+  margin: 0;
+}
+
+.divider {
+  width: 96px;
+  height: 4px;
+  background: #F04393;
+  border-radius: 12px;
+}
+
+.sectionDesc {
+  max-width: 672px;
+  color: #444652;
+  font-size: 16px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0;
+  padding-top: 8px;
+}
+
+/* 3-Column Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.card {
+  padding: 32px;
+  background: #F8F9FA;
+  border-radius: 8px;
+  outline: 1px solid rgba(196, 197, 212, 0.10);
+  outline-offset: -1px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: #1C3E9C;
+  height: 32px;
+}
+
+.cardTitle {
+  color: #1D1A23;
+  font-size: 24px;
+  font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 0;
+  padding-top: 4px;
+}
+
+.cardDesc {
+  color: #444652;
+  font-size: 16px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0;
+}
+
+/* Action Button */
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.downloadBtn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 40px;
+  background: #F04393;
+  border-radius: 4px;
+  color: white;
+  font-size: 14px;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-weight: 600;
+  line-height: 20px;
+  text-decoration: none;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.downloadBtn:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+.btnIcon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 32px;
+  }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .symposiaSection {
+    padding: 60px 0;
+  }
+  
+  .container {
+    padding: 0 16px;
+    gap: 32px;
+  }
+
+  .sectionTitle {
+    font-size: 26px;
+    line-height: 34px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .card {
+    padding: 24px;
+  }
+}

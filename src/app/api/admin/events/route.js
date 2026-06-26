@@ -18,7 +18,17 @@ export async function POST(req) {
   try {
     const data = await req.json();
     const item = await prisma.event.create({
-      data: { title: data.title, date: data.date, location: data.location, image: data.image, link: data.link, eventType: data.eventType, order: parseInt(data.order) || 0 }
+      data: {
+        title: data.title,
+        slug: data.slug || null,
+        date: data.date,
+        location: data.location,
+        image: data.image,
+        link: data.link,
+        description: data.description || null,
+        eventType: data.eventType,
+        order: parseInt(data.order) || 0
+      }
     });
     
     // Backup

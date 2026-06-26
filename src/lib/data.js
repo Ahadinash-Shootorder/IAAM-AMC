@@ -1,5 +1,5 @@
 import prisma from './db';
-import { backupPageSection } from './backup';
+import { backupPageSection, backupPageLayout } from './backup';
 import fs from 'fs';
 import path from 'path';
 
@@ -77,6 +77,159 @@ async function seedAwardsOnTheFly() {
   }
 }
 
+async function seedEventOnTheFly(pageId) {
+  try {
+    const eventId = pageId.slice(6);
+    const event = await prisma.event.findUnique({ where: { id: eventId } });
+    if (!event) return;
+
+    await prisma.page.upsert({
+      where: { id: pageId },
+      update: { label: `Event: ${event.title}`, route: `/events/${event.slug || event.id}` },
+      create: { id: pageId, label: `Event: ${event.title}`, route: `/events/${event.slug || event.id}` }
+    });
+
+    const defaultSections = [
+      {
+        id: 'eventHero',
+        label: 'Event Hero Banner',
+        order: 1,
+        content: {
+          edition: '8th',
+          editionSuffix: ' Anniversary Edition',
+          title: event.title,
+          tagline: '"Next-Generation Energy Materials for a Sustainable Future" — Join the premier international forum bridging cutting-edge research with practical net-zero applications.',
+          date: event.date || '01 – 03 June 2026',
+          location: event.location || 'Stockholm, Sweden',
+          registerText: 'Register Now',
+          registerLink: '#',
+          programText: 'View Program',
+          programLink: '#',
+          backgroundImage: event.image || 'https://placehold.co/1278x661'
+        }
+      },
+      {
+        id: 'eventIntro',
+        label: 'Decade of Excellence',
+        order: 2,
+        content: {
+          title: 'Decade of Excellence',
+          paragraphs: [
+            `Join us in celebrating the 8th Anniversary of the prestigious European Advanced Energy Materials Congress (EAEMC), organized by the International Association of Advanced Materials (IAAM).`,
+            `EAEMC has consistently served as a leading international platform bringing together researchers, industry professionals, policymakers, and academics to discuss groundbreaking research and innovations in advanced energy materials.`
+          ],
+          stats: [
+            { value: '60+', label: 'PAST ASSEMBLIES' },
+            { value: '8th', label: 'YEARLY ANNIVERSARY' }
+          ],
+          image: 'https://placehold.co/544x400'
+        }
+      },
+      {
+        id: 'eventSymposia',
+        label: 'Conference Symposia',
+        order: 3,
+        content: {
+          title: 'Conference Symposia',
+          description: 'Focused scientific tracks exploring the frontier of energy science and materials engineering.',
+          symposia: [
+            { title: 'Renewable Energy', description: 'Focusing on sustainable materials and system efficiency for a circular energy economy.' },
+            { title: 'Energy Storage', description: 'Advanced batteries, supercapacitors, and next-gen lithium-ion technologies.' },
+            { title: 'Photovoltaics', description: 'Solar cells, thin films, and light-harvesting semiconductor innovations.' },
+            { title: 'Energy Harvesting', description: 'Thermoelectrics, piezoelectrics, and micro-power conversion systems.' },
+            { title: 'Hydrogen Tech', description: 'Fuel cells, hydrogen production, storage, and transport infrastructure.' },
+            { title: 'Smart Materials', description: 'Intelligent materials designed for building efficiency and responsive systems.' }
+          ],
+          flyerText: 'Download Symposia Flyer',
+          flyerLink: '#'
+        }
+      },
+      {
+        id: 'eventDeadlines',
+        label: 'Critical Deadlines',
+        order: 4,
+        content: {
+          title: 'Critical Deadlines',
+          description: 'Mark your calendars for key submission and registration dates.',
+          deadlines: [
+            { label: 'EARLY-BIRD', date: '12 Dec 2025', description: 'Save on registration fees with early-bird rates.' },
+            { label: 'ABSTRACTS', date: '30 Apr 2026', description: 'Final deadline for technical abstract submissions.' },
+            { label: 'REGISTRATION', date: '27 Apr 2026', description: 'Standard registration closes for delegates.' },
+            { label: 'FULL PAPERS', date: '03 July 2026', description: 'Submission for Scopus indexed congress journals.' }
+          ]
+        }
+      },
+      {
+        id: 'eventHighlights',
+        label: 'Conference Highlights',
+        order: 5,
+        content: {
+          title: 'Conference Highlights',
+          description: 'Reliving a decade of scientific advancement.',
+          highlights: [
+            { yearRange: '2011 to 2015', title: 'Initial Assemblies', image: 'https://placehold.co/224x192' },
+            { yearRange: '2016', title: 'Three Global Summits', image: 'https://placehold.co/224x192' },
+            { yearRange: '2017', title: 'Interaction & Forum', image: 'https://placehold.co/224x192' },
+            { yearRange: '2018', title: 'Expansion in Sweden', image: 'https://placehold.co/224x192' },
+            { yearRange: '2019', title: 'Global Roadmaps', image: 'https://placehold.co/224x192' }
+          ]
+        }
+      },
+      {
+        id: 'eventSDGs',
+        label: 'UNSDGs Commitments',
+        order: 6,
+        content: {
+          title: 'UNSDGs Commitments',
+          description: 'EAEMC 2026 is strictly aligned with the United Nations Sustainable Development Goals, ensuring our research has direct global impact.',
+          reportText: 'Read Full Impact Report',
+          reportLink: '#',
+          goals: [
+            { number: 'Goal 7', title: 'Clean Energy', description: 'Promoting cutting-edge sustainable energy solutions and infrastructure.', bgColor: '#DBEAFE', iconColor: '#2563EB' },
+            { number: 'Goal 13', title: 'Climate Action', description: 'Advancing materials technologies to actively combat global climate change.', bgColor: '#DCFCE7', iconColor: '#16A34A' },
+            { number: 'Goal 9', title: 'Innovation', description: 'Encouraging innovation and sustainable industrial growth in energy materials.', bgColor: '#FFEDD5', iconColor: '#EA580C' },
+            { number: 'Goal 17', title: 'Partnerships', description: 'Fostering global interdisciplinary collaboration and academic partnerships.', bgColor: '#F3E8FF', iconColor: '#9333EA' }
+          ]
+        }
+      },
+      {
+        id: 'eventPublications',
+        label: 'Indexed Publications',
+        order: 7,
+        content: {
+          title: 'Indexed Publications',
+          description: 'Disseminating groundbreaking research through globally recognized and indexed academic channels.',
+          publications: [
+            { title: 'Congress Proceedings', description: 'All accepted abstracts and papers are published with ISBN and DOI indexing, and submitted for Scopus evaluation.', linkText: 'View Guidelines', linkUrl: '/congress-proceedings' },
+            { title: 'Advanced Materials Letters', description: 'The official open-access journal of IAAM, providing a high-impact platform with no subscription fees for researchers.', linkText: 'Learn More', linkUrl: '#' },
+            { title: 'Video Proceedings', description: 'An innovative open-access video journal dedicated to documented lectures and visual scientific presentations.', linkText: 'Watch Now', linkUrl: '#' }
+          ]
+        }
+      }
+    ];
+
+    for (const sec of defaultSections) {
+      const existing = await prisma.section.findUnique({
+        where: { pageId_id: { pageId, id: sec.id } }
+      });
+      if (!existing) {
+        await prisma.section.create({
+          data: {
+            id: sec.id,
+            pageId,
+            label: sec.label,
+            visible: true,
+            order: sec.order,
+            content: JSON.stringify(sec.content),
+            draftContent: null
+          }
+        });
+      }
+    }
+  } catch (err) {
+    console.error('Failed to auto-seed event details:', err);
+  }
+}
 
 async function migrateAssembliesTabsOnTheFly() {
   try {
@@ -261,6 +414,16 @@ export async function getPageLayout(pageId, preview = false) {
     }
   }
 
+  if (pageId.startsWith('event-')) {
+    if (sections.length < 7) {
+      await seedEventOnTheFly(pageId);
+      sections = await prisma.section.findMany({
+        where: { pageId },
+        orderBy: { order: 'asc' },
+      });
+    }
+  }
+
 
   return {
     sections: sections.map((sec) => ({
@@ -287,6 +450,18 @@ export async function updatePageLayout(pageId, layout) {
     );
 
   await prisma.$transaction(updates);
+
+  // Backup layout configuration
+  const cleanSections = layout.sections
+    .filter((sec) => validateId(sec.id))
+    .map((s) => ({
+      id: s.id,
+      order: typeof s.order === 'number' ? s.order : 0,
+      visible: Boolean(s.visible),
+    }));
+  backupPageLayout(pageId, cleanSections).catch((err) =>
+    console.error(`[Backup] Page layout for ${pageId} failed:`, err)
+  );
 }
 
 export async function readPageSectionData(pageId, sectionId, preview = false) {
@@ -307,6 +482,13 @@ export async function readPageSectionData(pageId, sectionId, preview = false) {
 
   if (pageId === 'fellow-awards' && !section) {
     await seedAwardsOnTheFly();
+    section = await prisma.section.findUnique({
+      where: { pageId_id: { pageId, id: sectionId } },
+    });
+  }
+
+  if (pageId.startsWith('event-') && !section) {
+    await seedEventOnTheFly(pageId);
     section = await prisma.section.findUnique({
       where: { pageId_id: { pageId, id: sectionId } },
     });

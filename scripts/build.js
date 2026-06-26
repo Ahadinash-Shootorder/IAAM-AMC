@@ -1,7 +1,7 @@
 const { execSync } = require('child_process');
 
-// Fallback to local SQLite database if DATABASE_URL is not set or is empty
-if (!process.env.DATABASE_URL || process.env.DATABASE_URL.trim() === '') {
+// Fallback to local SQLite database if DATABASE_URL is not set, is empty, or doesn't start with file:
+if (!process.env.DATABASE_URL || process.env.DATABASE_URL.trim() === '' || !process.env.DATABASE_URL.startsWith('file:')) {
   process.env.DATABASE_URL = 'file:./dev.db';
 }
 

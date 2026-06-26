@@ -57,16 +57,20 @@ export default function HeroSection({ data }) {
 
         <div className={styles.buttons}>
           {buttons.map((btn, index) => {
-            const isBtnInternal = isInternal(btn.link);
+            let link = btn.link || '#';
+            if (btn.text === 'Register Now' && (link === '#' || link === '#register')) {
+              link = '/register';
+            }
+            const isBtnInternal = isInternal(link);
             const btnClass = `btn ${btn.style === 'primary' ? 'btn-primary' : 'btn-outline'}`;
             return isBtnInternal ? (
-              <Link key={index} href={btn.link} className={btnClass}>
+              <Link key={index} href={link} className={btnClass}>
                 {btn.text}
               </Link>
             ) : (
               <a
                 key={index}
-                href={btn.link || '#'}
+                href={link}
                 className={btnClass}
               >
                 {btn.text}

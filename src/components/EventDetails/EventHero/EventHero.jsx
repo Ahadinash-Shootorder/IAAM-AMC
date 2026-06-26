@@ -58,11 +58,17 @@ export default function EventHero({ data }) {
 
           {/* Actions */}
           <div className={styles.actions}>
-            {registerLink && (
-              <a href={registerLink} className={styles.registerBtn}>
-                {registerText}
-              </a>
-            )}
+            {registerLink && (() => {
+              let link = registerLink;
+              if (registerText === 'Register Now' && (link === '#' || link === '#register')) {
+                link = '/register';
+              }
+              return (
+                <a href={link} className={styles.registerBtn}>
+                  {registerText}
+                </a>
+              );
+            })()}
             {programLink && (
               <a href={programLink} className={styles.programBtn}>
                 {programText}

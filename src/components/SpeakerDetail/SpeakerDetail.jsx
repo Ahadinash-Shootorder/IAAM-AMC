@@ -108,15 +108,22 @@ export default function SpeakerDetail({ speaker }) {
           <h1 className={styles.heroName}>{name}</h1>
           <p className={styles.heroDescription}>{shortBio}</p>
           <div className={styles.heroCta}>
-            {ctaLink && ctaLink.startsWith('/') && !ctaLink.startsWith('//') ? (
-              <Link href={ctaLink} className={styles.ctaButton}>
-                {ctaText}
-              </Link>
-            ) : (
-              <a href={ctaLink || '#'} className={styles.ctaButton}>
-                {ctaText}
-              </a>
-            )}
+            {(() => {
+              let link = ctaLink || '#';
+              if (ctaText === 'Register Now' && (link === '#' || link === '#register')) {
+                link = '/register';
+              }
+              const isInternal = link.startsWith('/') && !link.startsWith('//');
+              return isInternal ? (
+                <Link href={link} className={styles.ctaButton}>
+                  {ctaText}
+                </Link>
+              ) : (
+                <a href={link} className={styles.ctaButton}>
+                  {ctaText}
+                </a>
+              );
+            })()}
           </div>
         </div>
       </section>

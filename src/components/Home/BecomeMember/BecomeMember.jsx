@@ -9,13 +9,13 @@ export default function BecomeMember({ data }) {
   const description = data?.description || '';
   const subDescription = data?.subDescription || '';
   const buttonText = data?.buttonText || 'Become a Member';
-  const buttonLink = data?.buttonLink || '#';
+  const buttonLink = data?.buttonLink || '/register';
   const rawBgImage = data?.backgroundImage || 'member_cta_bg.png';
   const backgroundImage = typeof rawBgImage === 'string' && (rawBgImage.startsWith('/') || rawBgImage.startsWith('http')) ? rawBgImage : `/${rawBgImage}`;
-  
+
   const rawBgImageMobile = data?.backgroundImageMobile || data?.backgroundImage || 'member_cta_bg.png';
   const backgroundImageMobile = typeof rawBgImageMobile === 'string' && (rawBgImageMobile.startsWith('/') || rawBgImageMobile.startsWith('http')) ? rawBgImageMobile : `/${rawBgImageMobile}`;
-  
+
   const isInternal = typeof buttonLink === 'string' && buttonLink.startsWith('/') && !buttonLink.startsWith('//');
 
   return (

@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import styles from './SpeakerDetail.module.css';
 
@@ -82,26 +81,8 @@ export default function SpeakerDetail({ speaker }) {
     <div className={styles.speakerDetailPage}>
       {/* ── Hero Banner ── */}
       <section className={styles.heroBanner}>
-        <div className={styles.desktopBg}>
-          <Image
-            className={styles.heroImage}
-            src={imgSrc}
-            alt={name}
-            fill
-            sizes="100vw"
-            priority
-          />
-        </div>
-        <div className={styles.mobileBg}>
-          <Image
-            className={styles.heroImage}
-            src={imgSrcMobile}
-            alt={name}
-            fill
-            sizes="100vw"
-            priority
-          />
-        </div>
+        <div className={styles.desktopBg} style={{ backgroundImage: `url(${imgSrc})` }} />
+        <div className={styles.mobileBg} style={{ backgroundImage: `url(${imgSrcMobile})` }} />
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
           <span className={styles.heroLabel}>SPEAKER PROFILE</span>

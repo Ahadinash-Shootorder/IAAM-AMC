@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import styles from './HeroSection.module.css';
 
@@ -23,26 +22,8 @@ export default function HeroSection({ data }) {
     <section className={styles.hero}>
       {/* Background Image and Gradient */}
       <div className={styles.bgWrapper}>
-        <div className={styles.desktopBg}>
-          <Image
-            className={styles.bgImage}
-            src={bgImage}
-            alt="Hero Background Desktop"
-            fill
-            sizes="100vw"
-            priority
-          />
-        </div>
-        <div className={styles.mobileBg}>
-          <Image
-            className={styles.bgImage}
-            src={bgImageMobile}
-            alt="Hero Background Mobile"
-            fill
-            sizes="100vw"
-            priority
-          />
-        </div>
+        <div className={styles.desktopBg} style={{ backgroundImage: `url(${bgImage})` }} />
+        <div className={styles.mobileBg} style={{ backgroundImage: `url(${bgImageMobile})` }} />
         <div className={styles.bgOverlay} />
       </div>
 

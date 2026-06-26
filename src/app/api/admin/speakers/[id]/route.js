@@ -5,10 +5,20 @@ import { backupCollection } from '@/lib/backup';
 export async function PUT(req, { params }) {
   try {
     const { id } = await params;
-    const data = await req.json();
+    let data;
+    try {
+      data = await req.json();
+    } catch {
+      return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
+    }
+
+    if (data.name !== undefined && (!data.name || typeof data.name !== 'string' || !data.name.trim())) {
+      return NextResponse.json({ error: 'Speaker name cannot be empty' }, { status: 400 });
+    }
+
     const item = await prisma.speaker.update({
       where: { id },
-      data: { name: data.name, designation: data.designation, organization: data.organization, image: data.image, bannerImage: data.bannerImage, bannerImageMobile: data.bannerImageMobile, location: data.location, shortBio: data.shortBio, fullBio: data.fullBio, expertise: data.expertise, stats: data.stats, ctaText: data.ctaText, ctaLink: data.ctaLink, slug: data.slug, order: parseInt(data.order) || 0 }
+      data: { name: data.name?.trim(), designation: data.designation ?? undefined, organization: data.organization ?? undefined, image: data.image ?? undefined, bannerImage: data.bannerImage ?? undefined, bannerImageMobile: data.bannerImageMobile ?? undefined, location: data.location ?? undefined, shortBio: data.shortBio ?? undefined, fullBio: data.fullBio ?? undefined, expertise: data.expertise ?? undefined, stats: data.stats ?? undefined, ctaText: data.ctaText ?? undefined, ctaLink: data.ctaLink ?? undefined, slug: data.slug ?? undefined, order: data.order !== undefined ? Math.max(0, parseInt(data.order) || 0) : undefined }
     });
     
     // Backup

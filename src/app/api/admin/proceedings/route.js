@@ -13,16 +13,26 @@ export async function GET() {
 
 export async function POST(req) {
   try {
-    const data = await req.json();
+    let data;
+    try {
+      data = await req.json();
+    } catch {
+      return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
+    }
+
+    if (!data.title || typeof data.title !== 'string' || !data.title.trim()) {
+      return NextResponse.json({ error: 'Proceeding title is required' }, { status: 400 });
+    }
+
     const item = await prisma.proceeding.create({
-      data: { title: data.title, category: data.category, authors: data.authors, pdfUrl: data.pdfUrl, date: data.date, coverImage: data.coverImage, link: data.link, order: parseInt(data.order) || 0 }
+      data: { title: data.title.trim(), category: data.category || null, authors: data.authors || null, pdfUrl: data.pdfUrl || null, date: data.date || null, coverImage: data.coverImage || null, link: data.link || null, order: Math.max(0, parseInt(data.order) || 0) }
     });
     
     // Backup
     const allItems = await prisma.proceeding.findMany({ orderBy: { order: 'asc' } });
     backupCollection('proceedings', allItems).catch(console.error);
 
-    return NextResponse.json(item);
+    return NextResponse.json(item, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

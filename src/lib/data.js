@@ -240,7 +240,10 @@ async function seedEventOnTheFly(pageId) {
   }
 }
 
-async function migrateAssembliesTabsOnTheFly() {
+let _assembliesMigrated = false;
+
+async function migrateAssembliesTabsOnce() {
+  if (_assembliesMigrated) return false;
   try {
     const section = await prisma.section.findUnique({
       where: { pageId_id: { pageId: 'assemblies', id: 'assembliesTabs' } }
@@ -263,7 +266,7 @@ async function migrateAssembliesTabsOnTheFly() {
         }
         return tab;
       });
-      
+
       if (needsUpdate) {
         await prisma.section.update({
           where: { pageId_id: { pageId: 'assemblies', id: 'assembliesTabs' } },
@@ -272,8 +275,11 @@ async function migrateAssembliesTabsOnTheFly() {
         console.log('[Migration] Migrated assembliesTabs links successfully.');
       }
     }
+    _assembliesMigrated = true;
+    return true;
   } catch (err) {
     console.error('Failed to migrate assembliesTabs on the fly:', err);
+    return false;
   }
 }
 
@@ -404,13 +410,14 @@ export async function getPageLayout(pageId, preview = false) {
         orderBy: { order: 'asc' },
       });
     }
-    // Perform migrations for tabs links on-the-fly
-    await migrateAssembliesTabsOnTheFly();
-    // Re-fetch sections in case we updated content
-    sections = await prisma.section.findMany({
-      where: { pageId },
-      orderBy: { order: 'asc' },
-    });
+    // Perform one-time migration for tabs links; skip extra fetch if no change
+    const didRun = await migrateAssembliesTabsOnce();
+    if (didRun) {
+      sections = await prisma.section.findMany({
+        where: { pageId },
+        orderBy: { order: 'asc' },
+      });
+    }
   }
 
   if (pageId === 'fellow-awards') {
@@ -613,29 +620,37 @@ export async function getEventsWithDetails(eventType) {
     orderBy: { order: 'asc' }
   });
 
-  const enrichedEvents = await Promise.all(
-    dbEvents.map(async (event) => {
-      const pageId = `event-${event.id}`;
-      const sections = await prisma.section.findMany({
-        where: { pageId }
-      });
+  if (dbEvents.length === 0) return [];
 
-      const heroSec = sections.find((s) => s.id === 'eventHero');
-      const introSec = sections.find((s) => s.id === 'eventIntro');
+  // Batch-fetch all sections for all events in a single query (N+1 fix)
+  const pageIds = dbEvents.map((e) => `event-${e.id}`);
+  const allSections = await prisma.section.findMany({
+    where: { pageId: { in: pageIds } }
+  });
 
-      const heroContent = heroSec ? safeParseJson(heroSec.content) : {};
-      const introContent = introSec ? safeParseJson(introSec.content) : {};
+  const sectionsByPage = new Map();
+  for (const sec of allSections) {
+    if (!sectionsByPage.has(sec.pageId)) {
+      sectionsByPage.set(sec.pageId, []);
+    }
+    sectionsByPage.get(sec.pageId).push(sec);
+  }
 
-      return {
-        ...event,
-        title: heroContent.title || event.title,
-        date: heroContent.date || event.date || '',
-        location: heroContent.location || event.location || '',
-        image: event.image || heroContent.backgroundImage || '',
-        description: event.description || (introContent.paragraphs && introContent.paragraphs[0]) || ''
-      };
-    })
-  );
+  return dbEvents.map((event) => {
+    const pageId = `event-${event.id}`;
+    const sections = sectionsByPage.get(pageId) || [];
+    const heroSec = sections.find((s) => s.id === 'eventHero');
+    const introSec = sections.find((s) => s.id === 'eventIntro');
+    const heroContent = heroSec ? safeParseJson(heroSec.content) : {};
+    const introContent = introSec ? safeParseJson(introSec.content) : {};
 
-  return enrichedEvents;
+    return {
+      ...event,
+      title: heroContent.title || event.title,
+      date: heroContent.date || event.date || '',
+      location: heroContent.location || event.location || '',
+      image: event.image || heroContent.backgroundImage || '',
+      description: event.description || (introContent.paragraphs && introContent.paragraphs[0]) || ''
+    };
+  });
 }

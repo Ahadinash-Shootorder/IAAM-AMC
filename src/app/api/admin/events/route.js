@@ -47,21 +47,36 @@ export async function GET(req) {
   }
 }
 
+const VALID_EVENT_TYPES = new Set(['upcoming', 'individual', 'archive']);
+
 export async function POST(req) {
   try {
-    const data = await req.json();
+    let data;
+    try {
+      data = await req.json();
+    } catch {
+      return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
+    }
+
+    if (!data.title || typeof data.title !== 'string' || !data.title.trim()) {
+      return NextResponse.json({ error: 'Event title is required' }, { status: 400 });
+    }
+    if (!data.eventType || !VALID_EVENT_TYPES.has(data.eventType)) {
+      return NextResponse.json({ error: 'Valid eventType is required (upcoming, individual, or archive)' }, { status: 400 });
+    }
+
     const slug = await generateUniqueSlug(data.title, data.slug);
     const item = await prisma.event.create({
       data: {
-        title: data.title,
-        slug: slug,
-        date: data.date,
-        location: data.location,
-        image: data.image,
-        link: data.link,
+        title: data.title.trim(),
+        slug,
+        date: data.date || null,
+        location: data.location || null,
+        image: data.image || null,
+        link: data.link || null,
         description: data.description || null,
         eventType: data.eventType,
-        order: parseInt(data.order) || 0
+        order: Math.max(0, parseInt(data.order) || 0)
       }
     });
 
@@ -76,7 +91,7 @@ export async function POST(req) {
     const allItems = await prisma.event.findMany({ orderBy: { order: 'asc' } });
     backupCollection('events', allItems).catch(console.error);
 
-    return NextResponse.json(item);
+    return NextResponse.json(item, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

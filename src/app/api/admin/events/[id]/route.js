@@ -2,16 +2,18 @@ import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { backupCollection } from '@/lib/backup';
 
+const VALID_EVENT_TYPES = new Set(['upcoming', 'individual', 'archive']);
+
 function slugify(text) {
   return text
     .toString()
     .toLowerCase()
     .trim()
-    .replace(/\s+/g, '-')           // Replace spaces with -
-    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-    .replace(/^-+/, '')             // Trim - from start
-    .replace(/-+$/, '');            // Trim - from end
+    .replace(/\s+/g, '-')
+    .replace(/[^\w\-]+/g, '')
+    .replace(/\-\-+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
 }
 
 async function generateUniqueSlug(title, customSlug = null, eventId = null) {
@@ -50,28 +52,40 @@ export async function GET(req, { params }) {
 export async function PUT(req, { params }) {
   try {
     const { id } = await params;
-    const data = await req.json();
+    let data;
+    try {
+      data = await req.json();
+    } catch {
+      return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
+    }
+
+    if (!data.title || typeof data.title !== 'string' || !data.title.trim()) {
+      return NextResponse.json({ error: 'Event title is required' }, { status: 400 });
+    }
+    if (data.eventType && !VALID_EVENT_TYPES.has(data.eventType)) {
+      return NextResponse.json({ error: 'Invalid eventType' }, { status: 400 });
+    }
+
     const slug = await generateUniqueSlug(data.title, data.slug, id);
 
     const item = await prisma.event.update({
       where: { id },
       data: {
-        title: data.title,
-        slug: slug,
-        date: data.date,
-        location: data.location,
-        image: data.image,
-        link: data.link,
+        title: data.title.trim(),
+        slug,
+        date: data.date || null,
+        location: data.location || null,
+        image: data.image || null,
+        link: data.link || null,
         description: data.description || null,
         eventType: data.eventType,
-        order: parseInt(data.order) || 0
+        order: Math.max(0, parseInt(data.order) || 0)
       }
     });
 
     // Sync Event page sections (eventHero and eventIntro) if they exist
     const pageId = `event-${id}`;
     
-    // Update eventHero
     const eventHeroSec = await prisma.section.findUnique({
       where: { pageId_id: { pageId, id: 'eventHero' } }
     });
@@ -87,7 +101,6 @@ export async function PUT(req, { params }) {
       });
     }
 
-    // Update eventIntro
     const eventIntroSec = await prisma.section.findUnique({
       where: { pageId_id: { pageId, id: 'eventIntro' } }
     });

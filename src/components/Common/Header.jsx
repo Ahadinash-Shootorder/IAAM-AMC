@@ -14,8 +14,6 @@ export default function Header({ data }) {
   const navItems = data?.navItems || [];
   const ctaButton = data?.ctaButton || { text: 'Submit Abstract', link: '#' };
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
   const sanitizeLink = (url) => {
     if (typeof url !== 'string') return '#';
     if (
@@ -31,13 +29,12 @@ export default function Header({ data }) {
   };
 
   const isInternal = (url) => typeof url === 'string' && url.startsWith('/') && !url.startsWith('//');
-  
-  const cleanCtaLink = sanitizeLink(ctaButton.link);
-  const isCtaInternal = isCtaInternalHelper(cleanCtaLink);
 
-  function isCtaInternalHelper(url) {
-    return isInternal(url);
-  }
+  const cleanCtaLink = sanitizeLink(ctaButton.link);
+  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+
+  const CtaTag = isInternal(cleanCtaLink) ? Link : 'a';
+  const ctaProps = isInternal(cleanCtaLink) ? { href: cleanCtaLink } : { href: cleanCtaLink };
 
   return (
     <header className={styles.header}>
@@ -61,68 +58,43 @@ export default function Header({ data }) {
           {isMenuOpen ? '✕' : '☰'}
         </button>
 
-        {isCtaInternal ? (
-          <Link href={cleanCtaLink} className={`${styles.ctaButton} ${styles.mobileHiddenCta}`}>
-            {ctaButton.text}
-          </Link>
-        ) : (
-          <a href={cleanCtaLink} className={`${styles.ctaButton} ${styles.mobileHiddenCta}`}>
-            {ctaButton.text}
-          </a>
-        )}
+        <CtaTag {...ctaProps} className={`${styles.ctaButton} ${styles.mobileHiddenCta}`}>
+          {ctaButton.text}
+        </CtaTag>
       </div>
 
       <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
         {navItems.map((item) => {
           let linkHref = item.link || '#';
-          if (pathname !== '/' && linkHref.startsWith('#')) {
-            linkHref = `/${linkHref}`;
+          if (linkHref.startsWith('#')) {
+            if (pathname !== '/') {
+              linkHref = `/${linkHref}`;
+            }
           } else {
             linkHref = sanitizeLink(linkHref);
           }
           const isItemInternal = isInternal(linkHref);
-          return isItemInternal ? (
-            <Link
+          const Tag = isItemInternal ? Link : 'a';
+          const tagProps = isItemInternal ? { href: linkHref } : { href: linkHref };
+          return (
+            <Tag
               key={item.label}
-              href={linkHref}
+              {...tagProps}
               className={styles.navLink}
               onClick={() => setIsMenuOpen(false)}
             >
               {item.label}
-            </Link>
-          ) : (
-            <a
-              key={item.label}
-              href={linkHref}
-              className={styles.navLink}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {item.label}
-            </a>
+            </Tag>
           );
         })}
-        {/* Render CTA button inside mobile menu as well */}
-        {isCtaInternal ? (
-          <Link href={cleanCtaLink} className={`${styles.ctaButton} ${styles.mobileNavCta}`}>
-            {ctaButton.text}
-          </Link>
-        ) : (
-          <a href={cleanCtaLink} className={`${styles.ctaButton} ${styles.mobileNavCta}`}>
-            {ctaButton.text}
-          </a>
-        )}
+        <CtaTag {...ctaProps} className={`${styles.ctaButton} ${styles.mobileNavCta}`}>
+          {ctaButton.text}
+        </CtaTag>
       </nav>
-      
-      {/* Desktop right CTA */}
-      {isCtaInternal ? (
-        <Link href={cleanCtaLink} className={`${styles.ctaButton} ${styles.desktopCta}`}>
-          {ctaButton.text}
-        </Link>
-      ) : (
-        <a href={cleanCtaLink} className={`${styles.ctaButton} ${styles.desktopCta}`}>
-          {ctaButton.text}
-        </a>
-      )}
+
+      <CtaTag {...ctaProps} className={`${styles.ctaButton} ${styles.desktopCta}`}>
+        {ctaButton.text}
+      </CtaTag>
     </header>
   );
 }

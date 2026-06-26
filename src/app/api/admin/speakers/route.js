@@ -13,16 +13,26 @@ export async function GET() {
 
 export async function POST(req) {
   try {
-    const data = await req.json();
+    let data;
+    try {
+      data = await req.json();
+    } catch {
+      return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
+    }
+
+    if (!data.name || typeof data.name !== 'string' || !data.name.trim()) {
+      return NextResponse.json({ error: 'Speaker name is required' }, { status: 400 });
+    }
+
     const item = await prisma.speaker.create({
-      data: { name: data.name, designation: data.designation, organization: data.organization, image: data.image, bannerImage: data.bannerImage, bannerImageMobile: data.bannerImageMobile, location: data.location, shortBio: data.shortBio, fullBio: data.fullBio, expertise: data.expertise, stats: data.stats, ctaText: data.ctaText, ctaLink: data.ctaLink, slug: data.slug, order: parseInt(data.order) || 0 }
+      data: { name: data.name.trim(), designation: data.designation || null, organization: data.organization || null, image: data.image || null, bannerImage: data.bannerImage || null, bannerImageMobile: data.bannerImageMobile || null, location: data.location || null, shortBio: data.shortBio || null, fullBio: data.fullBio || null, expertise: data.expertise || null, stats: data.stats || null, ctaText: data.ctaText || null, ctaLink: data.ctaLink || null, slug: data.slug || null, order: Math.max(0, parseInt(data.order) || 0) }
     });
     
     // Backup
     const allItems = await prisma.speaker.findMany({ orderBy: { order: 'asc' } });
     backupCollection('speakers', allItems).catch(console.error);
 
-    return NextResponse.json(item);
+    return NextResponse.json(item, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

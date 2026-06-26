@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma db push && next build",
+    "build": "DATABASE_URL=\"${DATABASE_URL:-file:./dev.db}\" prisma db push && next build",
     "db:seed": "node prisma/seed.js",
     "start": "next start",
     "lint": "eslint",

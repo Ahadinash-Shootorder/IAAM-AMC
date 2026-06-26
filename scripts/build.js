@@ -11,6 +11,9 @@ try {
   console.log('[Build] Pushing database schema...');
   execSync('npx prisma db push', { stdio: 'inherit', env: { ...process.env } });
   
+  console.log('[Build] Seeding database with initial content...');
+  execSync('node prisma/seed.js', { stdio: 'inherit', env: { ...process.env } });
+  
   console.log('[Build] Building Next.js application...');
   execSync('npx next build', { stdio: 'inherit', env: { ...process.env } });
 } catch (error) {

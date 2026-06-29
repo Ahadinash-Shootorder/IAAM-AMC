@@ -25,7 +25,7 @@ export default async function RegisterPage() {
           {/* Header Area */}
           <div className={styles.headerArea}>
             <h4 className={styles.subtitle}>Get Started</h4>
-            <h1 className={styles.title}>Advance material Congress Nomination Form</h1>
+            <h1 className={styles.title}>Register For Conference</h1>
           </div>
 
           {/* Form component */}

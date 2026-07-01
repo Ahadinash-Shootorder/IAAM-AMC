@@ -1,1 +1,6 @@
-{ "sections": [{ "id": "proceedingsList", "label": "Proceedings List", "visible": true, "order": 1 }] }
+{
+  "sections": [
+    { "id": "proceedingsHeader", "label": "Page Header / Title", "visible": true, "order": 1 },
+    { "id": "proceedingsList", "label": "Proceedings List", "visible": true, "order": 2 }
+  ]
+}

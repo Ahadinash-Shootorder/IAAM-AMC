@@ -47,6 +47,19 @@ export default function PageLayoutManager({ params }) {
       } catch (err) {
         route = `/events/${pageId.slice(6)}`;
       }
+    } else if (pageId.startsWith('proceeding-')) {
+      try {
+        const proceedingId = pageId.slice(11);
+        const res = await fetch(`/api/admin/proceedings/${proceedingId}`);
+        const proceeding = await res.json();
+        if (proceeding && proceeding.slug) {
+          route = `/congress-proceedings/${proceeding.slug}`;
+        } else {
+          route = `/congress-proceedings/${proceedingId}`;
+        }
+      } catch (err) {
+        route = `/congress-proceedings/${pageId.slice(11)}`;
+      }
     } else {
       route = `/${pageId}`;
     }
@@ -158,6 +171,11 @@ export default function PageLayoutManager({ params }) {
     globalEvents: <FiCompass />,
     eventsList: <FiCalendar />,
     proceedingsList: <FiFileText />,
+    proceedingsHeader: <FiFileText />,
+    proceedingHero: <FiImage />,
+    proceedingDownload: <FiBookOpen />,
+    proceedingContent: <FiBookOpen />,
+    relatedProceedings: <FiCompass />,
     assembliesHero: <FiImage />,
     assembliesTabs: <FiMenu />,
     assembliesCards: <FiCalendar />,
@@ -264,6 +282,26 @@ export default function PageLayoutManager({ params }) {
     proceedingsList: {
       desc: 'List of published congress proceedings and PDF downloads.',
       summary: (content) => `Page Title: "${content.title || ''}"`
+    },
+    proceedingsHeader: {
+      desc: 'The page header title displayed at the top of the Congress Proceedings listing page.',
+      summary: (content) => `Title: "${content.title || 'Congress Proceedings'}"`
+    },
+    proceedingHero: {
+      desc: 'Blue banner section showing category, title, author and date for the individual proceeding.',
+      summary: (content) => `Title: "${content.title || ''}" • Author: ${content.author || ''}`
+    },
+    proceedingDownload: {
+      desc: 'Download button section with PDF file link for the proceeding report.',
+      summary: (content) => `Button: "${content.buttonText || 'Download Full PDF'}" • PDF: ${content.pdfUrl ? 'Set' : 'Not set'}`
+    },
+    proceedingContent: {
+      desc: 'Main rich-text content body of the proceeding report with full HTML content.',
+      summary: (content) => content.htmlContent ? 'Content configured' : 'No content yet'
+    },
+    relatedProceedings: {
+      desc: 'Related proceedings section at the bottom showing 3 other proceedings.',
+      summary: (content) => `Title: "${content.title || 'RELATED PROCEEDINGS'}"`
     },
     assembliesHero: {
       desc: 'Top prominent banner displaying the main title of the assemblies page.',

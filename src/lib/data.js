@@ -426,6 +426,130 @@ function sanitizeContent(value) {
   return value;
 }
 
+async function seedProceedingOnTheFly(pageId) {
+  try {
+    const proceedingId = pageId.slice(11);
+    const proceeding = await prisma.proceeding.findUnique({ where: { id: proceedingId } });
+    if (!proceeding) return;
+
+    const proceedingSlug = proceeding.slug || proceeding.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    const proceedingRoute = `/congress-proceedings/${proceedingSlug}`;
+
+    await prisma.page.upsert({
+      where: { id: pageId },
+      update: { label: `Proceeding: ${proceeding.title}`, route: proceedingRoute },
+      create: { id: pageId, label: `Proceeding: ${proceeding.title}`, route: proceedingRoute }
+    });
+
+    const defaultSections = [
+      {
+        id: 'proceedingHero',
+        label: 'Hero Section',
+        order: 1,
+        content: {
+          category: proceeding.category || 'FASHION DESIGN',
+          title: proceeding.title,
+          author: proceeding.authors || 'Jane Cooper',
+          date: proceeding.date || 'November, 2026',
+        }
+      },
+      {
+        id: 'proceedingDownload',
+        label: 'Download Section',
+        order: 2,
+        content: {
+          buttonText: 'Download Full PDF',
+          pdfUrl: proceeding.pdfUrl || '#'
+        }
+      },
+      {
+        id: 'proceedingContent',
+        label: 'Main Content',
+        order: 3,
+        content: {
+          htmlContent: `<p>As the global demand for sustainable energy solutions accelerates, the focus of advanced materials research has pivoted towards optimizing the efficiency of photovoltaic systems. <strong>Graphene</strong>, with its exceptional carrier mobility and transparency, remains at the forefront of this revolution. In this report, we evaluate the recent breakthroughs in hybridized nanostructures presented at EAEMC 2026.</p>`
+        }
+      },
+      {
+        id: 'relatedProceedings',
+        label: 'Related Proceedings',
+        order: 4,
+        content: {
+          title: 'RELATED PROCEEDINGS',
+          exploreText: 'Explore All Reports',
+          exploreLink: '/congress-proceedings',
+          proceedings: []
+        }
+      }
+    ];
+
+    for (const sec of defaultSections) {
+      const existing = await prisma.section.findUnique({
+        where: { pageId_id: { pageId, id: sec.id } }
+      });
+      if (!existing) {
+        await prisma.section.create({
+          data: {
+            id: sec.id,
+            pageId,
+            label: sec.label,
+            visible: true,
+            order: sec.order,
+            content: JSON.stringify(sec.content),
+            draftContent: null
+          }
+        });
+      }
+    }
+
+    // Add new proceeding to the universal proceedings.json
+    try {
+      const fs = await import('fs/promises');
+      const path = await import('path');
+      const typeDir = path.default.join(process.cwd(), 'data', 'pages', 'congress-proceedings');
+      await fs.default.mkdir(typeDir, { recursive: true });
+      const proceedingsJsonPath = path.default.join(typeDir, 'proceedings.json');
+
+      let allProceedings = {};
+      try {
+        const raw = await fs.default.readFile(proceedingsJsonPath, 'utf-8');
+        allProceedings = JSON.parse(raw);
+      } catch { /* file doesn't exist yet */ }
+
+      if (!allProceedings[proceeding.id]) {
+        const layoutSections = defaultSections.map(s => ({
+          id: s.id, label: s.label, order: s.order, visible: true
+        }));
+        const sectionsData = {};
+        defaultSections.forEach(s => { sectionsData[s.id] = s.content; });
+
+        allProceedings[proceeding.id] = {
+          meta: {
+            title: proceeding.title,
+            category: proceeding.category,
+            authors: proceeding.authors,
+            pdfUrl: proceeding.pdfUrl,
+            date: proceeding.date,
+            coverImage: proceeding.coverImage,
+            link: proceeding.link,
+            order: proceeding.order,
+            slug: proceedingSlug,
+          },
+          layout: { sections: layoutSections },
+          sections: sectionsData,
+        };
+
+        await fs.default.writeFile(proceedingsJsonPath, JSON.stringify(allProceedings, null, 2));
+        console.log(`[Seed] Added ${proceeding.id} → congress-proceedings/proceedings.json`);
+      }
+    } catch (fileErr) {
+      console.error('Failed to update proceedings.json:', fileErr);
+    }
+  } catch (err) {
+    console.error('Failed to auto-seed proceeding details:', err);
+  }
+}
+
 export async function getPages() {
   const pages = await prisma.page.findMany({
     include: {
@@ -483,6 +607,16 @@ export async function getPageLayout(pageId, preview = false) {
   if (pageId.startsWith('event-')) {
     if (sections.length < 7) {
       await seedEventOnTheFly(pageId);
+      sections = await prisma.section.findMany({
+        where: { pageId },
+        orderBy: { order: 'asc' },
+      });
+    }
+  }
+
+  if (pageId.startsWith('proceeding-')) {
+    if (sections.length < 4) {
+      await seedProceedingOnTheFly(pageId);
       sections = await prisma.section.findMany({
         where: { pageId },
         orderBy: { order: 'asc' },
@@ -555,6 +689,13 @@ export async function readPageSectionData(pageId, sectionId, preview = false) {
 
   if (pageId.startsWith('event-') && !section) {
     await seedEventOnTheFly(pageId);
+    section = await prisma.section.findUnique({
+      where: { pageId_id: { pageId, id: sectionId } },
+    });
+  }
+
+  if (pageId.startsWith('proceeding-') && !section) {
+    await seedProceedingOnTheFly(pageId);
     section = await prisma.section.findUnique({
       where: { pageId_id: { pageId, id: sectionId } },
     });
@@ -660,6 +801,32 @@ export async function writePageSectionData(pageId, sectionId, data, asDraft = fa
     if (eventUpdated) {
       const allItems = await prisma.event.findMany({ orderBy: { order: 'asc' } });
       backupCollection('events', allItems).catch(console.error);
+    }
+  }
+
+  // Sync Proceeding page sections content with main Proceeding model on publish path
+  if (!asDraft && pageId.startsWith('proceeding-')) {
+    const proceedingId = pageId.slice(11);
+    
+    if (sectionId === 'proceedingHero') {
+      await prisma.proceeding.update({
+        where: { id: proceedingId },
+        data: {
+          title: sanitized.title,
+          category: sanitized.category,
+          authors: sanitized.author,
+          date: sanitized.date,
+        }
+      });
+      // Optionally trigger backup for proceedings here if needed, 
+      // but backupPageSection already updates proceedings.json
+    } else if (sectionId === 'proceedingDownload') {
+      await prisma.proceeding.update({
+        where: { id: proceedingId },
+        data: {
+          pdfUrl: sanitized.pdfUrl
+        }
+      });
     }
   }
 }

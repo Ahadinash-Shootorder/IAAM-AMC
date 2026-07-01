@@ -157,7 +157,7 @@
   color: #4a4a4a;
 }
 
-.formGroup input, .formGroup textarea, .formGroup select {
+.formGroup input:not([type="checkbox"]), .formGroup textarea, .formGroup select {
   width: 100%;
   padding: 12px;
   border: 1px solid #d1d1d1;
@@ -168,7 +168,7 @@
   background: #fff;
 }
 
-.formGroup input:focus, .formGroup textarea:focus, .formGroup select:focus {
+.formGroup input:not([type="checkbox"]):focus, .formGroup textarea:focus, .formGroup select:focus {
   outline: none;
   border-color: #240E8B;
   box-shadow: 0 0 0 2px rgba(36, 14, 139, 0.1);

@@ -1,0 +1,140 @@
+.contentSection {
+  background-color: white;
+  padding: 54px 0 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1264px;
+  width: 100%;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.htmlContent {
+  color: #444652;
+  font-size: 17.68px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 1.625;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.htmlContent p {
+  margin: 0;
+  color: #444652;
+  font-size: 17.68px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 1.625;
+}
+
+.htmlContent h1,
+.htmlContent h2,
+.htmlContent h3,
+.htmlContent h4 {
+  margin: 0 0 8px 0;
+  color: #0b1220;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+.htmlContent h2 {
+  font-size: 28px;
+  line-height: 1.3;
+  color: #1C3F9E;
+}
+
+.htmlContent h3 {
+  font-size: 22px;
+  line-height: 1.35;
+  color: #322F38;
+}
+
+.htmlContent ul,
+.htmlContent ol {
+  padding-left: 24px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.htmlContent li {
+  color: #444652;
+  font-size: 17px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.htmlContent strong {
+  font-weight: 700;
+  color: #0b1220;
+}
+
+.htmlContent em {
+  font-style: italic;
+}
+
+.htmlContent a {
+  color: #1c3f9e;
+  text-decoration: underline;
+  transition: opacity 0.2s;
+}
+
+.htmlContent a:hover {
+  opacity: 0.7;
+}
+
+.htmlContent blockquote {
+  margin: 0;
+  padding: 16px 24px;
+  border-left: 4px solid #f04393;
+  background: #fdf7ff;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: #322F38;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contentSection {
+    padding: 40px 0 60px;
+  }
+  .container {
+    padding: 0 24px;
+  }
+  .htmlContent {
+    font-size: 16px;
+    gap: 24px;
+  }
+  .htmlContent p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+  .htmlContent {
+    font-size: 15px;
+    gap: 20px;
+  }
+  .htmlContent p {
+    font-size: 15px;
+  }
+}

@@ -120,11 +120,45 @@ const sectionSchemas = {
       { key: 'title', label: 'Page Title', type: 'text' },
     ],
   },
-  proceedingsList: {
-    label: 'Proceedings List',
+  proceedingsHeader: {
+    label: 'Page Header / Title',
     fields: [
       { key: 'title', label: 'Page Title', type: 'text' },
     ],
+  },
+  proceedingsList: {
+    label: 'Proceedings List',
+    fields: [],
+  },
+  proceedingHero: {
+    label: 'Hero Section',
+    fields: [
+      { key: 'category', label: 'Category', type: 'text' },
+      { key: 'title', label: 'Title', type: 'text' },
+      { key: 'author', label: 'Author Name', type: 'text' },
+      { key: 'date', label: 'Date Text', type: 'text' },
+    ]
+  },
+  proceedingDownload: {
+    label: 'Download Section',
+    fields: [
+      { key: 'buttonText', label: 'Button Text', type: 'text' },
+      { key: 'pdfUrl', label: 'PDF File', type: 'file' },
+    ]
+  },
+  proceedingContent: {
+    label: 'Main Content',
+    fields: [
+      { key: 'htmlContent', label: 'Report HTML Content', type: 'textarea' },
+    ]
+  },
+  relatedProceedings: {
+    label: 'Related Proceedings',
+    fields: [
+      { key: 'title', label: 'Section Title', type: 'text' },
+      { key: 'exploreText', label: 'Explore Link Text', type: 'text' },
+      { key: 'exploreLink', label: 'Explore Link URL', type: 'text' },
+    ]
   },
   becomeMember: {
     label: 'Become Member CTA',
@@ -588,15 +622,16 @@ export default function SectionEditor({ params }) {
   }, [pageId, section, schema, dbConfig, router, showToast]);
 
   async function handleSave(asDraft = false) {
-    setSavingType(asDraft ? 'draft' : 'publish');
+    const isDraft = asDraft === true;
+    setSavingType(isDraft ? 'draft' : 'publish');
     try {
-      const res = await fetch(`/api/admin/pages/${pageId}/content/${section}${asDraft ? '?draft=true' : ''}`, {
+      const res = await fetch(`/api/admin/pages/${pageId}/content/${section}${isDraft ? '?draft=true' : ''}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
       if (res.ok) {
-        showToast(asDraft ? 'Draft saved!' : 'Published successfully!', 'success');
+        showToast(isDraft ? 'Draft saved!' : 'Published successfully!', 'success');
         setInitialData(JSON.parse(JSON.stringify(data)));
       } else {
         showToast('Failed to save', 'error');
@@ -828,18 +863,23 @@ export default function SectionEditor({ params }) {
     ];
     const procTableColumns = [
       { key: 'title', label: 'Title' },
+      { key: 'slug', label: 'Slug' },
       { key: 'category', label: 'Category' },
       { key: 'authors', label: 'Authors' },
+      { key: 'featured', label: 'Featured' },
       { key: 'order', label: 'Order' },
     ];
     const procFormColumns = [
       { key: 'title', label: 'Title', required: true },
-      { key: 'category', label: 'Category' },
+      { key: 'slug', label: 'Slug' },
+      { key: 'category', label: 'Category', type: 'category' },
       { key: 'authors', label: 'Authors' },
-      { key: 'pdfUrl', label: 'PDF URL' },
-      { key: 'date', label: 'Date', type: 'date' },
-      { key: 'coverImage', label: 'Cover Image URL' },
+      { key: 'pdfUrl', label: 'PDF File', type: 'file' },
+      { key: 'date', label: 'Date' },
+      { key: 'coverImage', label: 'Cover Image', type: 'image' },
       { key: 'link', label: 'Link' },
+      { key: 'featured', label: 'Featured', type: 'boolean' },
+      { key: 'description', label: 'Description (Rich Text)', type: 'textarea' },
       { key: 'order', label: 'Order', type: 'number' },
     ];
 
@@ -1064,6 +1104,54 @@ export default function SectionEditor({ params }) {
                         className={styles.removeBtn}
                         onClick={() => handleFieldChange(field.key, '')}
                         title="Remove Image"
+                      >
+                        Remove
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </>
+            )}
+
+            {field.type === 'file' && (
+              <>
+                <label className={styles.fieldLabel}>{field.label}</label>
+                <div className={styles.imageField}>
+                  {getNestedValue(data, field.key) && (
+                    <div className={styles.filePreview} style={{ padding: '12px', background: '#f1f5f9', borderRadius: '6px', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: '#334155' }}>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                      </svg>
+                      <span style={{ wordBreak: 'break-all' }}>{getNestedValue(data, field.key)}</span>
+                    </div>
+                  )}
+                  <div className={styles.imageControls}>
+                    <input
+                      type="text"
+                      className={styles.textInput}
+                      value={getNestedValue(data, field.key) || ''}
+                      onChange={(e) => handleFieldChange(field.key, e.target.value)}
+                      placeholder="File path or URL"
+                    />
+                    <label className={styles.uploadBtn}>
+                      {uploading === field.key ? 'Uploading...' : <><FiUploadCloud /> Upload PDF / File</>}
+                      <input
+                        type="file"
+                        accept=".pdf,application/pdf"
+                        hidden
+                        onChange={(e) => {
+                          if (e.target.files?.[0]) {
+                            handleImageUpload(field.key, e.target.files[0]);
+                          }
+                        }}
+                      />
+                    </label>
+                    {getNestedValue(data, field.key) && (
+                      <button
+                        className={styles.removeBtn}
+                        onClick={() => handleFieldChange(field.key, '')}
+                        title="Remove File"
                       >
                         Remove
                       </button>

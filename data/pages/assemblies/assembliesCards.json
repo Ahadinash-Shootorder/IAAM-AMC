@@ -8,13 +8,28 @@
       "title": "American Advanced Materials Congress",
       "description": "Exploration of next-generation semiconductors, sustainable polymers, and aerospace materials engineering. A premier gathering for the North American research community.",
       "stats": [
-        { "value": "500+", "label": "Delegates" },
-        { "value": "40+", "label": "Countries" },
-        { "value": "120+", "label": "Speakers" }
+        {
+          "value": "500+",
+          "label": "Delegates"
+        },
+        {
+          "value": "40+",
+          "label": "Countries"
+        },
+        {
+          "value": "120+",
+          "label": "Speakers"
+        }
       ],
       "buttons": [
-        { "text": "Visit Website", "link": "#" },
-        { "text": "Submit Abstract", "link": "#" }
+        {
+          "text": "Visit Website",
+          "link": "/individual-events/international-robotics-summit-2025-4"
+        },
+        {
+          "text": "Submit Abstract",
+          "link": "/register"
+        }
       ]
     },
     {
@@ -25,13 +40,28 @@
       "title": "European Advanced Materials Congress",
       "description": "The 2026 European edition focuses on the Circular Economy of Materials and Bio-integrated Electronics within the prestigious environment of the Baltic Sea cruises.",
       "stats": [
-        { "value": "850+", "label": "Delegates" },
-        { "value": "65+", "label": "Countries" },
-        { "value": "200+", "label": "Speakers" }
+        {
+          "value": "850+",
+          "label": "Delegates"
+        },
+        {
+          "value": "65+",
+          "label": "Countries"
+        },
+        {
+          "value": "200+",
+          "label": "Speakers"
+        }
       ],
       "buttons": [
-        { "text": "Visit Website", "link": "#" },
-        { "text": "Submit Abstract", "link": "#" }
+        {
+          "text": "Visit Website",
+          "link": "/individual-events/european-advanced-materials-congress-2025-4"
+        },
+        {
+          "text": "Submit Abstract",
+          "link": "/register"
+        }
       ]
     }
   ]

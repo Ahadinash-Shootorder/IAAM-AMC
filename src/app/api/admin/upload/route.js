@@ -7,14 +7,15 @@ import { logActivity } from '@/lib/logger';
 
 export const dynamic = 'force-dynamic';
 
-const ALLOWED_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif']);
+const ALLOWED_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.pdf']);
 const ALLOWED_MIME_TYPES = new Set([
   'image/jpeg',
   'image/png',
   'image/webp',
   'image/gif',
+  'application/pdf',
 ]);
-const MAX_SIZE = 5 * 1024 * 1024; // 5 MB
+const MAX_SIZE = 10 * 1024 * 1024; // 10 MB
 
 const UPLOADS_ROOT = path.join(process.cwd(), 'public', 'uploads');
 

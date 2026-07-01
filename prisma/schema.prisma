@@ -106,12 +106,15 @@ model Sponsor {
 model Proceeding {
   id          String   @id @default(cuid())
   title       String
+  slug        String?  @unique
   category    String?
   authors     String?
   pdfUrl      String?
   date        String?
   coverImage  String?
   link        String?
+  featured    Boolean  @default(false)
+  description String?
   order       Int      @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

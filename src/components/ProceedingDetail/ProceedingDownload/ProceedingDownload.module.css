@@ -1,0 +1,41 @@
+.downloadSection {
+  background-color: white;
+  padding: 86px 0 0; /* 86px gap per figma */
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1264px;
+  width: 100%;
+  padding: 0 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.downloadButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 32px;
+  background-color: #f04393;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  transition: opacity 0.2s ease;
+  box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.downloadButton:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .downloadSection {
+    padding-top: 48px;
+  }
+}

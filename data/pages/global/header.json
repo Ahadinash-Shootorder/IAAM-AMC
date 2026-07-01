@@ -10,6 +10,10 @@
       "link": "assemblies"
     },
     {
+      "label": "Congress Proceedings",
+      "link": "/congress-proceedings"
+    },
+    {
       "label": "Fellow & Awards",
       "link": "fellow-&-awards"
     },
@@ -20,6 +24,6 @@
   ],
   "ctaButton": {
     "text": "Submit Abstract",
-    "link": "#"
+    "link": "/register"
   }
 }

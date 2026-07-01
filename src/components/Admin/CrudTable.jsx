@@ -24,6 +24,7 @@ export default function CrudTable({ title, endpoint, tableColumns, formColumns, 
   const [filterValue, setFilterValue] = useState('');
   const [mediaPickerOpen, setMediaPickerOpen] = useState(false);
   const [mediaPickerField, setMediaPickerField] = useState(null);
+  const [isNewCategoryMode, setIsNewCategoryMode] = useState({});
   const [toast, setToast] = useState(null);
 
   const showToast = (message, type = 'success') => {
@@ -55,6 +56,7 @@ export default function CrudTable({ title, endpoint, tableColumns, formColumns, 
     // Merge default values (e.g., eventType for filtered pages)
     setFormData({ ...defaultData, ...defaultValues });
     setEditingItem('new');
+    setIsNewCategoryMode({});
   };
 
   const handleEdit = (item) => {
@@ -72,6 +74,19 @@ export default function CrudTable({ title, endpoint, tableColumns, formColumns, 
     });
     setFormData(parsedData);
     setEditingItem(item.id);
+    
+    // Determine category modes based on existing values
+    const newModes = {};
+    editCols.forEach(col => {
+      if (col.type === 'category') {
+        const existing = [...new Set(items.map(i => i[col.key]).filter(Boolean))];
+        const val = item[col.key] || '';
+        if (val && !existing.includes(val)) {
+          newModes[col.key] = true;
+        }
+      }
+    });
+    setIsNewCategoryMode(newModes);
   };
 
   const handleDelete = async (id) => {
@@ -301,6 +316,52 @@ export default function CrudTable({ title, endpoint, tableColumns, formColumns, 
                         <option key={opt.value} value={opt.value}>{opt.label}</option>
                       ))}
                     </select>
+                  ) : col.type === 'category' ? (
+                    <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                      {isNewCategoryMode[col.key] ? (
+                        <>
+                          <input
+                            type="text"
+                            value={formData[col.key] || ''}
+                            onChange={(e) => handleInputChange(col.key, e.target.value)}
+                            placeholder="Type new category..."
+                            style={{ flexGrow: 1 }}
+                            required={col.required}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setIsNewCategoryMode(prev => ({ ...prev, [col.key]: false }));
+                              handleInputChange(col.key, '');
+                            }}
+                            style={{ background: '#f1f5f9', color: '#475569', border: '1px solid #cbd5e1', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: '600' }}
+                          >
+                            Select Existing
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <select
+                            value={formData[col.key] || ''}
+                            onChange={(e) => handleInputChange(col.key, e.target.value)}
+                            required={col.required}
+                            style={{ flexGrow: 1 }}
+                          >
+                            <option value="">-- Select Category --</option>
+                            {[...new Set(items.map((i) => i[col.key]).filter(Boolean))].map((cat) => (
+                              <option key={cat} value={cat}>{cat}</option>
+                            ))}
+                          </select>
+                          <button
+                            type="button"
+                            onClick={() => setIsNewCategoryMode(prev => ({ ...prev, [col.key]: true }))}
+                            style={{ background: '#e0e7ff', color: '#4338ca', border: '1px solid #c7d2fe', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: '600' }}
+                          >
+                            + Create New
+                          </button>
+                        </>
+                      )}
+                    </div>
                   ) : isImageField ? (
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', background: '#fafafa', padding: '20px', borderRadius: '10px', border: '1px solid #e5e7eb' }}>
                         {formData[col.key] ? (
@@ -381,6 +442,61 @@ export default function CrudTable({ title, endpoint, tableColumns, formColumns, 
                           </div>
                         )}
                       </div>
+                    ) : col.type === 'file' ? (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', background: '#fafafa', padding: '20px', borderRadius: '10px', border: '1px solid #e5e7eb' }}>
+                        {formData[col.key] ? (
+                          <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+                            <div style={{ padding: '12px', background: '#f1f5f9', borderRadius: '6px', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: '#334155', flexGrow: 1, wordBreak: 'break-all' }}>
+                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                              </svg>
+                              <span>{formData[col.key]}</span>
+                            </div>
+                            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                              <label style={{ background: '#240E8B', color: '#fff', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: '600', transition: 'background 0.2s' }}>
+                                Change File
+                                <input 
+                                  type="file" 
+                                  accept=".pdf,application/pdf"
+                                  hidden
+                                  onChange={(e) => handleFileUpload(e, col.key)}
+                                />
+                              </label>
+                              <button 
+                                type="button"
+                                onClick={() => handleInputChange(col.key, '')}
+                                style={{ color: '#ef4444', background: 'transparent', border: '1px solid #ef4444', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: '600', transition: 'all 0.2s' }}
+                                onMouseOver={(e) => { e.target.style.background = '#fef2f2'; }}
+                                onMouseOut={(e) => { e.target.style.background = 'transparent'; }}
+                              >
+                                Remove
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center', padding: '32px', border: '2px dashed #d1d5db', borderRadius: '8px', background: '#fff', transition: 'border-color 0.2s' }}
+                               onMouseOver={(e) => e.currentTarget.style.borderColor = '#240E8B'}
+                               onMouseOut={(e) => e.currentTarget.style.borderColor = '#d1d5db'}
+                          >
+                            <span style={{ fontSize: '32px', color: '#240E8B', marginBottom: '-8px' }}><FiUploadCloud /></span>
+                            <span style={{ fontSize: '15px', fontWeight: '500', color: '#6b7280' }}>Add {col.label}</span>
+                            
+                            <div style={{ display: 'flex', gap: '12px' }}>
+                              <label style={{ background: '#240E8B', color: '#fff', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: '600', transition: 'background 0.2s' }}>
+                                Upload PDF / File
+                                <input 
+                                  type="file" 
+                                  accept=".pdf,application/pdf"
+                                  hidden
+                                  onChange={(e) => handleFileUpload(e, col.key)}
+                                />
+                              </label>
+                            </div>
+                            <span style={{ fontSize: '12px', color: '#9ca3af' }}>PDF (max. 10MB)</span>
+                          </div>
+                        )}
+                      </div>
                     ) : col.type === 'stringArray' ? (
                       <input
                         type="text"
@@ -439,6 +555,18 @@ export default function CrudTable({ title, endpoint, tableColumns, formColumns, 
                         onChange={(val) => handleInputChange(col.key, val)}
                         required={col.required}
                       />
+                    ) : col.type === 'boolean' ? (
+                      <label style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', cursor: 'pointer', padding: '8px 0', userSelect: 'none' }}>
+                        <input
+                          type="checkbox"
+                          checked={!!formData[col.key]}
+                          onChange={(e) => handleInputChange(col.key, e.target.checked)}
+                          style={{ width: '18px', height: '18px', cursor: 'pointer', accentColor: '#240E8B' }}
+                        />
+                        <span style={{ fontSize: '14px', color: '#374151', fontWeight: '500' }}>
+                          {formData[col.key] ? 'Yes — Featured' : 'No — Not Featured'}
+                        </span>
+                      </label>
                     ) : (
                       <input
                         type={col.type || 'text'}
@@ -508,6 +636,8 @@ export default function CrudTable({ title, endpoint, tableColumns, formColumns, 
                               style={{ objectFit: 'cover', borderRadius: '4px' }}
                             />
                           ) : '—'
+                        ) : typeof item[col.key] === 'boolean' ? (
+                          item[col.key] ? 'Yes' : 'No'
                         ) : (
                           String(item[col.key] ?? '').length > 60
                             ? String(item[col.key]).substring(0, 60) + '...'

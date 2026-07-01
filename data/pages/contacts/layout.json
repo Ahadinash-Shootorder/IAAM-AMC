@@ -1,0 +1,22 @@
+{
+  "sections": [
+    {
+      "id": "contactsTitle",
+      "label": "Contacts Title",
+      "visible": true,
+      "order": 1
+    },
+    {
+      "id": "contactsDetails",
+      "label": "Contacts Details",
+      "visible": true,
+      "order": 2
+    },
+    {
+      "id": "contactsMap",
+      "label": "Contacts Map",
+      "visible": true,
+      "order": 3
+    }
+  ]
+}

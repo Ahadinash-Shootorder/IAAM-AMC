@@ -8,6 +8,7 @@
     { "id": "congress-archive", "label": "Congress Archive", "route": "/congress-archive" },
     { "id": "congress-proceedings", "label": "Congress Proceedings", "route": "/congress-proceedings" },
     { "id": "fellow-awards", "label": "Fellow & Awards", "route": "/fellow-&-awards" },
+    { "id": "contacts", "label": "Contacts Page", "route": "/contacts" },
     { "id": "global", "label": "Global Settings", "route": "" }
   ]
 }

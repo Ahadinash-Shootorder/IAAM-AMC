@@ -164,81 +164,129 @@ async function main() {
           console.error(`Error parsing layout.json for ${pageId}:`, e);
         }
       }
-      
-      const files = fs.readdirSync(pageDirPath).filter(f => f.endsWith('.json') && f !== 'layout.json');
-      for (const file of files) {
-        const sectionId = file.slice(0, -5);
-        const filePath = path.join(pageDirPath, file);
-        
+
+      const standardLabels = {
+        header: 'Header / Navigation',
+        footer: 'Footer / Layout',
+        hero: 'Hero Banner',
+        stats: 'Stats Row',
+        speakers: 'Speakers Section',
+        becomeMember: 'Become a Member',
+        explore: 'Explore Section',
+        sponsors: 'Sponsors Section',
+        becomeSponsor: 'Become a Sponsor',
+        aboutHero: 'About Hero',
+        ourStory: 'Our Story',
+        globalEvents: 'Global Events',
+        eventsList: 'Events List',
+        proceedingsList: 'Proceedings List',
+        assembliesHero: 'Assemblies Hero',
+        assembliesTabs: 'Assemblies Navigation Tabs',
+        assembliesCards: 'Assemblies Categories',
+        assembliesCta: 'Assemblies Call to Action',
+        awardsHero: 'Awards Hero',
+        awardsIntro: 'Awards Introduction',
+        awardsCategories: 'Awards Categories',
+        awardsNomination: 'Awards Nomination',
+        awardsPublications: 'Awards Publications',
+        awardsLaureates: 'Awards Laureates',
+        eventHero: 'Event Hero Banner',
+        eventIntro: 'Decade of Excellence',
+        eventSymposia: 'Conference Symposia',
+        eventDeadlines: 'Critical Deadlines',
+        eventHighlights: 'Conference Highlights',
+        eventSDGs: 'UNSDGs Commitments',
+        eventPublications: 'Indexed Publications',
+        contactsTitle: 'Contacts Title',
+        contactsDetails: 'Contact Details',
+        contactsMap: 'Google Maps Embed',
+      };
+
+      // Helper: upsert one section into the DB for a given pageId
+      async function upsertSection(pid, sectionId, content, layoutMap) {
+        const sectionContent = typeof content === 'string' ? content : JSON.stringify(content);
+        JSON.parse(sectionContent); // validate — throws if malformed
+        const order = layoutMap?.[sectionId]?.order ?? 0;
+        const visible = layoutMap?.[sectionId]?.visible ?? true;
+        const secLabel = standardLabels[sectionId] ||
+          sectionId.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase());
+        await prisma.section.upsert({
+          where: { pageId_id: { pageId: pid, id: sectionId } },
+          update: { label: secLabel, visible, order, content: sectionContent, draftContent: null },
+          create: { id: sectionId, pageId: pid, label: secLabel, visible, order, content: sectionContent, draftContent: null },
+        });
+      }
+
+      // ── Event type directories: read universal events.json ────────────────
+      // Format: { "<eventId>": { meta, layout: { sections: [...] }, sections: { ... } } }
+      const EVENT_TYPE_DIRS = {
+        'individual-events': 'individual',
+        'upcoming-events': 'upcoming',
+        'congress-archive': 'archive',
+      };
+
+      if (EVENT_TYPE_DIRS[pageId]) {
+        // Read the single universal events.json for this event type
+        const eventsJsonPath = path.join(pageDirPath, 'events.json');
+        if (!fs.existsSync(eventsJsonPath)) {
+          // No events.json yet — skip (new events will be seeded on-the-fly)
+          continue;
+        }
         try {
-          const sectionContent = fs.readFileSync(filePath, 'utf-8');
-          JSON.parse(sectionContent); // Validate JSON
-          
-          let order = 0;
-          let visible = true;
-          if (sectionLayoutMap[sectionId]) {
-            order = sectionLayoutMap[sectionId].order;
-            visible = sectionLayoutMap[sectionId].visible;
-          }
-          
-          let secLabel = sectionId.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
-          const standardLabels = {
-            header: 'Header / Navigation',
-            footer: 'Footer / Layout',
-            hero: 'Hero Banner',
-            stats: 'Stats Row',
-            speakers: 'Speakers Section',
-            becomeMember: 'Become a Member',
-            explore: 'Explore Section',
-            sponsors: 'Sponsors Section',
-            becomeSponsor: 'Become a Sponsor',
-            aboutHero: 'About Hero',
-            ourStory: 'Our Story',
-            globalEvents: 'Global Events',
-            eventsList: 'Events List',
-            proceedingsList: 'Proceedings List',
-            assembliesHero: 'Assemblies Hero',
-            assembliesTabs: 'Assemblies Navigation Tabs',
-            assembliesCards: 'Assemblies Categories',
-            assembliesCta: 'Assemblies Call to Action',
-            awardsHero: 'Awards Hero',
-            awardsIntro: 'Awards Introduction',
-            awardsCategories: 'Awards Categories',
-            awardsNomination: 'Awards Nomination',
-            awardsPublications: 'Awards Publications',
-            awardsLaureates: 'Awards Laureates',
-            eventHero: 'Event Hero Banner',
-            eventIntro: 'Decade of Excellence',
-            eventSymposia: 'Conference Symposia',
-            eventHighlights: 'Conference Highlights',
-            eventSDGs: 'UNSDGs Commitments',
-            eventPublications: 'Indexed Publications'
-          };
-          if (standardLabels[sectionId]) {
-            secLabel = standardLabels[sectionId];
-          }
-          
-          await prisma.section.upsert({
-            where: { pageId_id: { pageId, id: sectionId } },
-            update: {
-              label: secLabel,
-              visible,
-              order,
-              content: sectionContent,
-              draftContent: null
-            },
-            create: {
-              id: sectionId,
-              pageId,
-              label: secLabel,
-              visible,
-              order,
-              content: sectionContent,
-              draftContent: null
+          const allEvents = JSON.parse(fs.readFileSync(eventsJsonPath, 'utf-8'));
+          for (const [eventId, eventData] of Object.entries(allEvents)) {
+            try {
+              const eventPageId = `event-${eventId}`;
+              const event = await prisma.event.findUnique({ where: { id: eventId } });
+              if (!event) continue;
+
+              // Upsert the Page record for this event
+              let eventRoute = `/individual-events/${event.slug || event.id}`;
+              if (event.eventType === 'upcoming') eventRoute = `/upcoming-events/${event.slug || event.id}`;
+              if (event.eventType === 'archive') eventRoute = `/congress-archive/${event.slug || event.id}`;
+              await prisma.page.upsert({
+                where: { id: eventPageId },
+                update: { label: `Event: ${event.title}`, route: eventRoute },
+                create: { id: eventPageId, label: `Event: ${event.title}`, route: eventRoute },
+              });
+
+              // Build layout map from the file's layout.sections
+              const layoutMap = {};
+              (eventData.layout?.sections || []).forEach((s, idx) => {
+                layoutMap[s.id] = { order: s.order ?? idx, visible: s.visible ?? true };
+              });
+
+              // Upsert each section
+              if (eventData.sections && typeof eventData.sections === 'object') {
+                for (const [sectionId, content] of Object.entries(eventData.sections)) {
+                  try {
+                    await upsertSection(eventPageId, sectionId, content, layoutMap);
+                  } catch (e) {
+                    console.error(`Failed to seed ${eventPageId}/${sectionId}:`, e);
+                  }
+                }
+              }
+            } catch (e) {
+              console.error(`Failed to process event ${eventId} from events.json:`, e);
             }
-          });
+          }
         } catch (e) {
-          console.error(`Failed to seed section ${pageId}/${sectionId}:`, e);
+          console.error(`Error parsing events.json for ${pageId}:`, e);
+        }
+      } else {
+        // ── Non-event pages: read individual <sectionId>.json files ──────────
+        const files = fs.readdirSync(pageDirPath).filter(
+          f => f.endsWith('.json') && f !== 'layout.json'
+        );
+        for (const file of files) {
+          const sectionId = file.slice(0, -5);
+          const filePath = path.join(pageDirPath, file);
+          try {
+            const raw = fs.readFileSync(filePath, 'utf-8');
+            await upsertSection(pageId, sectionId, raw, sectionLayoutMap);
+          } catch (e) {
+            console.error(`Failed to seed section ${pageId}/${sectionId}:`, e);
+          }
         }
       }
     }

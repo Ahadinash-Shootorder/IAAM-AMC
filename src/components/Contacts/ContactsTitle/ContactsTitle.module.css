@@ -1,0 +1,24 @@
+.titleArea {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 28px;
+  box-sizing: border-box;
+}
+
+.title {
+  color: #474555;
+  font-size: 56px;
+  font-family: var(--font-pt-sans), 'PT Sans', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.15;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 38px;
+  }
+}

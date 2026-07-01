@@ -1,0 +1,1187 @@
+{
+  "cmqev7u0z00008tj362z83dbf": {
+    "meta": {
+      "title": "European Advanced Materials Congress 2025",
+      "slug": "european-advanced-materials-congress-2025-4",
+      "date": "30 March – 01 April 2026",
+      "location": "Stockholm, Sweden",
+      "order": 0
+    },
+    "layout": {
+      "sections": [
+        {
+          "id": "eventHero",
+          "label": "Event Hero Banner",
+          "order": 0,
+          "visible": true
+        },
+        {
+          "id": "eventIntro",
+          "label": "Decade of Excellence",
+          "order": 0,
+          "visible": true
+        },
+        {
+          "id": "eventSymposia",
+          "label": "Conference Symposia",
+          "order": 3,
+          "visible": true
+        },
+        {
+          "id": "eventDeadlines",
+          "label": "Critical Deadlines",
+          "order": 4,
+          "visible": true
+        },
+        {
+          "id": "eventHighlights",
+          "label": "Conference Highlights",
+          "order": 4,
+          "visible": true
+        },
+        {
+          "id": "eventSDGs",
+          "label": "UNSDGs Commitments",
+          "order": 5,
+          "visible": true
+        },
+        {
+          "id": "eventPublications",
+          "label": "Indexed Publications",
+          "order": 6,
+          "visible": true
+        }
+      ]
+    },
+    "sections": {
+      "eventHero": {
+        "edition": "8th",
+        "editionSuffix": " Anniversary Edition",
+        "title": "European Advanced Materials Congress 2025",
+        "tagline": "\"Next-Generation Energy Materials for a Sustainable Future\" — Join the premier international forum bridging cutting-edge research with practical net-zero applications.",
+        "date": "30 March – 01 April 2026",
+        "location": "Stockholm, Sweden",
+        "registerText": "Register Now",
+        "registerLink": "#",
+        "programText": "View Program",
+        "programLink": "#",
+        "backgroundImage": "/uploads/assemblies/A-HeroBanner.jpg"
+      },
+      "eventIntro": {
+        "title": "Decade of Excellence",
+        "paragraphs": [
+          "Join us in celebrating the 8th Anniversary of the prestigious European Advanced Energy Materials Congress (EAEMC), organized by the International Association of Advanced Materials (IAAM).",
+          "EAEMC has consistently served as a leading international platform bringing together researchers, industry professionals, policymakers, and academics to discuss groundbreaking research and innovations in advanced energy materials."
+        ],
+        "stats": [
+          {
+            "value": "60+",
+            "label": "PAST ASSEMBLIES"
+          },
+          {
+            "value": "8th",
+            "label": "YEARLY ANNIVERSARY"
+          }
+        ],
+        "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+      },
+      "eventSymposia": {
+        "title": "Conference Symposia",
+        "description": "Focused scientific tracks exploring the frontier of energy science and materials engineering.",
+        "symposia": [
+          {
+            "title": "Renewable Energy",
+            "description": "Focusing on sustainable materials and system efficiency for a circular energy economy."
+          },
+          {
+            "title": "Energy Storage",
+            "description": "Advanced batteries, supercapacitors, and next-gen lithium-ion technologies."
+          },
+          {
+            "title": "Photovoltaics",
+            "description": "Solar cells, thin films, and light-harvesting semiconductor innovations."
+          },
+          {
+            "title": "Energy Harvesting",
+            "description": "Thermoelectrics, piezoelectrics, and micro-power conversion systems."
+          },
+          {
+            "title": "Hydrogen Tech",
+            "description": "Fuel cells, hydrogen production, storage, and transport infrastructure."
+          },
+          {
+            "title": "Smart Materials",
+            "description": "Intelligent materials designed for building efficiency and responsive systems."
+          }
+        ],
+        "flyerText": "Download Symposia Flyer",
+        "flyerLink": "#"
+      },
+      "eventDeadlines": {
+        "title": "Critical Deadlines",
+        "description": "Mark your calendars for key submission and registration dates.",
+        "deadlines": [
+          {
+            "label": "EARLY-BIRD",
+            "date": "12 Dec 2025",
+            "description": "Save on registration fees with early-bird rates."
+          },
+          {
+            "label": "ABSTRACTS",
+            "date": "30 Apr 2026",
+            "description": "Final deadline for technical abstract submissions."
+          },
+          {
+            "label": "REGISTRATION",
+            "date": "27 Apr 2026",
+            "description": "Standard registration closes for delegates."
+          },
+          {
+            "label": "FULL PAPERS",
+            "date": "03 July 2026",
+            "description": "Submission for Scopus indexed congress journals."
+          }
+        ]
+      },
+      "eventHighlights": {
+        "title": "Conference Highlights",
+        "description": "Reliving a decade of scientific advancement.",
+        "highlights": [
+          {
+            "yearRange": "2011 to 2015",
+            "title": "Initial Assemblies",
+            "image": "https://placehold.co/224x192"
+          },
+          {
+            "yearRange": "2016",
+            "title": "Three Global Summits",
+            "image": "https://placehold.co/224x192"
+          },
+          {
+            "yearRange": "2017",
+            "title": "Interaction & Forum",
+            "image": "https://placehold.co/224x192"
+          },
+          {
+            "yearRange": "2018",
+            "title": "Expansion in Sweden",
+            "image": "https://placehold.co/224x192"
+          },
+          {
+            "yearRange": "2019",
+            "title": "Global Roadmaps",
+            "image": "https://placehold.co/224x192"
+          }
+        ]
+      },
+      "eventSDGs": {
+        "title": "UNSDGs Commitments",
+        "description": "EAEMC 2026 is strictly aligned with the United Nations Sustainable Development Goals, ensuring our research has direct global impact.",
+        "reportText": "Read Full Impact Report",
+        "reportLink": "#",
+        "goals": [
+          {
+            "number": "Goal 7",
+            "title": "Clean Energy",
+            "description": "Promoting cutting-edge sustainable energy solutions and infrastructure.",
+            "bgColor": "#DBEAFE",
+            "iconColor": "#2563EB"
+          },
+          {
+            "number": "Goal 13",
+            "title": "Climate Action",
+            "description": "Advancing materials technologies to actively combat global climate change.",
+            "bgColor": "#DCFCE7",
+            "iconColor": "#16A34A"
+          },
+          {
+            "number": "Goal 9",
+            "title": "Innovation",
+            "description": "Encouraging innovation and sustainable industrial growth in energy materials.",
+            "bgColor": "#FFEDD5",
+            "iconColor": "#EA580C"
+          },
+          {
+            "number": "Goal 17",
+            "title": "Partnerships",
+            "description": "Fostering global interdisciplinary collaboration and academic partnerships.",
+            "bgColor": "#F3E8FF",
+            "iconColor": "#9333EA"
+          }
+        ]
+      },
+      "eventPublications": {
+        "title": "Indexed Publications",
+        "description": "Disseminating groundbreaking research through globally recognized and indexed academic channels.",
+        "publications": [
+          {
+            "title": "Congress Proceedings",
+            "description": "All accepted abstracts and papers are published with ISBN and DOI indexing, and submitted for Scopus evaluation.",
+            "linkText": "View Guidelines",
+            "linkUrl": "/congress-proceedings"
+          },
+          {
+            "title": "Advanced Materials Letters",
+            "description": "The official open-access journal of IAAM, providing a high-impact platform with no subscription fees for researchers.",
+            "linkText": "Learn More",
+            "linkUrl": "#"
+          },
+          {
+            "title": "Video Proceedings",
+            "description": "An innovative open-access video journal dedicated to documented lectures and visual scientific presentations.",
+            "linkText": "Watch Now",
+            "linkUrl": "#"
+          }
+        ]
+      }
+    }
+  },
+  "cmqev7u1500018tj3n2i6a3ku": {
+    "meta": {
+      "title": "International Robotics Summit 2025",
+      "slug": "international-robotics-summit-2025-4",
+      "date": "15-17 June 2025",
+      "location": "Tokyo, Japan",
+      "order": 1
+    },
+    "layout": {
+      "sections": [
+        {
+          "id": "eventHero",
+          "label": "Event Hero Banner",
+          "order": 1,
+          "visible": true
+        },
+        {
+          "id": "eventIntro",
+          "label": "Decade of Excellence",
+          "order": 2,
+          "visible": true
+        },
+        {
+          "id": "eventSymposia",
+          "label": "Conference Symposia",
+          "order": 3,
+          "visible": true
+        },
+        {
+          "id": "eventDeadlines",
+          "label": "Event Deadlines",
+          "order": 4,
+          "visible": true
+        },
+        {
+          "id": "eventHighlights",
+          "label": "Conference Highlights",
+          "order": 5,
+          "visible": true
+        },
+        {
+          "id": "eventSDGs",
+          "label": "UNSDGs Commitments",
+          "order": 6,
+          "visible": true
+        },
+        {
+          "id": "eventPublications",
+          "label": "Indexed Publications",
+          "order": 7,
+          "visible": true
+        }
+      ]
+    },
+    "sections": {
+      "eventHero": {
+        "edition": "8th",
+        "editionSuffix": " Anniversary Edition",
+        "title": "International Robotics Summit 2025",
+        "tagline": "\"Next-Generation Energy Materials for a Sustainable Future\" — Join the premier international forum bridging cutting-edge research with practical net-zero applications.",
+        "date": "15-17 June 2025",
+        "location": "Tokyo, Japan",
+        "registerText": "Register Now",
+        "registerLink": "/register",
+        "programText": "View Program",
+        "programLink": "#",
+        "backgroundImage": "/uploads/assemblies/A-HeroBanner.jpg"
+      },
+      "eventIntro": {
+        "title": "Decade of Excellence",
+        "paragraphs": [
+          "Join us in celebrating the 8th Anniversary of the prestigious European Advanced Energy Materials Congress (EAEMC), organized by the International Association of Advanced Materials (IAAM).",
+          "EAEMC has consistently served as a leading international platform bringing together researchers, industry professionals, policymakers, and academics to discuss groundbreaking research and innovations in advanced energy materials."
+        ],
+        "stats": [
+          {
+            "value": "60+",
+            "label": "PAST ASSEMBLIES"
+          },
+          {
+            "value": "8th",
+            "label": "YEARLY ANNIVERSARY"
+          }
+        ],
+        "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+      },
+      "eventSymposia": {
+        "title": "Conference Symposia",
+        "description": "Focused scientific tracks exploring the frontier of energy science and materials engineering.",
+        "symposia": [
+          {
+            "title": "Renewable Energy",
+            "description": "Focusing on sustainable materials and system efficiency for a circular energy economy."
+          },
+          {
+            "title": "Energy Storage",
+            "description": "Advanced batteries, supercapacitors, and next-gen lithium-ion technologies."
+          },
+          {
+            "title": "Photovoltaics",
+            "description": "Solar cells, thin films, and light-harvesting semiconductor innovations."
+          },
+          {
+            "title": "Energy Harvesting",
+            "description": "Thermoelectrics, piezoelectrics, and micro-power conversion systems."
+          },
+          {
+            "title": "Hydrogen Tech",
+            "description": "Fuel cells, hydrogen production, storage, and transport infrastructure."
+          },
+          {
+            "title": "Smart Materials",
+            "description": "Intelligent materials designed for building efficiency and responsive systems."
+          }
+        ],
+        "flyerText": "Download Symposia Flyer",
+        "flyerLink": "#"
+      },
+      "eventDeadlines": {
+        "title": "Critical Deadlines",
+        "description": "Mark your calendars for key submission and registration dates.",
+        "deadlines": [
+          {
+            "label": "EARLY-BIRD",
+            "date": "12 Dec 2025",
+            "description": "Save on registration fees with early-bird rates."
+          },
+          {
+            "label": "ABSTRACTS",
+            "date": "30 Apr 2026",
+            "description": "Final deadline for technical abstract submissions."
+          },
+          {
+            "label": "REGISTRATION",
+            "date": "27 Apr 2026",
+            "description": "Standard registration closes for delegates."
+          },
+          {
+            "label": "FULL PAPERS",
+            "date": "03 July 2026",
+            "description": "Submission for Scopus indexed congress journals."
+          }
+        ]
+      },
+      "eventHighlights": {
+        "title": "Conference Highlights",
+        "description": "Reliving a decade of scientific advancement.",
+        "highlights": [
+          {
+            "yearRange": "2011 to 2015",
+            "title": "Initial Assemblies",
+            "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+          },
+          {
+            "yearRange": "2016",
+            "title": "Three Global Summits",
+            "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+          },
+          {
+            "yearRange": "2017",
+            "title": "Interaction & Forum",
+            "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+          },
+          {
+            "yearRange": "2018",
+            "title": "Expansion in Sweden",
+            "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+          },
+          {
+            "yearRange": "2019",
+            "title": "Global Roadmaps",
+            "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+          }
+        ]
+      },
+      "eventSDGs": {
+        "title": "UNSDGs Commitments",
+        "description": "EAEMC 2026 is strictly aligned with the United Nations Sustainable Development Goals, ensuring our research has direct global impact.",
+        "reportText": "Read Full Impact Report",
+        "reportLink": "#",
+        "goals": [
+          {
+            "number": "Goal 7",
+            "title": "Clean Energy",
+            "description": "Promoting cutting-edge sustainable energy solutions and infrastructure.",
+            "bgColor": "#DBEAFE",
+            "iconColor": "#2563EB"
+          },
+          {
+            "number": "Goal 13",
+            "title": "Climate Action",
+            "description": "Advancing materials technologies to actively combat global climate change.",
+            "bgColor": "#DCFCE7",
+            "iconColor": "#16A34A"
+          },
+          {
+            "number": "Goal 9",
+            "title": "Innovation",
+            "description": "Encouraging innovation and sustainable industrial growth in energy materials.",
+            "bgColor": "#FFEDD5",
+            "iconColor": "#EA580C"
+          },
+          {
+            "number": "Goal 17",
+            "title": "Partnerships",
+            "description": "Fostering global interdisciplinary collaboration and academic partnerships.",
+            "bgColor": "#F3E8FF",
+            "iconColor": "#9333EA"
+          }
+        ]
+      },
+      "eventPublications": {
+        "title": "Indexed Publications",
+        "description": "Disseminating groundbreaking research through globally recognized and indexed academic channels.",
+        "publications": [
+          {
+            "title": "Congress Proceedings",
+            "description": "All accepted abstracts and papers are published with ISBN and DOI indexing, and submitted for Scopus evaluation.",
+            "linkText": "View Guidelines",
+            "linkUrl": "/congress-proceedings"
+          },
+          {
+            "title": "Advanced Materials Letters",
+            "description": "The official open-access journal of IAAM, providing a high-impact platform with no subscription fees for researchers.",
+            "linkText": "Learn More",
+            "linkUrl": "#"
+          },
+          {
+            "title": "Video Proceedings",
+            "description": "An innovative open-access video journal dedicated to documented lectures and visual scientific presentations.",
+            "linkText": "Watch Now",
+            "linkUrl": "#"
+          }
+        ]
+      }
+    }
+  },
+  "cmqev7u1700028tj3l6ii9byo": {
+    "meta": {
+      "title": "Global Health Innovations Forum 2025",
+      "slug": "global-health-innovations-forum-2025-4",
+      "date": "10-12 September 2025",
+      "location": "San Francisco, USA",
+      "order": 2
+    },
+    "layout": {
+      "sections": [
+        {
+          "id": "eventHero",
+          "label": "Event Hero Banner",
+          "order": 1,
+          "visible": true
+        },
+        {
+          "id": "eventIntro",
+          "label": "Decade of Excellence",
+          "order": 2,
+          "visible": true
+        },
+        {
+          "id": "eventSymposia",
+          "label": "Conference Symposia",
+          "order": 3,
+          "visible": true
+        },
+        {
+          "id": "eventDeadlines",
+          "label": "Event Deadlines",
+          "order": 4,
+          "visible": true
+        },
+        {
+          "id": "eventHighlights",
+          "label": "Conference Highlights",
+          "order": 5,
+          "visible": true
+        },
+        {
+          "id": "eventSDGs",
+          "label": "UNSDGs Commitments",
+          "order": 6,
+          "visible": true
+        },
+        {
+          "id": "eventPublications",
+          "label": "Indexed Publications",
+          "order": 7,
+          "visible": true
+        }
+      ]
+    },
+    "sections": {
+      "eventHero": {
+        "edition": "8th",
+        "editionSuffix": " Anniversary Edition",
+        "title": "Global Health Innovations Forum 2025",
+        "tagline": "\"Next-Generation Energy Materials for a Sustainable Future\" — Join the premier international forum bridging cutting-edge research with practical net-zero applications.",
+        "date": "10-12 September 2025",
+        "location": "San Francisco, USA",
+        "registerText": "Register Now",
+        "registerLink": "/register",
+        "programText": "View Program",
+        "programLink": "#",
+        "backgroundImage": "/uploads/assemblies/A-HeroBanner.jpg"
+      },
+      "eventIntro": {
+        "title": "Decade of Excellence",
+        "paragraphs": [
+          "Join us in celebrating the 8th Anniversary of the prestigious European Advanced Energy Materials Congress (EAEMC), organized by the International Association of Advanced Materials (IAAM).",
+          "EAEMC has consistently served as a leading international platform bringing together researchers, industry professionals, policymakers, and academics to discuss groundbreaking research and innovations in advanced energy materials."
+        ],
+        "stats": [
+          {
+            "value": "60+",
+            "label": "PAST ASSEMBLIES"
+          },
+          {
+            "value": "8th",
+            "label": "YEARLY ANNIVERSARY"
+          }
+        ],
+        "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+      },
+      "eventSymposia": {
+        "title": "Conference Symposia",
+        "description": "Focused scientific tracks exploring the frontier of energy science and materials engineering.",
+        "symposia": [
+          {
+            "title": "Renewable Energy",
+            "description": "Focusing on sustainable materials and system efficiency for a circular energy economy."
+          },
+          {
+            "title": "Energy Storage",
+            "description": "Advanced batteries, supercapacitors, and next-gen lithium-ion technologies."
+          },
+          {
+            "title": "Photovoltaics",
+            "description": "Solar cells, thin films, and light-harvesting semiconductor innovations."
+          },
+          {
+            "title": "Energy Harvesting",
+            "description": "Thermoelectrics, piezoelectrics, and micro-power conversion systems."
+          },
+          {
+            "title": "Hydrogen Tech",
+            "description": "Fuel cells, hydrogen production, storage, and transport infrastructure."
+          },
+          {
+            "title": "Smart Materials",
+            "description": "Intelligent materials designed for building efficiency and responsive systems."
+          }
+        ],
+        "flyerText": "Download Symposia Flyer",
+        "flyerLink": "#"
+      },
+      "eventDeadlines": {
+        "title": "Critical Deadlines",
+        "description": "Mark your calendars for key submission and registration dates.",
+        "deadlines": [
+          {
+            "label": "EARLY-BIRD",
+            "date": "12 Dec 2025",
+            "description": "Save on registration fees with early-bird rates."
+          },
+          {
+            "label": "ABSTRACTS",
+            "date": "30 Apr 2026",
+            "description": "Final deadline for technical abstract submissions."
+          },
+          {
+            "label": "REGISTRATION",
+            "date": "27 Apr 2026",
+            "description": "Standard registration closes for delegates."
+          },
+          {
+            "label": "FULL PAPERS",
+            "date": "03 July 2026",
+            "description": "Submission for Scopus indexed congress journals."
+          }
+        ]
+      },
+      "eventHighlights": {
+        "title": "Conference Highlights",
+        "description": "Reliving a decade of scientific advancement.",
+        "highlights": [
+          {
+            "yearRange": "2011 to 2015",
+            "title": "Initial Assemblies",
+            "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+          },
+          {
+            "yearRange": "2016",
+            "title": "Three Global Summits",
+            "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+          },
+          {
+            "yearRange": "2017",
+            "title": "Interaction & Forum",
+            "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+          },
+          {
+            "yearRange": "2018",
+            "title": "Expansion in Sweden",
+            "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+          },
+          {
+            "yearRange": "2019",
+            "title": "Global Roadmaps",
+            "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+          }
+        ]
+      },
+      "eventSDGs": {
+        "title": "UNSDGs Commitments",
+        "description": "EAEMC 2026 is strictly aligned with the United Nations Sustainable Development Goals, ensuring our research has direct global impact.",
+        "reportText": "Read Full Impact Report",
+        "reportLink": "#",
+        "goals": [
+          {
+            "number": "Goal 7",
+            "title": "Clean Energy",
+            "description": "Promoting cutting-edge sustainable energy solutions and infrastructure.",
+            "bgColor": "#DBEAFE",
+            "iconColor": "#2563EB"
+          },
+          {
+            "number": "Goal 13",
+            "title": "Climate Action",
+            "description": "Advancing materials technologies to actively combat global climate change.",
+            "bgColor": "#DCFCE7",
+            "iconColor": "#16A34A"
+          },
+          {
+            "number": "Goal 9",
+            "title": "Innovation",
+            "description": "Encouraging innovation and sustainable industrial growth in energy materials.",
+            "bgColor": "#FFEDD5",
+            "iconColor": "#EA580C"
+          },
+          {
+            "number": "Goal 17",
+            "title": "Partnerships",
+            "description": "Fostering global interdisciplinary collaboration and academic partnerships.",
+            "bgColor": "#F3E8FF",
+            "iconColor": "#9333EA"
+          }
+        ]
+      },
+      "eventPublications": {
+        "title": "Indexed Publications",
+        "description": "Disseminating groundbreaking research through globally recognized and indexed academic channels.",
+        "publications": [
+          {
+            "title": "Congress Proceedings",
+            "description": "All accepted abstracts and papers are published with ISBN and DOI indexing, and submitted for Scopus evaluation.",
+            "linkText": "View Guidelines",
+            "linkUrl": "/congress-proceedings"
+          },
+          {
+            "title": "Advanced Materials Letters",
+            "description": "The official open-access journal of IAAM, providing a high-impact platform with no subscription fees for researchers.",
+            "linkText": "Learn More",
+            "linkUrl": "#"
+          },
+          {
+            "title": "Video Proceedings",
+            "description": "An innovative open-access video journal dedicated to documented lectures and visual scientific presentations.",
+            "linkText": "Watch Now",
+            "linkUrl": "#"
+          }
+        ]
+      }
+    }
+  },
+  "cmqev7u1900038tj3rof70fo3": {
+    "meta": {
+      "title": "Sustainable Energy Conference 2025",
+      "slug": "sustainable-energy-conference-2025-4",
+      "date": "05-07 November 2025",
+      "location": "Amsterdam, Netherlands",
+      "order": 3
+    },
+    "layout": {
+      "sections": [
+        {
+          "id": "eventHero",
+          "label": "Event Hero Banner",
+          "order": 1,
+          "visible": true
+        },
+        {
+          "id": "eventIntro",
+          "label": "Decade of Excellence",
+          "order": 2,
+          "visible": true
+        },
+        {
+          "id": "eventSymposia",
+          "label": "Conference Symposia",
+          "order": 3,
+          "visible": true
+        },
+        {
+          "id": "eventDeadlines",
+          "label": "Event Deadlines",
+          "order": 4,
+          "visible": true
+        },
+        {
+          "id": "eventHighlights",
+          "label": "Conference Highlights",
+          "order": 5,
+          "visible": true
+        },
+        {
+          "id": "eventSDGs",
+          "label": "UNSDGs Commitments",
+          "order": 6,
+          "visible": true
+        },
+        {
+          "id": "eventPublications",
+          "label": "Indexed Publications",
+          "order": 7,
+          "visible": true
+        }
+      ]
+    },
+    "sections": {
+      "eventHero": {
+        "edition": "8th",
+        "editionSuffix": " Anniversary Edition",
+        "title": "Sustainable Energy Conference 2025",
+        "tagline": "\"Next-Generation Energy Materials for a Sustainable Future\" — Join the premier international forum bridging cutting-edge research with practical net-zero applications.",
+        "date": "05-07 November 2025",
+        "location": "Amsterdam, Netherlands",
+        "registerText": "Register Now",
+        "registerLink": "/register",
+        "programText": "View Program",
+        "programLink": "#",
+        "backgroundImage": "/uploads/assemblies/A-HeroBanner.jpg"
+      },
+      "eventIntro": {
+        "title": "Decade of Excellence",
+        "paragraphs": [
+          "Join us in celebrating the 8th Anniversary of the prestigious European Advanced Energy Materials Congress (EAEMC), organized by the International Association of Advanced Materials (IAAM).",
+          "EAEMC has consistently served as a leading international platform bringing together researchers, industry professionals, policymakers, and academics to discuss groundbreaking research and innovations in advanced energy materials."
+        ],
+        "stats": [
+          {
+            "value": "60+",
+            "label": "PAST ASSEMBLIES"
+          },
+          {
+            "value": "8th",
+            "label": "YEARLY ANNIVERSARY"
+          }
+        ],
+        "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+      },
+      "eventSymposia": {
+        "title": "Conference Symposia",
+        "description": "Focused scientific tracks exploring the frontier of energy science and materials engineering.",
+        "symposia": [
+          {
+            "title": "Renewable Energy",
+            "description": "Focusing on sustainable materials and system efficiency for a circular energy economy."
+          },
+          {
+            "title": "Energy Storage",
+            "description": "Advanced batteries, supercapacitors, and next-gen lithium-ion technologies."
+          },
+          {
+            "title": "Photovoltaics",
+            "description": "Solar cells, thin films, and light-harvesting semiconductor innovations."
+          },
+          {
+            "title": "Energy Harvesting",
+            "description": "Thermoelectrics, piezoelectrics, and micro-power conversion systems."
+          },
+          {
+            "title": "Hydrogen Tech",
+            "description": "Fuel cells, hydrogen production, storage, and transport infrastructure."
+          },
+          {
+            "title": "Smart Materials",
+            "description": "Intelligent materials designed for building efficiency and responsive systems."
+          }
+        ],
+        "flyerText": "Download Symposia Flyer",
+        "flyerLink": "#"
+      },
+      "eventDeadlines": {
+        "title": "Critical Deadlines",
+        "description": "Mark your calendars for key submission and registration dates.",
+        "deadlines": [
+          {
+            "label": "EARLY-BIRD",
+            "date": "12 Dec 2025",
+            "description": "Save on registration fees with early-bird rates."
+          },
+          {
+            "label": "ABSTRACTS",
+            "date": "30 Apr 2026",
+            "description": "Final deadline for technical abstract submissions."
+          },
+          {
+            "label": "REGISTRATION",
+            "date": "27 Apr 2026",
+            "description": "Standard registration closes for delegates."
+          },
+          {
+            "label": "FULL PAPERS",
+            "date": "03 July 2026",
+            "description": "Submission for Scopus indexed congress journals."
+          }
+        ]
+      },
+      "eventHighlights": {
+        "title": "Conference Highlights",
+        "description": "Reliving a decade of scientific advancement.",
+        "highlights": [
+          {
+            "yearRange": "2011 to 2015",
+            "title": "Initial Assemblies",
+            "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+          },
+          {
+            "yearRange": "2016",
+            "title": "Three Global Summits",
+            "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+          },
+          {
+            "yearRange": "2017",
+            "title": "Interaction & Forum",
+            "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+          },
+          {
+            "yearRange": "2018",
+            "title": "Expansion in Sweden",
+            "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+          },
+          {
+            "yearRange": "2019",
+            "title": "Global Roadmaps",
+            "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+          }
+        ]
+      },
+      "eventSDGs": {
+        "title": "UNSDGs Commitments",
+        "description": "EAEMC 2026 is strictly aligned with the United Nations Sustainable Development Goals, ensuring our research has direct global impact.",
+        "reportText": "Read Full Impact Report",
+        "reportLink": "#",
+        "goals": [
+          {
+            "number": "Goal 7",
+            "title": "Clean Energy",
+            "description": "Promoting cutting-edge sustainable energy solutions and infrastructure.",
+            "bgColor": "#DBEAFE",
+            "iconColor": "#2563EB"
+          },
+          {
+            "number": "Goal 13",
+            "title": "Climate Action",
+            "description": "Advancing materials technologies to actively combat global climate change.",
+            "bgColor": "#DCFCE7",
+            "iconColor": "#16A34A"
+          },
+          {
+            "number": "Goal 9",
+            "title": "Innovation",
+            "description": "Encouraging innovation and sustainable industrial growth in energy materials.",
+            "bgColor": "#FFEDD5",
+            "iconColor": "#EA580C"
+          },
+          {
+            "number": "Goal 17",
+            "title": "Partnerships",
+            "description": "Fostering global interdisciplinary collaboration and academic partnerships.",
+            "bgColor": "#F3E8FF",
+            "iconColor": "#9333EA"
+          }
+        ]
+      },
+      "eventPublications": {
+        "title": "Indexed Publications",
+        "description": "Disseminating groundbreaking research through globally recognized and indexed academic channels.",
+        "publications": [
+          {
+            "title": "Congress Proceedings",
+            "description": "All accepted abstracts and papers are published with ISBN and DOI indexing, and submitted for Scopus evaluation.",
+            "linkText": "View Guidelines",
+            "linkUrl": "/congress-proceedings"
+          },
+          {
+            "title": "Advanced Materials Letters",
+            "description": "The official open-access journal of IAAM, providing a high-impact platform with no subscription fees for researchers.",
+            "linkText": "Learn More",
+            "linkUrl": "#"
+          },
+          {
+            "title": "Video Proceedings",
+            "description": "An innovative open-access video journal dedicated to documented lectures and visual scientific presentations.",
+            "linkText": "Watch Now",
+            "linkUrl": "#"
+          }
+        ]
+      }
+    }
+  },
+  "cmqev7u1b00048tj3degon3el": {
+    "meta": {
+      "title": "Artificial Intelligence in Healthcare Summit 2025",
+      "slug": "artificial-intelligence-in-healthcare-summit-2025-4",
+      "date": "20-22 January 2026",
+      "location": "Toronto, Canada",
+      "order": 4
+    },
+    "layout": {
+      "sections": [
+        {
+          "id": "eventHero",
+          "label": "Event Hero Banner",
+          "order": 1,
+          "visible": true
+        },
+        {
+          "id": "eventIntro",
+          "label": "Decade of Excellence",
+          "order": 2,
+          "visible": true
+        },
+        {
+          "id": "eventSymposia",
+          "label": "Conference Symposia",
+          "order": 3,
+          "visible": true
+        },
+        {
+          "id": "eventDeadlines",
+          "label": "Event Deadlines",
+          "order": 4,
+          "visible": true
+        },
+        {
+          "id": "eventHighlights",
+          "label": "Conference Highlights",
+          "order": 5,
+          "visible": true
+        },
+        {
+          "id": "eventSDGs",
+          "label": "UNSDGs Commitments",
+          "order": 6,
+          "visible": true
+        },
+        {
+          "id": "eventPublications",
+          "label": "Indexed Publications",
+          "order": 7,
+          "visible": true
+        }
+      ]
+    },
+    "sections": {
+      "eventHero": {
+        "edition": "8th",
+        "editionSuffix": " Anniversary Edition",
+        "title": "Artificial Intelligence in Healthcare Summit 2025",
+        "tagline": "\"Next-Generation Energy Materials for a Sustainable Future\" — Join the premier international forum bridging cutting-edge research with practical net-zero applications.",
+        "date": "20-22 January 2026",
+        "location": "Toronto, Canada",
+        "registerText": "Register Now",
+        "registerLink": "/register",
+        "programText": "View Program",
+        "programLink": "#",
+        "backgroundImage": "/uploads/assemblies/A-HeroBanner.jpg"
+      },
+      "eventIntro": {
+        "title": "Decade of Excellence",
+        "paragraphs": [
+          "Join us in celebrating the 8th Anniversary of the prestigious European Advanced Energy Materials Congress (EAEMC), organized by the International Association of Advanced Materials (IAAM).",
+          "EAEMC has consistently served as a leading international platform bringing together researchers, industry professionals, policymakers, and academics to discuss groundbreaking research and innovations in advanced energy materials."
+        ],
+        "stats": [
+          {
+            "value": "60+",
+            "label": "PAST ASSEMBLIES"
+          },
+          {
+            "value": "8th",
+            "label": "YEARLY ANNIVERSARY"
+          }
+        ],
+        "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+      },
+      "eventSymposia": {
+        "title": "Conference Symposia",
+        "description": "Focused scientific tracks exploring the frontier of energy science and materials engineering.",
+        "symposia": [
+          {
+            "title": "Renewable Energy",
+            "description": "Focusing on sustainable materials and system efficiency for a circular energy economy."
+          },
+          {
+            "title": "Energy Storage",
+            "description": "Advanced batteries, supercapacitors, and next-gen lithium-ion technologies."
+          },
+          {
+            "title": "Photovoltaics",
+            "description": "Solar cells, thin films, and light-harvesting semiconductor innovations."
+          },
+          {
+            "title": "Energy Harvesting",
+            "description": "Thermoelectrics, piezoelectrics, and micro-power conversion systems."
+          },
+          {
+            "title": "Hydrogen Tech",
+            "description": "Fuel cells, hydrogen production, storage, and transport infrastructure."
+          },
+          {
+            "title": "Smart Materials",
+            "description": "Intelligent materials designed for building efficiency and responsive systems."
+          }
+        ],
+        "flyerText": "Download Symposia Flyer",
+        "flyerLink": "#"
+      },
+      "eventDeadlines": {
+        "title": "Critical Deadlines",
+        "description": "Mark your calendars for key submission and registration dates.",
+        "deadlines": [
+          {
+            "label": "EARLY-BIRD",
+            "date": "12 Dec 2025",
+            "description": "Save on registration fees with early-bird rates."
+          },
+          {
+            "label": "ABSTRACTS",
+            "date": "30 Apr 2026",
+            "description": "Final deadline for technical abstract submissions."
+          },
+          {
+            "label": "REGISTRATION",
+            "date": "27 Apr 2026",
+            "description": "Standard registration closes for delegates."
+          },
+          {
+            "label": "FULL PAPERS",
+            "date": "03 July 2026",
+            "description": "Submission for Scopus indexed congress journals."
+          }
+        ]
+      },
+      "eventHighlights": {
+        "title": "Conference Highlights",
+        "description": "Reliving a decade of scientific advancement.",
+        "highlights": [
+          {
+            "yearRange": "2011 to 2015",
+            "title": "Initial Assemblies",
+            "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+          },
+          {
+            "yearRange": "2016",
+            "title": "Three Global Summits",
+            "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+          },
+          {
+            "yearRange": "2017",
+            "title": "Interaction & Forum",
+            "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+          },
+          {
+            "yearRange": "2018",
+            "title": "Expansion in Sweden",
+            "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+          },
+          {
+            "yearRange": "2019",
+            "title": "Global Roadmaps",
+            "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+          }
+        ]
+      },
+      "eventSDGs": {
+        "title": "UNSDGs Commitments",
+        "description": "EAEMC 2026 is strictly aligned with the United Nations Sustainable Development Goals, ensuring our research has direct global impact.",
+        "reportText": "Read Full Impact Report",
+        "reportLink": "#",
+        "goals": [
+          {
+            "number": "Goal 7",
+            "title": "Clean Energy",
+            "description": "Promoting cutting-edge sustainable energy solutions and infrastructure.",
+            "bgColor": "#DBEAFE",
+            "iconColor": "#2563EB"
+          },
+          {
+            "number": "Goal 13",
+            "title": "Climate Action",
+            "description": "Advancing materials technologies to actively combat global climate change.",
+            "bgColor": "#DCFCE7",
+            "iconColor": "#16A34A"
+          },
+          {
+            "number": "Goal 9",
+            "title": "Innovation",
+            "description": "Encouraging innovation and sustainable industrial growth in energy materials.",
+            "bgColor": "#FFEDD5",
+            "iconColor": "#EA580C"
+          },
+          {
+            "number": "Goal 17",
+            "title": "Partnerships",
+            "description": "Fostering global interdisciplinary collaboration and academic partnerships.",
+            "bgColor": "#F3E8FF",
+            "iconColor": "#9333EA"
+          }
+        ]
+      },
+      "eventPublications": {
+        "title": "Indexed Publications",
+        "description": "Disseminating groundbreaking research through globally recognized and indexed academic channels.",
+        "publications": [
+          {
+            "title": "Congress Proceedings",
+            "description": "All accepted abstracts and papers are published with ISBN and DOI indexing, and submitted for Scopus evaluation.",
+            "linkText": "View Guidelines",
+            "linkUrl": "/congress-proceedings"
+          },
+          {
+            "title": "Advanced Materials Letters",
+            "description": "The official open-access journal of IAAM, providing a high-impact platform with no subscription fees for researchers.",
+            "linkText": "Learn More",
+            "linkUrl": "#"
+          },
+          {
+            "title": "Video Proceedings",
+            "description": "An innovative open-access video journal dedicated to documented lectures and visual scientific presentations.",
+            "linkText": "Watch Now",
+            "linkUrl": "#"
+          }
+        ]
+      }
+    }
+  }
+}

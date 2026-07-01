@@ -464,6 +464,29 @@ const sectionSchemas = {
       }
     ]
   },
+  // ── Contacts Page ───────────────────────────────────────────────────────────
+  contactsTitle: {
+    label: 'Contacts Page Title',
+    fields: [
+      { key: 'title', label: 'Page Title (e.g. CONTACT US)', type: 'text' },
+    ],
+  },
+  contactsDetails: {
+    label: 'Contact Details',
+    fields: [
+      { key: 'heading', label: 'Section Heading', type: 'text' },
+      { key: 'description', label: 'Introductory Description', type: 'textarea' },
+      { key: 'address', label: 'Office Address', type: 'text' },
+      { key: 'phone', label: 'Phone Number', type: 'text' },
+      { key: 'email', label: 'Email Address', type: 'text' },
+    ],
+  },
+  contactsMap: {
+    label: 'Google Maps Embed',
+    fields: [
+      { key: 'embedUrl', label: 'Google Maps Embed URL (iframe src)', type: 'text' },
+    ],
+  },
 };
 
 // Helper to get nested value from an object using dot notation

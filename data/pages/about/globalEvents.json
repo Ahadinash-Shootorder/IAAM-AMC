@@ -1,9 +1,17 @@
 {
   "title": "Our Global Events",
   "events": [
-    { "image": "" },
-    { "image": "" },
-    { "image": "" },
-    { "image": "" }
+    {
+      "image": "/uploads/about/globalEvents/1782885225827-European.jpg"
+    },
+    {
+      "image": "/uploads/about/globalEvents/1782885234913-About-Organization.png"
+    },
+    {
+      "image": "/uploads/about/globalEvents/1782885245579-Fellow.jpg"
+    },
+    {
+      "image": "/uploads/about/globalEvents/1782885254219-Our-Story.png"
+    }
   ]
 }

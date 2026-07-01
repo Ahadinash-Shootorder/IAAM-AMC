@@ -26,6 +26,9 @@ const sectionIcons = {
   assembliesTabs: <FiMenu />,
   assembliesCards: <FiCalendar />,
   assembliesCta: <FiCompass />,
+  contactsTitle: <FiFileText />,
+  contactsDetails: <FiCompass />,
+  contactsMap: <FiCompass />,
 };
 
 export default function AdminLayout({ children }) {

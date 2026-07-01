@@ -175,6 +175,9 @@ export default function PageLayoutManager({ params }) {
     eventHighlights: <FiImage />,
     eventSDGs: <FiCompass />,
     eventPublications: <FiFileText />,
+    contactsTitle: <FiFileText />,
+    contactsDetails: <FiCompass />,
+    contactsMap: <FiCompass />,
   };
 
   const sectionMeta = {
@@ -301,7 +304,19 @@ export default function PageLayoutManager({ params }) {
     awardsLaureates: {
       desc: 'List of past laureates and fellows in the organization.',
       summary: (content) => `Title: "${content.title || ''}"`
-    }
+    },
+    contactsTitle: {
+      desc: 'Page-level title banner displayed at the top of the Contacts page.',
+      summary: (content) => `Title: "${content.title || ''}"`
+    },
+    contactsDetails: {
+      desc: 'Contact information block: heading, description, address, phone, and email.',
+      summary: (content) => `Email: ${content.email || ''} • Phone: ${content.phone || ''}`
+    },
+    contactsMap: {
+      desc: 'Embedded Google Maps iframe showing the office location.',
+      summary: (content) => content.embedUrl ? 'Map embed configured' : 'No embed URL set'
+    },
   };
 
   if (loading) {

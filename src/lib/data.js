@@ -114,7 +114,7 @@ async function seedEventOnTheFly(pageId) {
           registerLink: '#',
           programText: 'View Program',
           programLink: '#',
-          backgroundImage: event.image || 'https://placehold.co/1278x661'
+          backgroundImage: event.image || '/uploads/assemblies/A-HeroBanner.jpg'
         }
       },
       {
@@ -131,7 +131,7 @@ async function seedEventOnTheFly(pageId) {
             { value: '60+', label: 'PAST ASSEMBLIES' },
             { value: '8th', label: 'YEARLY ANNIVERSARY' }
           ],
-          image: 'https://placehold.co/544x400'
+          image: '/uploads/about/globalEvents/1782885225827-European.jpg'
         }
       },
       {
@@ -176,11 +176,11 @@ async function seedEventOnTheFly(pageId) {
           title: 'Conference Highlights',
           description: 'Reliving a decade of scientific advancement.',
           highlights: [
-            { yearRange: '2011 to 2015', title: 'Initial Assemblies', image: 'https://placehold.co/224x192' },
-            { yearRange: '2016', title: 'Three Global Summits', image: 'https://placehold.co/224x192' },
-            { yearRange: '2017', title: 'Interaction & Forum', image: 'https://placehold.co/224x192' },
-            { yearRange: '2018', title: 'Expansion in Sweden', image: 'https://placehold.co/224x192' },
-            { yearRange: '2019', title: 'Global Roadmaps', image: 'https://placehold.co/224x192' }
+            { yearRange: '2011 to 2015', title: 'Initial Assemblies', image: '/uploads/about/globalEvents/1782885225827-European.jpg' },
+            { yearRange: '2016', title: 'Three Global Summits', image: '/uploads/about/globalEvents/1782885225827-European.jpg' },
+            { yearRange: '2017', title: 'Interaction & Forum', image: '/uploads/about/globalEvents/1782885225827-European.jpg' },
+            { yearRange: '2018', title: 'Expansion in Sweden', image: '/uploads/about/globalEvents/1782885225827-European.jpg' },
+            { yearRange: '2019', title: 'Global Roadmaps', image: '/uploads/about/globalEvents/1782885225827-European.jpg' }
           ]
         }
       },
@@ -234,6 +234,56 @@ async function seedEventOnTheFly(pageId) {
           }
         });
       }
+    }
+
+    // Add new event to the universal events.json in the type directory
+    try {
+      const fs = await import('fs/promises');
+      const path = await import('path');
+      const EVENT_TYPE_DIR = {
+        individual: 'individual-events',
+        upcoming: 'upcoming-events',
+        archive: 'congress-archive',
+      };
+      const typeDirName = EVENT_TYPE_DIR[event.eventType];
+      if (typeDirName) {
+        const typeDir = path.default.join(process.cwd(), 'data', 'pages', typeDirName);
+        await fs.default.mkdir(typeDir, { recursive: true });
+        const eventsJsonPath = path.default.join(typeDir, 'events.json');
+
+        // Read existing events.json or start fresh
+        let allEvents = {};
+        try {
+          const raw = await fs.default.readFile(eventsJsonPath, 'utf-8');
+          allEvents = JSON.parse(raw);
+        } catch { /* file doesn't exist yet */ }
+
+        // Only add if not already present (don't overwrite admin edits)
+        if (!allEvents[event.id]) {
+          const layoutSections = defaultSections.map(s => ({
+            id: s.id, label: s.label, order: s.order, visible: true
+          }));
+          const sectionsData = {};
+          defaultSections.forEach(s => { sectionsData[s.id] = s.content; });
+
+          allEvents[event.id] = {
+            meta: {
+              title: event.title,
+              slug: event.slug,
+              date: event.date,
+              location: event.location,
+              order: event.order,
+            },
+            layout: { sections: layoutSections },
+            sections: sectionsData,
+          };
+
+          await fs.default.writeFile(eventsJsonPath, JSON.stringify(allEvents, null, 2));
+          console.log(`[Seed] Added ${event.id} → ${typeDirName}/events.json`);
+        }
+      }
+    } catch (fileErr) {
+      console.error('Failed to update events.json:', fileErr);
     }
   } catch (err) {
     console.error('Failed to auto-seed event details:', err);

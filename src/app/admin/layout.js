@@ -9,7 +9,22 @@ import {
   FiMenu, FiImage, FiBarChart2, FiMic, FiUser, FiCompass, 
   FiBriefcase, FiHeart, FiLayout, FiCalendar, FiBookOpen, 
   FiChevronDown, FiChevronRight, FiSquare, FiX, FiFileText, 
-  FiLogOut, FiSettings, FiActivity, FiFolder, FiMessageSquare} from 'react-icons/fi';
+  FiLogOut, FiSettings, FiActivity, FiFolder, FiMessageSquare,
+  FiHome, FiInfo, FiArchive, FiBook, FiUsers, FiAward, FiPhone, FiMap, FiClock,
+  FiGrid, FiStar, FiList, FiEdit } from 'react-icons/fi';
+
+const pageIcons = {
+  home: <FiHome />,
+  global: <FiSettings />,
+  about: <FiInfo />,
+  'upcoming-events': <FiClock />,
+  'individual-events': <FiCalendar />,
+  'congress-archive': <FiArchive />,
+  'congress-proceedings': <FiBook />,
+  assemblies: <FiUsers />,
+  'fellow-awards': <FiAward />,
+  contacts: <FiPhone />,
+};
 
 const sectionIcons = {
   header: <FiMenu />,
@@ -23,21 +38,27 @@ const sectionIcons = {
   footer: <FiLayout />,
   aboutHero: <FiImage />,
   ourStory: <FiBookOpen />,
-  globalEvents: <FiCompass />,
+  globalEvents: <FiMap />,
   eventsList: <FiCalendar />,
   proceedingsHeader: <FiFileText />,
-  proceedingsList: <FiFileText />,
+  proceedingsList: <FiFolder />,
   proceedingHero: <FiImage />,
   proceedingDownload: <FiBookOpen />,
-  proceedingContent: <FiBookOpen />,
-  relatedProceedings: <FiCompass />,
+  proceedingContent: <FiFileText />,
+  relatedProceedings: <FiBook />,
   assembliesHero: <FiImage />,
   assembliesTabs: <FiMenu />,
-  assembliesCards: <FiCalendar />,
+  assembliesCards: <FiUsers />,
   assembliesCta: <FiCompass />,
-  contactsTitle: <FiFileText />,
-  contactsDetails: <FiCompass />,
-  contactsMap: <FiCompass />,
+  contactsTitle: <FiMessageSquare />,
+  contactsDetails: <FiPhone />,
+  contactsMap: <FiMap />,
+  awardsHero: <FiImage />,
+  awardsIntro: <FiInfo />,
+  awardsCategories: <FiGrid />,
+  awardsPublications: <FiBook />,
+  awardsNomination: <FiEdit />,
+  awardsLaureates: <FiAward />,
 };
 
 const sectionLabels = {
@@ -233,7 +254,7 @@ export default function AdminLayout({ children }) {
                       className={styles.treeLink}
                       onClick={() => setSidebarOpen(false)}
                     >
-                      <span className={styles.pageIcon}>{page.id === 'global' ? <FiSettings /> : <FiFileText />}</span>
+                      <span className={styles.pageIcon}>{pageIcons[page.id] || <FiFileText />}</span>
                       <span className={styles.pageLabel}>{page.label}</span>
                     </Link>
                   </div>
@@ -311,9 +332,6 @@ export default function AdminLayout({ children }) {
           <button onClick={handleLogout} className={styles.logoutBtn}>
             <FiLogOut /> Logout
           </button>
-          <Link href="/" className={styles.viewSiteLink} target="_blank" style={{ background: 'var(--strapi-primary)' }}>
-            ↗ View Live Site
-          </Link>
         </div>
       </aside>
 

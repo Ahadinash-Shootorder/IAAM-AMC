@@ -25,7 +25,7 @@ export default function SponsorsPage() {
       required: true
     },
     { key: 'websiteUrl', label: 'Website URL' },
-    { key: 'logo', label: 'Logo URL' },
+    { key: 'logo', label: 'Logo', type: 'image' },
     { key: 'order', label: 'Order', type: 'number' },
   ];
 

@@ -1,0 +1,132 @@
+.settingsWrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--strapi-dark);
+  margin-bottom: 4px;
+  margin-top: 0;
+}
+
+.subtitle {
+  font-size: 13.5px;
+  color: var(--strapi-muted);
+  margin: 0;
+}
+
+.panel {
+  background: var(--strapi-card);
+  border: 1px solid var(--strapi-border);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.01);
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--strapi-dark);
+  border-bottom: 1px solid var(--strapi-border);
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+.panelTitle {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.formGroup label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--strapi-muted);
+}
+
+.textInput {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: #fafafb;
+  border: 1px solid var(--strapi-border);
+  color: var(--strapi-text);
+  font-size: 13.5px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.textInput:focus {
+  border-color: var(--strapi-primary);
+  box-shadow: 0 0 0 3px rgba(73, 69, 255, 0.15);
+  background: white;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 10px 18px;
+  border-radius: 6px;
+  background: var(--strapi-primary);
+  color: white;
+  border: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.2s;
+  margin-top: 8px;
+}
+
+.submitBtn:hover {
+  background: var(--strapi-primary-dark);
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.alert {
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.successAlert {
+  background: #eafbe7;
+  color: var(--strapi-success);
+  border: 1px solid rgba(92, 177, 118, 0.25);
+}
+
+.errorAlert {
+  background: #fff1f0;
+  color: var(--strapi-danger);
+  border: 1px solid rgba(238, 94, 82, 0.25);
+}

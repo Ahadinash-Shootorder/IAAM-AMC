@@ -11,43 +11,36 @@
       "sections": [
         {
           "id": "eventHero",
-          "label": "Event Hero Banner",
           "order": 1,
           "visible": true
         },
         {
           "id": "eventIntro",
-          "label": "Decade of Excellence",
           "order": 2,
           "visible": true
         },
         {
           "id": "eventSymposia",
-          "label": "Conference Symposia",
           "order": 3,
           "visible": true
         },
         {
           "id": "eventDeadlines",
-          "label": "Event Deadlines",
           "order": 4,
           "visible": true
         },
         {
           "id": "eventHighlights",
-          "label": "Conference Highlights",
           "order": 5,
           "visible": true
         },
         {
           "id": "eventSDGs",
-          "label": "UNSDGs Commitments",
           "order": 6,
           "visible": true
         },
         {
           "id": "eventPublications",
-          "label": "Indexed Publications",
           "order": 7,
           "visible": true
         }

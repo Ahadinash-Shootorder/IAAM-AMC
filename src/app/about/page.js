@@ -23,10 +23,13 @@ const sectionComponents = {
   sponsors: { Component: SponsorsSection, dataKey: 'sponsors' },
 };
 
-export default async function About() {
-  const sectionsConfig = await getPageLayout('about');
-  const headerData = await readPageSectionData('global', 'header');
-  const footerData = await readPageSectionData('global', 'footer');
+export default async function About({ searchParams }) {
+  const params = await searchParams;
+  const isPreview = params?.preview === 'true';
+
+  const sectionsConfig = await getPageLayout('about', isPreview);
+  const headerData = await readPageSectionData('global', 'header', isPreview);
+  const footerData = await readPageSectionData('global', 'footer', isPreview);
 
   // Sort body sections by order and filter visible ones
   const bodySections = (sectionsConfig.sections || [])

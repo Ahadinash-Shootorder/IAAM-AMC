@@ -1,3 +1,4 @@
+import { cache } from 'react';
 import prisma from './db';
 import { backupPageSection, backupPageLayout, backupCollection } from './backup';
 import fs from 'fs';
@@ -568,8 +569,14 @@ export async function getPages() {
   };
 }
 
-export async function getPageLayout(pageId, preview = false) {
+export const getPageLayout = cache(async function getPageLayout(pageId, preview = false) {
   if (!validateId(pageId)) throw new Error('Invalid page ID');
+  
+  let pageTitle = pageId;
+  if (pageId.startsWith('event-')) {
+    const event = await prisma.event.findUnique({ where: { id: pageId.replace('event-', '') } });
+    if (event) pageTitle = event.title;
+  }
 
   let sections = await prisma.section.findMany({
     where: { pageId },
@@ -626,12 +633,13 @@ export async function getPageLayout(pageId, preview = false) {
 
 
   return {
+    pageTitle,
     sections: sections.map((sec) => ({
       ...sec,
       content: safeParseJson((preview && sec.draftContent) ? sec.draftContent : sec.content),
     })),
   };
-}
+});
 
 export async function updatePageLayout(pageId, layout) {
   if (!validateId(pageId)) throw new Error('Invalid page ID');
@@ -664,7 +672,7 @@ export async function updatePageLayout(pageId, layout) {
   );
 }
 
-export async function readPageSectionData(pageId, sectionId, preview = false) {
+export const readPageSectionData = cache(async function readPageSectionData(pageId, sectionId, preview = false) {
   if (!validateId(pageId) || !validateId(sectionId)) {
     throw new Error('Invalid page or section ID');
   }
@@ -702,7 +710,7 @@ export async function readPageSectionData(pageId, sectionId, preview = false) {
   }
 
   return safeParseJson((preview && section?.draftContent) ? section.draftContent : section?.content);
-}
+});
 
 export async function writePageSectionData(pageId, sectionId, data, asDraft = false) {
   if (!validateId(pageId) || !validateId(sectionId)) {
@@ -831,7 +839,7 @@ export async function writePageSectionData(pageId, sectionId, data, asDraft = fa
   }
 }
 
-export async function getEventsWithDetails(eventType) {
+export const getEventsWithDetails = cache(async function getEventsWithDetails(eventType) {
   const dbEvents = await prisma.event.findMany({
     where: { eventType },
     orderBy: { order: 'asc' }
@@ -870,4 +878,4 @@ export async function getEventsWithDetails(eventType) {
       description: event.description || (introContent.paragraphs && introContent.paragraphs[0]) || ''
     };
   });
-}
+});

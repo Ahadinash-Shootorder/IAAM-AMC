@@ -647,9 +647,11 @@ export default function CrudTable({ title, endpoint, tableColumns, formColumns, 
                     ))}
                     <td className={styles.actionsCell}>
                       {customAction && customAction(item)}
-                      <button className={styles.editBtn} onClick={() => handleEdit(item)} title="Edit">
-                        <FiEdit2 size={16} />
-                      </button>
+                      {!customAction && (
+                        <button className={styles.editBtn} onClick={() => handleEdit(item)} title="Edit">
+                          <FiEdit2 size={16} />
+                        </button>
+                      )}
                       <button className={styles.deleteBtn} onClick={() => handleDelete(item.id)} title="Delete">
                         <FiTrash2 size={16} />
                       </button>

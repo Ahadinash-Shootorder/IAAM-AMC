@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
   try {
     const pagesConfig = await getPages();
-    const filteredPages = pagesConfig.pages.filter(page => !page.id.startsWith('event-'));
+    const filteredPages = pagesConfig.pages.filter(page => !page.id.startsWith('event-') && !page.id.startsWith('proceeding-'));
     const pagesWithSections = await Promise.all(
       filteredPages.map(async (page) => {
         const layout = await getPageLayout(page.id);

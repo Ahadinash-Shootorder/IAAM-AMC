@@ -11,6 +11,17 @@ import RichTextEditor from '@/components/Admin/RichTextEditor';
 import LinkInput from '@/components/Admin/LinkInput';
 import { FiClock, FiSave, FiEye, FiUploadCloud, FiImage } from 'react-icons/fi';
 
+// Map page IDs to readable labels for breadcrumbs
+const pageLabelsMap = {
+  home: 'Home Page',
+  'congress-proceedings': 'Congress Proceedings',
+  assemblies: 'Assemblies',
+  'fellow-awards': 'Fellow & Awards',
+  about: 'About Us',
+  contacts: 'Contacts',
+  global: 'Global Settings'
+};
+
 // Map page IDs to their DB event type for interlinked filtering
 const dbBackedSections = {
   'upcoming-events.eventsList': { type: 'events', filter: 'upcoming', label: 'Upcoming Events' },
@@ -890,9 +901,9 @@ export default function SectionEditor({ params }) {
 
     const renderCustomAction = (item) => (
       <Link
-        href={`/admin/pages/event-${item.id}`}
+        href={isEvents ? `/admin/pages/event-${item.id}` : `/admin/pages/proceeding-${item.id}`}
         style={{
-          background: '#1C3F9E',
+          background: 'var(--strapi-primary)',
           color: '#fff',
           padding: '6px 12px',
           borderRadius: '4px',
@@ -920,8 +931,9 @@ export default function SectionEditor({ params }) {
             ← Back
           </button>
           <div className={styles.editorTitleGroup}>
+
             <h2 className={styles.editorTitle}>{dbConfig.label}</h2>
-            <p className={styles.editorSubtitle}>Manage {dbConfig.label.toLowerCase()} — saved directly to database</p>
+
           </div>
         </div>
 
@@ -975,8 +987,9 @@ export default function SectionEditor({ params }) {
           ← Back
         </button>
         <div className={styles.editorTitleGroup}>
+
           <h2 className={styles.editorTitle}>{schema.label}</h2>
-          <p className={styles.editorSubtitle}>Edit section content and media</p>
+
         </div>
         <div style={{ display: 'flex', gap: '12px' }}>
           <button
@@ -1011,7 +1024,7 @@ export default function SectionEditor({ params }) {
             {savingType === 'publish' ? (
               <span className={styles.btnSpinnerContainer}><div className={styles.btnSpinner} /> Publishing...</span>
             ) : (
-              <><FiUploadCloud /> Publish Live</>
+              <><FiUploadCloud /> Publish to Website</>
             )}
           </button>
         </div>
@@ -1474,14 +1487,18 @@ export default function SectionEditor({ params }) {
       )}
 
       {/* Sticky Save Bar */}
-      <div className={styles.stickyBar}>
+      <div className={styles.stickyActions}>
         <div style={{ display: 'flex', gap: '12px', width: '100%', justifyContent: 'flex-end' }}>
           <button
             className={styles.secondaryBtn}
             onClick={() => handleSave(true)}
             disabled={saving}
           >
-            {saving ? '...' : <><FiSave /> Save Draft</>}
+            {savingType === 'draft' ? (
+              <span className={styles.btnSpinnerContainer}><div className={styles.btnSpinner} /> Saving...</span>
+            ) : (
+              <><FiSave /> Save Draft</>
+            )}
           </button>
           <button
             className={styles.secondaryBtn}
@@ -1495,7 +1512,11 @@ export default function SectionEditor({ params }) {
             onClick={() => handleSave(false)}
             disabled={saving}
           >
-            {saving ? 'Publishing...' : <><FiUploadCloud /> Publish Live</>}
+            {savingType === 'publish' ? (
+              <span className={styles.btnSpinnerContainer}><div className={styles.btnSpinner} /> Publishing...</span>
+            ) : (
+              <><FiUploadCloud /> Publish to Website</>
+            )}
           </button>
         </div>
       </div>

@@ -2,33 +2,28 @@
   "sections": [
     {
       "id": "aboutHero",
-      "label": "About Hero",
-      "visible": true,
-      "order": 1
+      "order": 0,
+      "visible": true
     },
     {
       "id": "ourStory",
-      "label": "Our Story",
-      "visible": true,
-      "order": 2
+      "order": 1,
+      "visible": true
     },
     {
       "id": "globalEvents",
-      "label": "Global Events",
-      "visible": true,
-      "order": 3
+      "order": 2,
+      "visible": true
     },
     {
       "id": "speakers",
-      "label": "Speakers Section",
-      "visible": true,
-      "order": 4
+      "order": 3,
+      "visible": true
     },
     {
       "id": "sponsors",
-      "label": "Sponsors Section",
-      "visible": true,
-      "order": 5
+      "order": 4,
+      "visible": true
     }
   ]
 }

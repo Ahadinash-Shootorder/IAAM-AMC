@@ -11,10 +11,13 @@ export const metadata = {
 
 export const dynamic = 'force-dynamic';
 
-export default async function CongressProceedings() {
-  const headerData = await readPageSectionData('global', 'header');
-  const footerData = await readPageSectionData('global', 'footer');
-  let headerSectionData = await readPageSectionData('congress-proceedings', 'proceedingsHeader');
+export default async function CongressProceedings({ searchParams }) {
+  const params = await searchParams;
+  const isPreview = params?.preview === 'true';
+
+  const headerData = await readPageSectionData('global', 'header', isPreview);
+  const footerData = await readPageSectionData('global', 'footer', isPreview);
+  let headerSectionData = await readPageSectionData('congress-proceedings', 'proceedingsHeader', isPreview);
   let proceedingsData = { title: headerSectionData?.title || 'Congress Proceedings' };
   
   let dbProceedings = [];

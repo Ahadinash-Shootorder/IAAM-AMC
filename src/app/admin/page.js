@@ -3,7 +3,7 @@ import path from 'path';
 import Link from 'next/link';
 import {
   FiFileText, FiLayers, FiCheckCircle, FiSettings,
-  FiMic, FiHome, FiClock, FiActivity, FiUserCheck, FiLayout, FiCalendar, FiBriefcase, FiImage, FiMessageSquare
+  FiMic, FiHome, FiClock, FiActivity, FiUserCheck, FiLayout, FiCalendar, FiBriefcase, FiImage, FiMessageSquare, FiBookOpen
 } from 'react-icons/fi';
 import styles from './page.module.css';
 import prisma from '@/lib/prisma';
@@ -11,16 +11,21 @@ import prisma from '@/lib/prisma';
 export const dynamic = 'force-dynamic';
 
 export default async function AdminDashboard() {
-  // Fetch pages from DB
+  // Fetch all pages from DB
   const pages = await prisma.page.findMany({
     include: { sections: true },
   });
 
-  const totalPages = pages.length;
+  // Filter out sub-pages/dynamic content pages from primary page table
+  const mainPages = pages.filter(
+    page => !page.id.startsWith('event-') && !page.id.startsWith('proceeding-')
+  );
+
+  const totalPages = mainPages.length;
   let totalSections = 0;
   let activeSections = 0;
 
-  pages.forEach(page => {
+  mainPages.forEach(page => {
     if (page.sections) {
       totalSections += page.sections.length;
       activeSections += page.sections.filter(s => s.visible).length;
@@ -31,6 +36,7 @@ export default async function AdminDashboard() {
   const speakersCount = await prisma.speaker.count();
   const eventsCount = await prisma.event.count();
   const sponsorsCount = await prisma.sponsor.count();
+  const proceedingsCount = await prisma.proceeding.count();
 
   // Scan file system for media count
   let mediaCount = 0;
@@ -60,7 +66,7 @@ export default async function AdminDashboard() {
   const unreadContacts = await prisma.contactQuery.count({ where: { status: 'unread' } });
   const recentLogs = await prisma.activityLog.findMany({
     orderBy: { createdAt: 'desc' },
-    take: 4
+    take: 5
   });
 
   const currentDate = new Date().toLocaleDateString('en-US', {
@@ -70,12 +76,19 @@ export default async function AdminDashboard() {
     day: 'numeric'
   });
 
+  const formatAction = (action) => {
+    return action
+      .replace(/_/g, ' ')
+      .replace(/\b\w/g, c => c.toUpperCase());
+  };
+
   return (
     <div className={styles.dashboard}>
+      
 
       {/* ─── Stats Row ─── */}
       <div className={styles.statsGrid}>
-        <div className={styles.statCard}>
+        <div className={styles.statCard} style={{ borderLeft: '4px solid #4f46e5' }}>
           <div className={styles.statIcon} style={{ background: '#eef2ff', color: '#4f46e5' }}>
             <FiLayout />
           </div>
@@ -84,16 +97,25 @@ export default async function AdminDashboard() {
             <span className={styles.statLabel}>CMS Pages</span>
           </div>
         </div>
-        <div className={styles.statCard}>
+        <div className={styles.statCard} style={{ borderLeft: '4px solid #06b6d4' }}>
+          <div className={styles.statIcon} style={{ background: '#ecfeff', color: '#0891b2' }}>
+            <FiBookOpen />
+          </div>
+          <div className={styles.statInfo}>
+            <span className={styles.statValue}>{proceedingsCount}</span>
+            <span className={styles.statLabel}>Proceedings</span>
+          </div>
+        </div>
+        <div className={styles.statCard} style={{ borderLeft: '4px solid #d946ef' }}>
           <div className={styles.statIcon} style={{ background: '#fdf4ff', color: '#c026d3' }}>
             <FiMic />
           </div>
           <div className={styles.statInfo}>
             <span className={styles.statValue}>{speakersCount}</span>
-            <span className={styles.statLabel}>Total Speakers</span>
+            <span className={styles.statLabel}>Speakers</span>
           </div>
         </div>
-        <div className={styles.statCard}>
+        <div className={styles.statCard} style={{ borderLeft: '4px solid #10b981' }}>
           <div className={styles.statIcon} style={{ background: '#f0fdf4', color: '#16a34a' }}>
             <FiImage />
           </div>
@@ -102,7 +124,7 @@ export default async function AdminDashboard() {
             <span className={styles.statLabel}>Media Assets</span>
           </div>
         </div>
-        <div className={styles.statCard}>
+        <div className={styles.statCard} style={{ borderLeft: '4px solid #f59e0b' }}>
           <div className={styles.statIcon} style={{ background: '#fffbeb', color: '#d97706' }}>
             <FiMessageSquare />
           </div>
@@ -121,7 +143,7 @@ export default async function AdminDashboard() {
           <div className={styles.sectionPanel}>
             <div className={styles.sectionHeader}>
               <h2 className={styles.sectionTitle}>
-                <FiFileText /> Content Manager
+                <FiFileText /> Content Pages
               </h2>
             </div>
 
@@ -131,12 +153,12 @@ export default async function AdminDashboard() {
                   <tr>
                     <th>Page Name</th>
                     <th>Route</th>
-                    <th>Sections</th>
+                    <th>Status</th>
                     <th style={{ textAlign: 'right' }}>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {pages.map((page) => (
+                  {mainPages.map((page) => (
                     <tr key={page.id}>
                       <td>
                         <div className={styles.pageCell}>
@@ -156,7 +178,7 @@ export default async function AdminDashboard() {
                       </td>
                       <td style={{ textAlign: 'right' }}>
                         <Link href={`/admin/pages/${page.id}`} className={styles.editBtn}>
-                          Manage →
+                          Manage Page →
                         </Link>
                       </td>
                     </tr>
@@ -181,45 +203,22 @@ export default async function AdminDashboard() {
                 <FiHome className={styles.actionIcon} />
                 Edit Home Page
               </Link>
-              <Link href="/admin/pages/global" className={styles.actionCard}>
-                <FiSettings className={styles.actionIcon} />
-                Global Settings
+              <Link href="/admin/pages/congress-proceedings" className={styles.actionCard}>
+                <FiBookOpen className={styles.actionIcon} />
+                Manage Proceedings
               </Link>
               <Link href="/admin/speakers" className={styles.actionCard}>
                 <FiMic className={styles.actionIcon} />
                 Manage Speakers
               </Link>
-              <Link href="/admin/events" className={styles.actionCard}>
-                <FiCalendar className={styles.actionIcon} />
-                Manage Events
+              <Link href="/admin/media" className={styles.actionCard}>
+                <FiImage className={styles.actionIcon} />
+                Media Library
               </Link>
             </div>
           </div>
 
-          <div className={styles.sectionPanel}>
-            <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>
-                <FiActivity /> System Status
-              </h2>
-            </div>
-            <div className={styles.activityList}>
-              {recentLogs.length === 0 ? (
-                <div style={{ color: '#64748b', fontSize: '14px', padding: '12px 0' }}>No recent activity.</div>
-              ) : (
-                recentLogs.map((log, index) => (
-                  <div key={log.id} className={styles.timelineItem}>
-                    <div className={`${styles.timelineDot} ${index === 0 ? styles.active : ''}`}>
-                      <FiActivity />
-                    </div>
-                    <div className={styles.timelineContent}>
-                      <span className={styles.timelineTitle}>{log.action.replace(/_/g, ' ')}</span>
-                      <span className={styles.timelineTime}>{new Date(log.createdAt).toLocaleString()} by {log.admin.split('@')[0]}</span>
-                    </div>
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
+
 
         </div>
       </div>

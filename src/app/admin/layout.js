@@ -5,7 +5,11 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import styles from './layout.module.css';
-import { FiMenu, FiImage, FiBarChart2, FiMic, FiUser, FiCompass, FiBriefcase, FiHeart, FiLayout, FiCalendar, FiBookOpen, FiChevronDown, FiChevronRight, FiSquare, FiX, FiFileText, FiLogOut, FiSettings, FiActivity } from 'react-icons/fi';
+import { 
+  FiMenu, FiImage, FiBarChart2, FiMic, FiUser, FiCompass, 
+  FiBriefcase, FiHeart, FiLayout, FiCalendar, FiBookOpen, 
+  FiChevronDown, FiChevronRight, FiSquare, FiX, FiFileText, 
+  FiLogOut, FiSettings, FiActivity, FiFolder, FiMessageSquare} from 'react-icons/fi';
 
 const sectionIcons = {
   header: <FiMenu />,
@@ -34,6 +38,35 @@ const sectionIcons = {
   contactsTitle: <FiFileText />,
   contactsDetails: <FiCompass />,
   contactsMap: <FiCompass />,
+};
+
+const sectionLabels = {
+  header: 'Header / Navigation',
+  hero: 'Hero Banner',
+  stats: 'Stats Bar',
+  speakers: 'Speakers Section',
+  becomeMember: 'Become Member CTA',
+  explore: 'Explore More',
+  sponsors: 'Sponsors',
+  becomeSponsor: 'Become Sponsor CTA',
+  footer: 'Footer',
+  aboutHero: 'About Hero',
+  ourStory: 'Our Story',
+  globalEvents: 'Global Events',
+  eventsList: 'Events List',
+  proceedingsHeader: 'Page Header / Title',
+  proceedingsList: 'Proceedings List',
+  proceedingHero: 'Hero Section',
+  proceedingDownload: 'Download Section',
+  proceedingContent: 'Main Content',
+  relatedProceedings: 'Related Proceedings',
+  assembliesHero: 'Assemblies Hero',
+  assembliesTabs: 'Assemblies Tabs',
+  assembliesCards: 'Assemblies Cards',
+  assembliesCta: 'Assemblies CTA',
+  contactsTitle: 'Contacts Title',
+  contactsDetails: 'Contacts Details',
+  contactsMap: 'Contacts Map',
 };
 
 export default function AdminLayout({ children }) {
@@ -86,6 +119,48 @@ export default function AdminLayout({ children }) {
     }
   };
 
+  // Generate breadcrumb info
+  const getBreadcrumb = () => {
+    if (pathname === '/admin') return 'Dashboard';
+    if (pathname === '/admin/speakers') return 'Content Modules > Speakers';
+    if (pathname === '/admin/sponsors') return 'Content Modules > Sponsors';
+    if (pathname === '/admin/media') return 'Content Modules > Media Library';
+    if (pathname === '/admin/activity-logs') return 'System > Activity Logs';
+    if (pathname === '/admin/contacts') return 'System > Contact Queries';
+    if (pathname === '/admin/settings') return 'System > Settings';
+
+    const pageMatch = pathname.match(/^\/admin\/pages\/([^/]+)$/);
+    if (pageMatch) {
+      const pageId = pageMatch[1];
+      const page = pages.find(p => p.id === pageId);
+      return `Pages > ${page ? page.label : pageId}`;
+    }
+
+    const secMatch = pathname.match(/^\/admin\/pages\/([^/]+)\/([^/]+)$/);
+    if (secMatch) {
+      const pageId = secMatch[1];
+      const secId = secMatch[2];
+      const page = pages.find(p => p.id === pageId);
+      const sectionLabel = sectionLabels[secId] || secId;
+      return `Pages > ${page ? page.label : pageId} > ${sectionLabel}`;
+    }
+
+    return 'Admin';
+  };
+
+  const renderBreadcrumbs = () => {
+    const text = getBreadcrumb();
+    const parts = text.split(' > ');
+    return parts.map((part, idx) => (
+      <span key={idx} style={{ display: 'inline-flex', alignItems: 'center' }}>
+        {idx > 0 && <span style={{ margin: '0 8px', color: '#c0c0cf', fontWeight: 'normal' }}>/</span>}
+        <span style={{ color: idx === parts.length - 1 ? '#212134' : '#666687', fontWeight: idx === parts.length - 1 ? '600' : 'normal' }}>
+          {part}
+        </span>
+      </span>
+    ));
+  };
+
   if (pathname === '/admin/login') {
     return <>{children}</>;
   }
@@ -136,7 +211,7 @@ export default function AdminLayout({ children }) {
 
           <div className={styles.treeContainer}>
             <div className={styles.treeHeader}>
-              <span className={styles.treeHeaderIcon}><FiFileText /></span> Pages
+              <span className={styles.treeHeaderIcon}><FiFolder /></span> Pages
             </div>
 
             {pages.map((page) => {
@@ -193,10 +268,13 @@ export default function AdminLayout({ children }) {
                 </div>
               );
             })}
-            {/* Standalone Data Modules (no page equivalent in tree) */}
+
+            <div className={styles.sectionHeader} style={{ padding: '16px 16px 8px' }}>CONTENT MODULES</div>
+
+            {/* Standalone Data Modules */}
             <div className={styles.treeNode}>
               <div className={`${styles.treeItem} ${pathname === '/admin/speakers' ? styles.treeItemActive : ''}`}>
-                <div style={{width: '24px'}} />
+                <div style={{ width: '20px' }} />
                 <Link href="/admin/speakers" className={styles.treeLink} onClick={() => setSidebarOpen(false)}>
                   <span className={styles.pageIcon}><FiMic /></span>
                   <span className={styles.pageLabel}>Speakers</span>
@@ -205,7 +283,7 @@ export default function AdminLayout({ children }) {
             </div>
             <div className={styles.treeNode}>
               <div className={`${styles.treeItem} ${pathname === '/admin/sponsors' ? styles.treeItemActive : ''}`}>
-                <div style={{width: '24px'}} />
+                <div style={{ width: '20px' }} />
                 <Link href="/admin/sponsors" className={styles.treeLink} onClick={() => setSidebarOpen(false)}>
                   <span className={styles.pageIcon}><FiBriefcase /></span>
                   <span className={styles.pageLabel}>Sponsors</span>
@@ -214,43 +292,26 @@ export default function AdminLayout({ children }) {
             </div>
             <div className={styles.treeNode}>
               <div className={`${styles.treeItem} ${pathname === '/admin/media' ? styles.treeItemActive : ''}`}>
-                <div style={{width: '24px'}} />
+                <div style={{ width: '20px' }} />
                 <Link href="/admin/media" className={styles.treeLink} onClick={() => setSidebarOpen(false)}>
                   <span className={styles.pageIcon}><FiImage /></span>
                   <span className={styles.pageLabel}>Media Library</span>
                 </Link>
               </div>
             </div>
-            <div className={styles.sectionHeader}>SYSTEM</div>
-            <div className={styles.treeNode}>
-              <div className={`${styles.treeItem} ${pathname === '/admin/activity-logs' ? styles.treeItemActive : ''}`}>
-                <div style={{width: '24px'}} />
-                <Link href="/admin/activity-logs" className={styles.treeLink} onClick={() => setSidebarOpen(false)}>
-                  <span className={styles.pageIcon}><FiActivity /></span>
-                  <span className={styles.pageLabel}>Activity Logs</span>
-                </Link>
-              </div>
-            </div>
-            <div className={styles.treeNode}>
-              <div className={`${styles.treeItem} ${pathname === '/admin/contacts' ? styles.treeItemActive : ''}`}>
-                <div style={{width: '24px'}} />
-                <Link href="/admin/contacts" className={styles.treeLink} onClick={() => setSidebarOpen(false)}>
-                  <span className={styles.pageIcon}><FiFileText /></span>
-                  <span className={styles.pageLabel}>Contact Queries</span>
-                </Link>
-              </div>
-            </div>
+
+
           </div>
         </nav>
 
         <div className={styles.sidebarFooter}>
-          <Link href="/admin/settings" className={styles.logoutBtn} style={{ color: '#e4e4e7', marginBottom: '8px', textDecoration: 'none' }}>
-            <FiSettings className={styles.logoutIcon} /> Settings
+          <Link href="/admin/settings" className={styles.viewSiteLink} style={{ color: 'white', marginBottom: '4px', textDecoration: 'none', background: '#32324d' }}>
+            <FiSettings /> Settings
           </Link>
           <button onClick={handleLogout} className={styles.logoutBtn}>
-            <FiLogOut className={styles.logoutIcon} /> Logout
+            <FiLogOut /> Logout
           </button>
-          <Link href="/" className={styles.viewSiteLink} target="_blank">
+          <Link href="/" className={styles.viewSiteLink} target="_blank" style={{ background: 'var(--strapi-primary)' }}>
             ↗ View Live Site
           </Link>
         </div>
@@ -265,7 +326,9 @@ export default function AdminLayout({ children }) {
           >
             ☰
           </button>
-          <h1 className={styles.pageTitle}></h1>
+          <h1 className={styles.pageTitle}>
+            Dashboard
+          </h1>
           <Link href="/" className={styles.liveLink} target="_blank">
             ↗ View Site
           </Link>

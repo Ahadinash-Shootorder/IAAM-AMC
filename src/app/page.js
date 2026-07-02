@@ -24,10 +24,13 @@ const sectionComponents = {
   becomeSponsor: { Component: BecomeSponsor, dataKey: 'becomeSponsor', wrapperClass: 'ctaWrapperGray' },
 };
 
-export default async function Home() {
-  const sectionsConfig = await getPageLayout('home');
-  const headerData = await readPageSectionData('global', 'header');
-  const footerData = await readPageSectionData('global', 'footer');
+export default async function Home({ searchParams }) {
+  const params = await searchParams;
+  const isPreview = params?.preview === 'true';
+
+  const sectionsConfig = await getPageLayout('home', isPreview);
+  const headerData = await readPageSectionData('global', 'header', isPreview);
+  const footerData = await readPageSectionData('global', 'footer', isPreview);
 
   // Sort body sections by order and filter visible ones
   const bodySections = (sectionsConfig.sections || [])

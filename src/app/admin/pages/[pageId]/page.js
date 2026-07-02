@@ -3,11 +3,12 @@
 import React, { useState, useEffect, useRef, use, useCallback } from 'react';
 import Link from 'next/link';
 import styles from './page.module.css';
-import { FiMenu, FiImage, FiBarChart2, FiMic, FiUser, FiCompass, FiBriefcase, FiHeart, FiLayout, FiCalendar, FiBookOpen, FiSquare, FiFileText, FiEye } from 'react-icons/fi';
+import { FiMenu, FiImage, FiBarChart2, FiMic, FiUser, FiCompass, FiBriefcase, FiHeart, FiLayout, FiCalendar, FiBookOpen, FiSquare, FiFileText, FiEye, FiEyeOff } from 'react-icons/fi';
 
 export default function PageLayoutManager({ params }) {
   const { pageId } = use(params);
   const [sections, setSections] = useState([]);
+  const [pageTitle, setPageTitle] = useState(pageId);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [toast, setToast] = useState(null);
@@ -71,6 +72,7 @@ export default function PageLayoutManager({ params }) {
       try {
         const res = await fetch(`/api/admin/pages/${pageId}/sections`);
         const data = await res.json();
+        setPageTitle(data.pageTitle || pageId);
         setSections((data.sections || []).sort((a, b) => a.order - b.order));
       } catch (err) {
         showToast('Failed to load page layout', 'error');
@@ -378,10 +380,17 @@ export default function PageLayoutManager({ params }) {
       {/* Header */}
       <div className={styles.header}>
         <div>
-          <h2 className={styles.title}>{pageId} Page Layout</h2>
-          <p className={styles.subtitle}>
-            Drag to reorder • Toggle visibility • Click to edit content
-          </p>
+          <h2 className={styles.title}>
+            {pageTitle === 'home' ? 'Home Page' : 
+             pageTitle === 'congress-proceedings' ? 'Congress Proceedings' : 
+             pageTitle === 'assemblies' ? 'Assemblies' : 
+             pageTitle === 'fellow-awards' ? 'Fellow & Awards' : 
+             pageTitle === 'about' ? 'About Us' : 
+             pageTitle === 'contacts' ? 'Contacts' : 
+             pageTitle === 'global' ? 'Global Settings' : 
+             pageTitle} Page Layout
+          </h2>
+
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <button 
@@ -426,19 +435,19 @@ export default function PageLayoutManager({ params }) {
               {isHeader && (
                 <div className={styles.zoneHeader}>
                   <h4>Global Layout Components</h4>
-                  <p>Global headers are shared across page layouts</p>
+
                 </div>
               )}
               {isFirstBodySection && (
                 <div className={styles.zoneHeader}>
                   <h4>Page Body Components</h4>
-                  <p>Drag components vertically to change the order of the page layout</p>
+
                 </div>
               )}
               {isFooter && (
                 <div className={styles.zoneHeader}>
                   <h4>Global Footer components</h4>
-                  <p>Bottom navigation page settings</p>
+
                 </div>
               )}
 
@@ -466,17 +475,15 @@ export default function PageLayoutManager({ params }) {
                   <div className={styles.cardInfo}>
                     <div className={styles.cardTitleRow}>
                       <h3 className={styles.cardTitle}>{section.label}</h3>
-                      <span className={`${styles.statusBadge} ${section.visible ? styles.statusActive : styles.statusInactive}`}>
-                        {section.visible ? 'Visible' : 'Hidden'}
+                      <span className={`${styles.statusBadge} ${section.visible ? styles.statusActive : styles.statusInactive}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                        {section.visible ? (
+                          <><FiEye size={12} /> Active</>
+                        ) : (
+                          <><FiEyeOff size={12} /> Hidden</>
+                        )}
                       </span>
                     </div>
-                    <p className={styles.cardDescText}>{descText}</p>
-                    {summaryText && (
-                      <div className={styles.cardSummaryBadge}>
-                        <span className={styles.summaryLabel}>Active Content:</span>
-                        <span className={styles.summaryValue}>{summaryText}</span>
-                      </div>
-                    )}
+
                   </div>
                 </div>
 

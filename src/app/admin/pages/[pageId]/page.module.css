@@ -8,21 +8,21 @@
   top: 24px;
   right: 24px;
   padding: 12px 20px;
-  border-radius: 10px;
+  border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
   z-index: 200;
   animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 32px rgba(33, 33, 52, 0.15);
 }
 
 .success {
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: var(--strapi-success);
   color: white;
 }
 
 .error {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
+  background: var(--strapi-danger);
   color: white;
 }
 
@@ -41,30 +41,27 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   gap: 16px;
   flex-wrap: wrap;
 }
 
 .title {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 6px;
+  color: var(--strapi-dark);
+  margin-bottom: 4px;
   text-transform: capitalize;
 }
 
-.subtitle {
-  font-size: 14px;
-  color: #71717a;
-}
+
 
 .headerBadge {
-  padding: 8px 16px;
-  border-radius: 20px;
-  background: rgba(240, 67, 147, 0.12);
-  color: #F04393;
-  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 12px;
+  background: #f0f0ff;
+  color: var(--strapi-primary);
+  font-size: 12px;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -73,7 +70,7 @@
 .grid {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 /* ─── Card ─── */
@@ -81,39 +78,40 @@
   display: flex;
   align-items: center;
   gap: 0;
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  background: var(--strapi-card);
+  border: 1px solid var(--strapi-border);
+  border-radius: 8px;
   overflow: hidden;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
   cursor: grab;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.02);
 }
 
 .card:active {
   cursor: grabbing;
-  transform: scale(1.01);
-  box-shadow: 0 8px 32px rgba(36, 14, 139, 0.1);
-  border-color: rgba(36, 14, 139, 0.2);
+  transform: scale(1.005);
+  box-shadow: 0 6px 20px rgba(73, 69, 255, 0.1);
+  border-color: var(--strapi-primary);
 }
 
 .card:hover {
-  border-color: #d1d5db;
-  background: #f9fafb;
+  border-color: #c0c0cf;
+  background: #fafafb;
 }
 
 .cardHidden {
-  opacity: 0.5;
+  opacity: 0.6;
+  background: #f6f6f9;
 }
 
 .cardHidden:hover {
-  opacity: 0.75;
+  opacity: 0.85;
 }
 
 .cardDragOver {
-  border-color: #240E8B !important;
-  background: #eef2ff !important;
-  box-shadow: 0 0 0 2px rgba(36, 14, 139, 0.15);
+  border-color: var(--strapi-primary) !important;
+  background: #f0f0ff !important;
+  box-shadow: 0 0 0 2px rgba(73, 69, 255, 0.15);
 }
 
 /* ─── Drag Handle ─── */
@@ -124,9 +122,9 @@
   width: 40px;
   flex-shrink: 0;
   height: 100%;
-  padding: 20px 0;
-  color: #9ca3af;
-  font-size: 20px;
+  padding: 16px 0;
+  color: var(--strapi-muted);
+  font-size: 16px;
 }
 
 .dragDots {
@@ -138,21 +136,21 @@
   flex: 1;
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 16px 8px;
+  gap: 16px;
+  padding: 14px 4px;
   min-width: 0;
 }
 
 .cardIcon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: #f3f4f6;
-  color: #6b7280;
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+  background: #f0f0f4;
+  color: var(--strapi-muted);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 16px;
   flex-shrink: 0;
 }
 
@@ -164,65 +162,74 @@
 }
 
 .cardTitle {
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--strapi-dark);
+  margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .statusBadge {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  background: #f6f6f9;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--strapi-border);
 }
 
 .statusActive {
-  color: #10b981;
+  color: var(--strapi-success);
+  background: #eafbe7;
+  border-color: rgba(92, 177, 118, 0.2);
 }
 
 .statusInactive {
-  color: #71717a;
+  color: var(--strapi-muted);
+  background: #f6f6f9;
+  border-color: var(--strapi-border);
 }
 
 /* ─── Card Actions ─── */
 .cardActions {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 16px 20px;
+  gap: 14px;
+  padding: 14px 20px;
   flex-shrink: 0;
 }
 
 /* ─── Toggle Switch ─── */
 .toggle {
   position: relative;
-  width: 44px;
-  height: 24px;
-  border-radius: 12px;
+  width: 42px;
+  height: 22px;
+  border-radius: 11px;
   border: none;
-  background: #d1d5db;
+  background: #dcdce4;
   cursor: pointer;
-  transition: background 0.25s ease;
+  transition: background 0.2s ease;
   flex-shrink: 0;
 }
 
 .toggleOn {
-  background: #240E8B;
+  background: var(--strapi-primary);
 }
 
 .toggleKnob {
   position: absolute;
   top: 3px;
   left: 3px;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: white;
-  transition: transform 0.25s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 
 .toggleOn .toggleKnob {
@@ -231,22 +238,22 @@
 
 /* ─── Edit Button ─── */
 .editBtn {
-  padding: 8px 16px;
-  border-radius: 8px;
+  padding: 7px 14px;
+  border-radius: 6px;
   background: white;
-  border: 1px solid #d1d5db;
-  color: #4b5563;
+  border: 1px solid var(--strapi-border);
+  color: var(--strapi-muted);
   text-decoration: none;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
   white-space: nowrap;
 }
 
 .editBtn:hover {
-  background: #eef2ff;
-  color: #240E8B;
-  border-color: #c7d2fe;
+  background: #f0f0ff;
+  color: var(--strapi-primary);
+  border-color: var(--strapi-primary);
 }
 
 /* ─── Loading ─── */
@@ -255,25 +262,25 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 400px;
-  gap: 16px;
-  color: #6b7280;
+  height: 300px;
+  gap: 12px;
+  color: var(--strapi-muted);
 }
 
 .spinner {
-  width: 36px;
-  height: 36px;
-  border: 3px solid #e5e7eb;
-  border-top-color: #240E8B;
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(73, 69, 255, 0.1);
+  border-top-color: var(--strapi-primary);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
 
 .spinnerSmall {
-  width: 16px;
-  height: 16px;
-  border: 2px solid #e5e7eb;
-  border-top-color: #240E8B;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-top-color: white;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -290,29 +297,29 @@
   align-items: center;
   gap: 8px;
   padding: 10px 18px;
-  border-radius: 10px;
-  background: #1c1c26;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #a1a1aa;
+  border-radius: 8px;
+  background: var(--strapi-dark);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: white;
   font-size: 13px;
   font-weight: 500;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 /* ─── Responsive ─── */
 @media (max-width: 640px) {
   .cardBody {
-    padding: 12px 4px;
+    padding: 10px 4px;
   }
 
   .cardActions {
-    padding: 12px;
+    padding: 10px 14px;
     flex-direction: column;
     gap: 8px;
   }
 
   .cardTitle {
-    font-size: 13px;
+    font-size: 13.5px;
   }
 
   .editBtn {
@@ -323,24 +330,24 @@
 
 /* ─── CMS Zone Headers ─── */
 .zoneHeader {
-  margin-top: 24px;
-  margin-bottom: 8px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #f3f4f6;
+  margin-top: 20px;
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--strapi-border);
 }
 
 .zoneHeader h4 {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
-  color: #111827;
+  color: var(--strapi-muted);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 1px;
   margin: 0 0 2px 0;
 }
 
 .zoneHeader p {
   font-size: 12px;
-  color: #6b7280;
+  color: var(--strapi-muted);
   margin: 0;
 }
 
@@ -353,8 +360,8 @@
 
 .cardDescText {
   font-size: 12px;
-  color: #6b7280;
-  margin: 0 0 6px 0;
+  color: var(--strapi-muted);
+  margin: 0 0 4px 0;
   line-height: 1.4;
 }
 
@@ -362,10 +369,10 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
-  padding: 4px 8px;
-  border-radius: 6px;
+  background: #fafafb;
+  border: 1px solid var(--strapi-border);
+  padding: 3px 8px;
+  border-radius: 4px;
   font-size: 11px;
   max-width: 480px;
   overflow: hidden;
@@ -375,26 +382,26 @@
 
 .summaryLabel {
   font-weight: 600;
-  color: #4b5563;
+  color: var(--strapi-muted);
 }
 
 .summaryValue {
-  color: #111827;
+  color: var(--strapi-text);
 }
 
 /* ─── Fixed Component Overrides ─── */
 .cardFixed {
   cursor: default !important;
-  background: #fafafa;
+  background: #fafafb;
   border-style: dashed;
 }
 
 .cardFixed:active {
   transform: none !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.02) !important;
 }
 
 .dragDotsLock {
-  color: #d1d5db;
+  color: #c0c0cf;
   line-height: 1;
 }

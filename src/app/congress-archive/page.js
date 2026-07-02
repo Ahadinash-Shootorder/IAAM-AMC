@@ -11,10 +11,13 @@ export const metadata = {
 
 export const dynamic = 'force-dynamic';
 
-export default async function CongressArchive() {
-  const sectionsConfig = await getPageLayout('congress-archive');
-  const headerData = await readPageSectionData('global', 'header');
-  const footerData = await readPageSectionData('global', 'footer');
+export default async function CongressArchive({ searchParams }) {
+  const params = await searchParams;
+  const isPreview = params?.preview === 'true';
+
+  const sectionsConfig = await getPageLayout('congress-archive', isPreview);
+  const headerData = await readPageSectionData('global', 'header', isPreview);
+  const footerData = await readPageSectionData('global', 'footer', isPreview);
 
   // Fetch the events data
   const eventsListSection = (sectionsConfig.sections || []).find((s) => s.id === 'eventsList');
